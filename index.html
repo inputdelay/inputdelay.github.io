@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Delay</title>
+	<link rel="canonical" href="https://html.cafe" />
+    <!-- Favicon -->
+    <link rel="icon" href="2cJw7a9.png" type="image/x-icon">
+    <script src="npm/particles.js"></script>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    scroll-behavior: smooth;
+  }
+  body {
+    background: url('free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+  }
+  nav ul li a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  .discord-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #7289da, #5a70d2);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .discord-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
+  }
+  .hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+  }
+  .hero h2 {
+    font-size: 6rem;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.7);
+    animation: glow 1.5s infinite alternate;
+  }
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+      text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.8);
+    }
+  }
+  .get-started-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+    color: white;
+    text-decoration: none;
+    padding: 15px 50px;
+    border-radius: 8px;
+    margin-top: 90px;
+    transition: transform 0.5s ease, box-shadow 0.7s ease;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    /* Apply blur effect */
+    -webkit-backdrop-filter: blur(15px);
+  }
+  .get-started-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 50px rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
+  }
+  .second-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+  }
+  .second-screen h2 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    max-width: 40%;
+    word-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.2;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.7);
+  }
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+  }
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    header {
+      padding: 10px 20px; /* Smaller padding */
+    }
+    header h1 {
+      font-size: 1.6rem; /* Smaller header title */
+    }
+    nav ul {
+      gap: 10px; /* Smaller gap between nav items */
+    }
+    nav ul li a {
+      font-size: 0.8rem; /* Smaller font size for nav items */
+      padding: 6px 12px; /* Smaller padding for links */
+    }
+    .discord-btn {
+      padding: 8px 16px;
+      font-size: 0.8rem; /* Smaller discord button */
+    }
+    .hero {
+      padding: 15px;
+    }
+    .hero h2 {
+      font-size: 3rem; /* Much smaller hero title */
+    }
+    .get-started-btn {
+      padding: 12px 30px;
+      font-size: 0.9rem;
+    }
+    .second-screen {
+      padding: 10px;
+    }
+    .second-screen h2 {
+      font-size: 1.2rem; /* Really small second screen text */
+      max-width: 70%; /* Adjust width */
+    }
+  }
+</style>
+  </head>
+  <body>
+    <!-- Particles.js Background -->
+    <div id="particles-js" style="position: absolute; width: 100%; height: 100%; z-index: -2;"></div>
+    <!-- Header -->
+<header>
+  <img src="2cJw7a9.png" alt="Input Delay" style="height: 50px;">
+  <nav>
+    <ul>
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="Games/index.html" class="nav-link">Games</a></li>
+      <li><a href="https://github.com/Yeti1o1/Pulsar" target="_blank" class="discord-btn">Built With Pulsar</a></li>
+    </ul>
+  </nav>
+</header>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div>
+        <h2>Input Delay</h2>
+        <a href="Games/index.html" class="get-started-btn">Games</a>
+        <a href="AI/aiiframe.html" class="get-started-btn">AI</a>
+      </div>
+    </section>
+    <script>
+      particlesJS("particles-js", {
+        "particles": {
+          "number": {
+            "value": 100,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#ffffff"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            },
+            "polygon": {
+              "nb_sides": 5
+            }
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": false,
+            "anim": {
+              "enable": true,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 40,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.4,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 6,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+              "enable": false,
+              "rotateX": 600,
+              "rotateY": 1200
+            }
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "repulse"
+            },
+            "onclick": {
+              "enable": true,
+              "mode": "push"
+            },
+            "resize": true
+          },
+          "modes": {
+            "repulse": {
+              "distance": 100,
+              "duration": 0.4
+            },
+            "push": {
+              "particles_nb": 4
+            }
+          }
+        },
+        "retina_detect": true
+      });
+    </script>
+</html>
