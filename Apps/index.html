@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1c1f24">
+    <meta name="googlebot" content="index, follow, snippet">
+    <meta name="robots" content="index, follow">
+
+    <title>InputDelay - Games Hub</title>
+
+    <link rel="icon" href="2cJw7a9.png" type="image/x-icon">
+    <link rel="shortcut icon" href="2cJw7a9.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/games-style.css">
+
+    <!-- *** FIXED PATH *** Using CDN for particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4207227785539100"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Particles.js Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html"><img src="2cJw7a9.png" alt="Pulsar Logo" class="header-logo"></a> <!-- Changed alt text -->
+        <nav>
+            <ul>
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../Games/index.html" class="nav-link active">Games</a></li>
+                <li><a href="index.html" class="nav-link active">Apps</a></li>
+                <li><a href="https://forms.gle/CkQLAFKJyxR4qTLs8" class="nav-link active">File A DMCA Takedown Request</a></li>
+                <li><a href="https://github.com/Yeti1o1/Pulsar" target="_blank" class="discord-btn">Built With Pulsar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Game Hub Content Area -->
+    <main class="hub-container">
+
+        <!-- Search and Controls -->
+        <section class="hub-controls">
+            <div class="search-wrapper" id="searchWrapper">
+                <input type="text" id="myInput" placeholder="Search for games...">
+                <button class="search-icon-btn" aria-label="Search">
+                   <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Container for Categories -->
+        <div class="categories-wrapper" id="categoriesWrapper">
+            <!-- All Games Section -->
+            <section class="game-category all-games-section">
+                 <div class="category-header">
+                    <h6><i class="fas fa-border-all"></i> All Apps</h6>
+                 </div>
+                 <div class="btn-container-grid">
+                  <button class="btn" data-path="Apps/Simple Calculator.html"><img class="imgg" src="Imgs/Simple Calculator.png" alt="Simple Calculator">Simple Calculator<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Neutron.html"><img class="imgg" src="Imgs/Neutron.png" alt="Neutron">Neutron<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/MiniWiki.html"><img class="imgg" src="Imgs/MiniWiki.png" alt="MiniWiki">MiniWiki<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Algebra Calculator.html"><img class="imgg" src="Imgs/Algebra Calculator.png" alt="Algebra Calculator">Algebra Calculator<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Advanced Code Editor 1.html"><img class="imgg" src="Imgs/Advanced Code Editor V1.png" alt="Advanced Code Editor V1">Advanced Code Editor V1<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Advanced Code Editor 2.html"><img class="imgg" src="Imgs/Advanced Code Editor V2.png" alt="Advanced Code Editor V2">Advanced Code Editor V2<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Wordle Bot/Wordle Bot.html"><img class="imgg" src="Imgs/Wordle Bot.png" alt="Wordle Bot">Wordle Bot<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Weavesilk/index.html"><img class="imgg" src="Imgs/Weavesilk.png" alt="Weavesilk">Weavesilk<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Turbowarp/Turbowarp.html"><img class="imgg" src="Imgs/Turbowarp.png" alt="Turbowarp">Turbowarp<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Ruffle/Ruffle.html"><img class="imgg" src="Imgs/Ruffle.png" alt="Ruffle">Ruffle<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/HTML Unleashed/HTML Unleashed.html"><img class="imgg" src="Imgs/HTML Unleashed.png" alt="HTML Unleashed">HTML Unleashed<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Emulators/Emulator JS/Emulator JS.html"><img class="imgg" src="Imgs/Emulator JS.png" alt="Emulator JS">Emulator JS<i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Apps/Emulators/Emulator WebRetro/WebRetro.html"><img class="imgg" src="Imgs/WebRetro.png" alt="WebRetro">WebRetro<i class="fa fa-heart heart-icon"></i></button>
+
+
+                    </div>
+                </section>
+
+        <!-- Message for no search results -->
+        <p id="noResultsMessage" style="display: none; text-align: center; margin-top: 30px; font-size: 1.3em; color: #ccc;">
+            No games found matching your search.
+        </p>
+
+    </main>
+
+     <!-- --- Scripts --- -->
+
+    <!-- Debounce Function (Needs to be defined before used) -->
+    <!-- --- Scripts --- -->
+
+    <!-- Utility: Debounce Function -->
+    <!-- --- Scripts --- -->
+
+    <!-- Utility: Debounce Function -->
+    <script>
+        // Must be defined before it's used by other scripts
+        function debounce(func, wait, immediate) {
+          var timeout;
+          return function() {
+            var context = this, args = arguments;
+            var later = function() {
+              timeout = null;
+              if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+          };
+        }
+      </script>
+  
+      <!-- Core Logic Function Definitions -->
+      <script>
+        // Define functions needed by event listeners
+  
+        // --- Scroll Arrow Logic Definition ---
+        function setupScrollArrows(category) {
+          const btnContainer = category.querySelector('.btn-container, .favorite-container');
+          const leftArrow = category.querySelector('.scroll-arrow.left-arrow');
+          const rightArrow = category.querySelector('.scroll-arrow.right-arrow');
+          // const categoryName = category.querySelector('h6')?.textContent || 'Unknown Category';
+  
+          if (!btnContainer || !leftArrow || !rightArrow) { return; }
+  
+          let scrollAmount = 300;
+          const updateScrollAmount = () => { scrollAmount = 300; };
+          let scrollInterval = null;
+  
+          function updateArrowVisibility() {
+            if (!category.offsetParent || !btnContainer.offsetParent) {
+               leftArrow.style.display = 'none'; rightArrow.style.display = 'none'; return;
+            }
+            const tolerance = 5;
+            const maxScrollLeft = btnContainer.scrollWidth - btnContainer.clientWidth;
+            const canScroll = btnContainer.scrollWidth > btnContainer.clientWidth + tolerance;
+            leftArrow.style.display = canScroll && btnContainer.scrollLeft > tolerance ? 'flex' : 'none';
+            rightArrow.style.display = canScroll && btnContainer.scrollLeft < maxScrollLeft - tolerance ? 'flex' : 'none';
+          }
+  
+          const debouncedUpdateArrows = debounce(updateArrowVisibility, 50); // Uses global debounce
+          category._updateArrowVisibility = debouncedUpdateArrows;
+  
+          btnContainer.addEventListener('scroll', debouncedUpdateArrows);
+          const resizeObserver = new ResizeObserver(() => {
+            updateScrollAmount(); debouncedUpdateArrows();
+          });
+          resizeObserver.observe(btnContainer);
+          resizeObserver.observe(category);
+  
+          const scrollStep = (direction) => {
+            if (isNaN(scrollAmount) || scrollAmount <= 0) return;
+            btnContainer.scrollBy({ left: direction * scrollAmount });
+          };
+          const startScrolling = (direction) => {
+            stopScrolling(); scrollStep(direction);
+            scrollInterval = setInterval(() => scrollStep(direction), 150);
+          };
+          const stopScrolling = () => { clearInterval(scrollInterval); scrollInterval = null; };
+  
+          // Clone/Replace arrows
+          const newLeftArrow = leftArrow.cloneNode(true);
+          const newRightArrow = rightArrow.cloneNode(true);
+          leftArrow.parentNode.replaceChild(newLeftArrow, leftArrow);
+          rightArrow.parentNode.replaceChild(newRightArrow, rightArrow);
+  
+          // Attach listeners to NEW arrows
+          newLeftArrow.addEventListener('click', () => scrollStep(-1));
+          newRightArrow.addEventListener('click', () => scrollStep(1));
+          const addHoldListeners = (arrow, direction) => {
+            arrow.addEventListener('mousedown', () => startScrolling(direction));
+            arrow.addEventListener('touchstart', (e) => { e.preventDefault(); startScrolling(direction); }, { passive: false });
+            arrow.addEventListener('mouseup', stopScrolling);
+            arrow.addEventListener('mouseleave', stopScrolling);
+            arrow.addEventListener('touchend', stopScrolling);
+            arrow.addEventListener('touchcancel', stopScrolling);
+          };
+          addHoldListeners(newLeftArrow, -1);
+          addHoldListeners(newRightArrow, 1);
+  
+          // Initial check
+          setTimeout(() => { updateScrollAmount(); updateArrowVisibility(); }, 100);
+          // No need for window resize listener here, ResizeObserver handles container/category changes
+        }
+        // --- END Scroll Arrow Logic Definition ---
+  
+  
+        // --- Search Filter Logic Definition ---
+              // --- Search Filter Logic Definition (REVISED - Put setTimeout back for arrows) ---
+      function filterGames() {
+        const input = document.getElementById('myInput');
+        const filter = input.value.toUpperCase().trim();
+        const categoriesWrapper = document.getElementById('categoriesWrapper');
+        const categories = categoriesWrapper?.querySelectorAll('.game-category:not(.all-games-section):not(.favorites-section)');
+        const allGamesGrid = document.querySelector('.all-games-section .btn-container-grid');
+        const allGameButtons = allGamesGrid?.querySelectorAll('.btn');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        let hasVisibleGames = false;
+
+        // console.log(`--- Filtering for: "${filter}" ---`); // Keep logs if helpful
+
+        const getButtonName = (button) => { /* ... unchanged helper ... */
+            let name = ""; button.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") name = node.textContent.trim(); }); return name || button.querySelector('img')?.alt || 'Unknown Button';
+        }
+
+        categories?.forEach(category => {
+          const buttons = category.querySelectorAll('.btn');
+          buttons.forEach(button => {
+            let txtValue = ""; /* ... unchanged extraction ... */ button.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") txtValue = node.textContent.trim(); }); if (!txtValue) txtValue = button.querySelector('img')?.alt || '';
+            const buttonName = getButtonName(button);
+
+            if (txtValue.toUpperCase().includes(filter)) {
+              if (button.classList.contains('hidden')) { /* console.log(` ✅ Showing: ${buttonName}`); */ button.classList.remove('hidden'); }
+              hasVisibleGames = true;
+            } else {
+              if (!button.classList.contains('hidden')) { /* console.log(` ❌ Hiding: ${buttonName}`); */ button.classList.add('hidden'); }
+            }
+          });
+          // Update category arrows
+          const updateFunc = category._updateArrowVisibility;
+          if (typeof updateFunc === 'function') {
+            // updateFunc(); // REMOVE direct call
+            setTimeout(updateFunc, 50); // <<<--- PUT TIMEOUT BACK HERE
+          }
+        });
+
+        if (allGameButtons) {
+          allGameButtons.forEach(button => {
+            let txtValue = ""; /* ... unchanged extraction ... */ button.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") txtValue = node.textContent.trim(); }); if (!txtValue) txtValue = button.querySelector('img')?.alt || '';
+            const buttonName = getButtonName(button);
+
+            if (txtValue.toUpperCase().includes(filter)) {
+              if (button.classList.contains('hidden')) { /* console.log(` ✅ Showing (All): ${buttonName}`); */ button.classList.remove('hidden'); }
+              hasVisibleGames = true;
+            } else {
+              if (!button.classList.contains('hidden')) { /* console.log(` ❌ Hiding (All): ${buttonName}`); */ button.classList.add('hidden'); }
+            }
+          });
+        }
+
+        if (noResultsMessage) {
+          noResultsMessage.style.display = (filter !== '' && !hasVisibleGames) ? 'block' : 'none';
+        }
+
+        // Re-evaluate favorites visibility
+        const favSection = document.getElementById('favoritesSection');
+        const favContainer = favSection?.querySelector('.favorite-container');
+         if (favSection && favContainer) {
+             const shouldBeVisible = favContainer.children.length > 0;
+             favSection.style.display = shouldBeVisible ? '' : 'none';
+             if (shouldBeVisible) {
+                const updateFavArrows = favSection._updateArrowVisibility;
+                if (typeof updateFavArrows === 'function') {
+                   // updateFavArrows(); // REMOVE direct call
+                   setTimeout(updateFavArrows, 50); // <<<--- PUT TIMEOUT BACK HERE
+                }
+             }
+         }
+        // console.log(`--- Filtering done for: "${filter}" ---`); // Keep logs if helpful
+      }
+      // --- END Search Filter Logic Definition ---
+  
+  
+        // --- Game Launch Logic Definition ---
+        function addGameLaunchListener(button) {
+          console.log("Attempting to add listener to:", button); // DEBUG
+          if (button._hasGameLaunchListener) {
+               console.log("Listener already exists, skipping."); // DEBUG
+               return;
+          }
+  
+          button.addEventListener('click', function(event) {
+           console.log("Button clicked!", this); // DEBUG
+           // IMPORTANT: Do not launch if the click was on the heart icon
+           if (event.target.classList.contains('heart-icon') || event.target.closest('.heart-icon')) {
+             console.log("Heart icon click detected, preventing game launch."); // DEBUG
+             return;
+           }
+  
+           const path = this.getAttribute('data-path');
+           let gameName = "";
+  
+           // Extract game name reliably
+           this.childNodes.forEach(node => {
+             if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") { gameName = node.textContent.trim(); }
+           });
+           if (!gameName) { /* ... unchanged fallback logic ... */ const imgAlt = this.querySelector('img')?.getAttribute('alt'); if (imgAlt) { gameName = imgAlt; } else { gameName = path ? path.split('/').pop().split('.')[0].replace(/[-_]/g, ' ') : 'Unknown Game'; gameName = gameName.replace(/\b\w/g, l => l.toUpperCase()); } }
+  
+           if (path && gameName) {
+             console.log(`LAUNCHING Game: ${gameName} from path: ${path}`); // DEBUG
+             localStorage.setItem("lastClickedUrl", path);
+             localStorage.setItem("lastClickedGame", gameName);
+             window.location.href = "game.html"; // Ensure game.html exists
+           } else {
+             console.error("Error launching game: Missing data-path or failed to extract name.", this);
+             alert("Error: Could not determine game path or name.");
+           }
+         });
+         button._hasGameLaunchListener = true; // Mark that listener has been added
+         console.log("Listener ADDED for:", getButtonName ? getButtonName(button) : 'button'); // DEBUG using helper if available
+       }
+        // --- END Game Launch Logic Definition ---
+  
+      </script>
+  
+      <!-- Favoriting Logic (Self-contained in IIFE) -->
+      <script>
+          // --- Favoriting Logic ---
+          (() => { // Using an IIFE
+              let favoriteContainer = null;
+              let favoritesSection = null;
+  
+              function updateFavoritesSectionVisibility() {
+                   if (!favoriteContainer || !favoritesSection) return;
+                   const shouldBeVisible = favoriteContainer.children.length > 0;
+                   favoritesSection.style.display = shouldBeVisible ? '' : 'none';
+                   if (shouldBeVisible) {
+                       const updateFunc = favoritesSection._updateArrowVisibility; // Assumes setupScrollArrows stored it
+                       if (typeof updateFunc === 'function') setTimeout(updateFunc);
+                   }
+              }
+  
+              function handleHeartClickRevised(event) {
+                  event.stopPropagation();
+                  toggleHeartRevised(event.currentTarget);
+              }
+  
+               function toggleHeartRevised(clickedHeartIcon) {
+                   const button = clickedHeartIcon.closest(".btn");
+                   if (!button) return;
+                   const gameId = button.dataset.gameId;
+                   if (!gameId) { console.error("Fav toggle: Missing gameId", button); return; }
+                   const isCurrentlyHearted = clickedHeartIcon.classList.contains("hearted");
+                   const allMatchingButtons = document.querySelectorAll(`.btn[data-game-id="${gameId}"]`);
+  
+                   if (isCurrentlyHearted) {
+                       allMatchingButtons.forEach(btn => btn.querySelector('.heart-icon')?.classList.remove("hearted"));
+                       localStorage.setItem(`heartState-${gameId}`, "false");
+                       removeFromFavoritesRevised(gameId);
+                   } else {
+                       allMatchingButtons.forEach(btn => btn.querySelector('.heart-icon')?.classList.add("hearted"));
+                       localStorage.setItem(`heartState-${gameId}`, "true");
+                       const originalButton = document.querySelector(`.categories-wrapper .btn[data-game-id="${gameId}"]:not(#favoritesSection .btn)`); // Ensure we select from main list
+                       if (originalButton) {
+                           moveToFavoritesRevised(originalButton);
+                       } else {
+                           // If only the favorite exists (e.g., page reloaded), ensure it's visually correct (already done)
+                           console.warn("Could not find original button to clone for favorite:", gameId);
+                       }
+                   }
+               }
+  
+               function moveToFavoritesRevised(originalButton) {
+                   if (!favoriteContainer) return;
+                   const gameId = originalButton.dataset.gameId;
+                   const existingFavorite = favoriteContainer.querySelector(`.btn[data-game-id="${gameId}"]`);
+  
+                   if (!existingFavorite) {
+                       const clonedButton = originalButton.cloneNode(true);
+                       const clonedHeartIcon = clonedButton.querySelector('.heart-icon');
+                       if (clonedHeartIcon) {
+                           clonedHeartIcon.classList.add('hearted');
+                           clonedHeartIcon.addEventListener('click', handleHeartClickRevised); // Listener for clone's heart
+                       }
+                       // *** Calls the globally defined addGameLaunchListener ***
+                       addGameLaunchListener(clonedButton); // Listener for clone's main click
+                       // *** ***
+                       favoriteContainer.appendChild(clonedButton);
+                   } else {
+                        existingFavorite.querySelector('.heart-icon')?.classList.add('hearted'); // Ensure state is correct
+                   }
+                   updateFavoritesSectionVisibility();
+                   triggerFavoriteArrowUpdateRevised();
+               }
+  
+               function removeFromFavoritesRevised(gameId) {
+                   const favoritedItem = favoriteContainer?.querySelector(`.btn[data-game-id="${gameId}"]`);
+                   if (favoritedItem) {
+                       favoriteContainer.removeChild(favoritedItem);
+                   }
+                   updateFavoritesSectionVisibility();
+                   triggerFavoriteArrowUpdateRevised();
+               }
+  
+               function triggerFavoriteArrowUpdateRevised() {
+                   if (!favoritesSection) return;
+                   const updateFunc = favoritesSection._updateArrowVisibility;
+                   if (typeof updateFunc === 'function') {
+                       setTimeout(updateFunc);
+                   } else {
+                      const favContainer = favoritesSection.querySelector('.favorite-container');
+                      if (favContainer) favContainer.dispatchEvent(new Event('scroll')); // Fallback
+                   }
+               }
+  
+              // This runs when the DOM is ready for *this script block*
+              document.addEventListener("DOMContentLoaded", function() {
+                   favoriteContainer = document.querySelector("#favoritesSection .favorite-container");
+                   favoritesSection = document.getElementById('favoritesSection');
+                   if (!favoriteContainer || !favoritesSection) { return; }
+  
+                   // Pass 1: Assign IDs, Listeners, Initial State (only needs heart listener here)
+                   document.querySelectorAll(".categories-wrapper .btn").forEach(button => {
+                      const heartIcon = button.querySelector(".heart-icon");
+                      if (!heartIcon) return;
+                      const gamePath = button.getAttribute("data-path");
+                      const gameId = gamePath ? `fav-${gamePath.replace(/[^a-zA-Z0-9]+/g, '-')}` : `fav-unknown-${Math.random().toString(16).slice(2)}`;
+                      button.dataset.gameId = gameId;
+                      heartIcon.addEventListener('click', handleHeartClickRevised);
+                      const isHearted = localStorage.getItem(`heartState-${gameId}`);
+                      if (isHearted === "true") { heartIcon.classList.add("hearted"); }
+                   });
+  
+                   // Pass 2: Populate Favorites (calls moveToFavoritesRevised which adds necessary listeners)
+                   document.querySelectorAll(".categories-wrapper .btn[data-game-id]").forEach(button => {
+                       const gameId = button.dataset.gameId;
+                       const isHearted = localStorage.getItem(`heartState-${gameId}`);
+                       // Add check to ensure button is NOT already in favorites before moving
+                       if (isHearted === "true" && !button.closest('#favoritesSection .favorite-container')) {
+                           moveToFavoritesRevised(button);
+                       }
+                   });
+  
+                   updateFavoritesSectionVisibility(); // Check visibility after populating
+              });
+          })(); // Immediately invoke
+          // --- END Favoriting Logic ---
+      </script>
+  
+      <!-- Category Toggle Logic (Self-contained in IIFE) -->
+      <script>
+        // --- Category Toggle Logic ---
+        (() => {
+            document.addEventListener('DOMContentLoaded', () => { // Wait for elements
+                  const toggleBtn = document.getElementById('Toggle');
+                  const categoriesWrapper = document.getElementById('categoriesWrapper');
+                  if(!toggleBtn || !categoriesWrapper) { return; }
+  
+                  toggleBtn.addEventListener('click', () => {
+                      const isHidden = window.getComputedStyle(categoriesWrapper).display === 'none';
+                      if (isHidden) {
+                          categoriesWrapper.style.display = '';
+                          toggleBtn.textContent = 'Hide Categories';
+                          toggleBtn.setAttribute('aria-expanded', 'true');
+                          document.querySelectorAll('.game-category').forEach(category => {
+                              if (window.getComputedStyle(category).display !== 'none') {
+                                  const updateFunc = category._updateArrowVisibility;
+                                  if (typeof updateFunc === 'function') setTimeout(updateFunc);
+                              }
+                          });
+                      } else {
+                          categoriesWrapper.style.display = 'none';
+                          toggleBtn.textContent = 'Show Categories';
+                          toggleBtn.setAttribute('aria-expanded', 'false');
+                      }
+                  });
+                  toggleBtn.setAttribute('aria-expanded', window.getComputedStyle(categoriesWrapper).display !== 'none');
+            });
+        })();
+        // --- END Category Toggle Logic ---
+      </script>
+  
+      <!-- Main Initializer (Runs on DOMContentLoaded) -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Main DOMContentLoaded: Initializing setup..."); // DEBUG
+
+            // --- Setup Scroll Arrows ---
+            console.log("Setting up scroll arrows..."); // DEBUG
+            document.querySelectorAll('.game-category').forEach(setupScrollArrows); // Calls function defined above
+            console.log("Scroll arrow setup done."); // DEBUG
+
+            // --- Attach Game Launch Listeners to initial buttons ---
+            const initialButtons = document.querySelectorAll('.categories-wrapper > .game-category:not(#favoritesSection) .btn');
+            console.log(`Found ${initialButtons.length} initial buttons for game launch listener.`); // DEBUG
+            initialButtons.forEach(button => {
+                addGameLaunchListener(button); // Calls function defined above
+             });
+            console.log("Attempted to add game launch listeners via function."); // DEBUG
+
+            // ---->>>> START SIMPLE CLICK TEST <<<<----
+            console.log("Attaching DIRECT test listeners to ALL .btn elements...");
+            const allBtns = document.querySelectorAll('.categories-wrapper .btn'); // Select ALL buttons again for test
+            console.log(`Found ${allBtns.length} total buttons for DIRECT test.`);
+            allBtns.forEach((button, index) => {
+                // Generate a unique ID for logging this specific listener
+                const testId = `test-listener-${index}`;
+                console.log(`Attaching direct listener ${testId} to:`, button);
+
+                button.addEventListener('click', function(event) {
+                    // Use alert for unavoidable confirmation
+                    alert(`DIRECT CLICK TEST #${testId} FIRED! Clicked on: ${event.target.tagName}`);
+                    // Log details to console as well
+                    console.log(`%c DIRECT CLICK TEST #${testId} FIRED!`, 'color: lime; font-weight: bold;', 'Button:', this, 'Target:', event.target);
+
+                    // *** Temporarily prevent default button behavior if any exists ***
+                    // event.preventDefault();
+                    // *** Temporarily stop propagation to see if something else was catching it ***
+                    // event.stopPropagation();
+                });
+            });
+            console.log("DIRECT test listeners attached.");
+            // ---->>>> END SIMPLE CLICK TEST <<<<----
+
+
+            // --- Attach Search Listeners ---
+            console.log("Attaching search listeners..."); // DEBUG
+            const searchInput = document.getElementById('myInput');
+            const searchIconBtn = document.querySelector('.search-icon-btn');
+
+            searchIconBtn?.addEventListener('click', () => {
+              searchInput?.focus();
+              filterGames(); // Calls function defined above
+            });
+
+            searchInput?.addEventListener('keypress', function(event) {
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                filterGames();
+              }
+            });
+
+            searchInput?.addEventListener('keyup', debounce(filterGames, 250)); // Uses debounce & filterGames defined above
+            console.log("Search listeners attached."); // DEBUG
+
+            // --- Initial Filter on Load (if search has value) ---
+            if (searchInput?.value.trim() !== '') {
+              console.log("Performing initial filter on load."); // DEBUG
+              filterGames();
+            }
+
+             console.log("Main DOMContentLoaded: Setup complete."); // DEBUG
+        });
+     </script>
+  <!-- NEW: Event Delegation for Game Launch -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mainContainer = document.querySelector('main.hub-container');
+
+      if (mainContainer) {
+        console.log("Attaching delegated listener to main.hub-container"); // DEBUG
+
+        mainContainer.addEventListener('click', function(event) {
+          // Find the closest ancestor element that is a button with class 'btn' and has a data-path
+          const clickedButton = event.target.closest('.btn[data-path]');
+
+          // If we didn't click on a button (or inside one), do nothing
+          if (!clickedButton) {
+            // console.log("Clicked outside a game button."); // Optional debug
+            return;
+          }
+
+          console.log("Delegated listener caught click on or inside:", clickedButton); // DEBUG
+
+          // IMPORTANT: Check if the click was specifically on the heart icon INSIDE this button
+          if (event.target.classList.contains('heart-icon') || event.target.closest('.heart-icon')) {
+             console.log("Heart icon click detected via delegation, preventing game launch."); // DEBUG
+             return; // Stop processing if heart was clicked
+          }
+
+          // --- If we reached here, it was a valid click on the button (not the heart) ---
+
+          const path = clickedButton.getAttribute('data-path');
+          let gameName = "";
+
+          // Extract game name reliably from the clicked button
+          clickedButton.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") { gameName = node.textContent.trim(); }
+          });
+          if (!gameName) { /* ... fallback logic ... */ const imgAlt = clickedButton.querySelector('img')?.getAttribute('alt'); if (imgAlt) { gameName = imgAlt; } else { gameName = path ? path.split('/').pop().split('.')[0].replace(/[-_]/g, ' ') : 'Unknown Game'; gameName = gameName.replace(/\b\w/g, l => l.toUpperCase()); } }
+
+          if (path && gameName) {
+            console.log(`LAUNCHING (Delegated) Game: ${gameName} from path: ${path}`); // DEBUG
+            localStorage.setItem("lastClickedUrl", path);
+            localStorage.setItem("lastClickedGame", gameName);
+            window.location.href = "game.html"; // Ensure game.html exists
+          } else {
+            console.error("Error launching game (Delegated): Missing data-path or failed to extract name.", clickedButton);
+            alert("Error: Could not determine game path or name.");
+          }
+        });
+         console.log("Delegated listener attached."); // DEBUG
+      } else {
+          console.error("Could not find main.hub-container to attach delegated listener.");
+      }
+    });
+  </script>
+      <!-- Particles.js Initialization (Self-contained in IIFE) -->
+      <script>
+        console.log("Initializing Particles.js with light gray lines...");
+        particlesJS("particles-js", {
+          "particles": {
+            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#3D3D3D" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.4, "opacity_min": 0.05, "sync": false } },
+            "size": { "value": 2.5, "random": true, "anim": { "enable": false } },
+            "line_linked": { "enable": true, "distance": 150, "color": "#E8ECEF", "opacity": 0.6, "width": 1.5 },
+            "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false }, "resize": true },
+            "modes": { "repulse": { "distance": 80, "duration": 0.4 } }
+          },
+          "retina_detect": true
+        });
+        console.log("Particles.js initialized successfully.");
+      </script>
+      <!-- FINAL Initializer Script -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM Loaded. Initializing...");
+
+            // 1. Setup Scroll Arrows for ALL categories
+            try {
+                console.log("Setting up scroll arrows...");
+                document.querySelectorAll('.game-category').forEach(setupScrollArrows); // Uses function defined above
+                console.log("Scroll arrow setup complete.");
+            } catch (error) {
+                console.error("Error setting up scroll arrows:", error);
+            }
+
+            // 2. Attach Delegated Game Launch Listener
+            try {
+                const mainContainer = document.querySelector('main.hub-container');
+                if (mainContainer) {
+                    console.log("Attaching delegated game launch listener to main.hub-container");
+                    mainContainer.addEventListener('click', function(event) {
+                        const clickedButton = event.target.closest('.btn[data-path]');
+                        if (!clickedButton) return; // Clicked outside a game button
+
+                        // Check for heart icon click
+                        if (event.target.classList.contains('heart-icon') || event.target.closest('.heart-icon')) {
+                           console.log("Delegated listener: Heart click detected, stopping.");
+                           return;
+                        }
+
+                        console.log("Delegated listener: Valid button click detected:", clickedButton); // DEBUG
+
+                        const path = clickedButton.getAttribute('data-path');
+                        let gameName = "";
+                        // Extract name (ensure this logic matches your button structure)
+                        clickedButton.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") { gameName = node.textContent.trim(); } });
+                        if (!gameName) { const imgAlt = clickedButton.querySelector('img')?.getAttribute('alt'); if (imgAlt) { gameName = imgAlt; } else { gameName = path ? path.split('/').pop().split('.')[0].replace(/[-_]/g, ' ') : 'Unknown Game'; gameName = gameName.replace(/\b\w/g, l => l.toUpperCase()); } }
+
+                        if (path && gameName) {
+                          console.log(`LAUNCHING (Delegated): ${gameName} from ${path}`); // DEBUG
+                          localStorage.setItem("lastClickedUrl", path);
+                          localStorage.setItem("lastClickedGame", gameName);
+                          window.location.href = "game.html"; // Navigate
+                        } else {
+                          console.error("Delegated Launch Error: Missing path or name.", clickedButton);
+                          alert("Error: Could not determine game details.");
+                        }
+                    });
+                    console.log("Delegated game launch listener attached.");
+                } else {
+                     console.error("Could not find main.hub-container for delegated listener.");
+                }
+            } catch (error) {
+                 console.error("Error attaching delegated game launch listener:", error);
+            }
+
+
+            // 3. Attach Search Listeners
+            try {
+                console.log("Attaching search listeners...");
+                const searchInput = document.getElementById('myInput');
+                const searchIconBtn = document.querySelector('.search-icon-btn');
+
+                if (searchInput && searchIconBtn) {
+                     searchIconBtn.addEventListener('click', () => {
+                       searchInput.focus();
+                       filterGames(); // Uses function defined above
+                     });
+
+                     searchInput.addEventListener('keypress', function(event) {
+                       if (event.key === 'Enter') {
+                         event.preventDefault();
+                         filterGames();
+                       }
+                     });
+
+                     // Debounce keyup for better performance
+                     searchInput.addEventListener('keyup', debounce(filterGames, 250)); // Uses debounce & filterGames defined above
+                     console.log("Search listeners attached.");
+                 } else {
+                    console.error("Search input or button not found.");
+                 }
+
+                // 4. Initial Filter on Load (if search has value)
+                if (searchInput?.value.trim() !== '') {
+                  console.log("Performing initial filter on load.");
+                  filterGames();
+                }
+            } catch (error) {
+                 console.error("Error attaching search listeners or performing initial filter:", error);
+            }
+
+            console.log("Initialization complete.");
+        });
+    </script>
+  </body>
+  </html>

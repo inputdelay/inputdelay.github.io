@@ -1,0 +1,446 @@
+/* --- Base Styles (Merged) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    /* scroll-behavior: smooth; /* Apply globally from Code 1 */
+    /* Let's keep smooth scrolling only where needed (html/body, .btn-container) */
+}
+
+html, body {
+     scroll-behavior: smooth; /* For page jumps like #links */
+}
+
+body {
+    /* Style from Code 1 */
+    background: url('../free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+    position: relative; /* Needed for ::before */
+    min-height: 100vh; /* Ensure body takes full height */
+    overflow-y: auto; /* Allow vertical scrolling */
+    color: #eee; /* Default text color */
+}
+
+body::before {
+    /* Style from Code 1 (slightly adjusted for fixed positioning if needed) */
+    content: '';
+    position: fixed; /* Fixed overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.897); /* Code 1's overlay opacity */
+    z-index: -11; /* Behind content */
+    pointer-events: none;
+}
+
+#particles-js {
+    /* Style from Code 1 (using fixed for better background effect) */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2; /* Behind overlay */
+    pointer-events: none;
+}
+
+/* --- Header Styles (Merged from Code 1 Aesthetics) --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Code 1 padding */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed; /* Code 1 uses fixed */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* High z-index */
+    background: rgba(0, 0, 0, 0.6); /* Code 1 background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Code 1 border */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Added shadow for depth */
+}
+
+/* Use logo style from Code 2 */
+.header-logo {
+    height: 45px; /* Adjust size as needed */
+    width: auto;
+    display: block;
+}
+
+/* Nav styles from Code 1 */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+}
+
+nav ul li a.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem; /* Code 1 font size */
+    color: white; /* Code 1 color */
+    padding: 10px 20px; /* Code 1 padding */
+    border-radius: 8px; /* Code 1 radius */
+    transition: all 0.3s ease;
+}
+nav ul li a.nav-link:hover {
+    background: rgba(255, 255, 255, 0.3); /* Code 1 hover bg */
+    transform: scale(1.05) translateY(0); /* Code 1 hover transform (reset translateY) */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Code 1 hover shadow */
+}
+/* Keep active class styling from Code 2 */
+nav ul li a.nav-link.active {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Discord button styles from Code 1 */
+.discord-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #7289da, #5a70d2);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px; /* Code 1 padding */
+    border-radius: 8px; /* Code 1 radius */
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Code 1 shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Include background transition */
+}
+.discord-btn:hover {
+    transform: scale(1.1); /* Code 1 hover scale */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Code 1 hover shadow */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8); /* Code 1 hover text shadow */
+     background: linear-gradient(90deg, #6a7fcc, #566cc0); /* Added hover background change */
+}
+
+/* --- Main Hub Container --- */
+main.hub-container {
+    width: 100%;
+    max-width: 1600px; /* Or keep Code 2's value */
+    margin: 0 auto; /* Center container */
+    /* Add padding-top to account for FIXED header */
+    padding: 100px 40px 20px 40px; /* Approx Header height + desired top/bottom padding */
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Hub Controls (Search, Toggle) - Keep Code 2 Style --- */
+.hub-controls {
+    display: flex;
+    justify-content: space-between; /* Keep space-between */
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(30, 30, 30, 0.5);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0px 5px 0px 15px;
+    flex-grow: 1;
+    max-width: 500px; /* Limit search bar width */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.search-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#myInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+#myInput::placeholder {
+    color: #aaa;
+}
+
+.search-icon-btn {
+    background: transparent;
+    border: none;
+    color: #ddd;
+    font-size: 1.1rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.search-icon-btn:hover {
+    color: #fff;
+}
+
+/* Keep Toggle Button Style from Code 2 (or adapt if Code 1 had one) */
+.toggle-categories-btn {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.toggle-categories-btn:hover {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.2));
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+/* --- Game Categories --- */
+.game-category {
+    margin-bottom: 40px;
+}
+
+/* Keep category header structure */
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Category Title H6 - Style like Code 1's Hero H2 (adjust size) */
+.category-header h6 {
+    font-size: 1.8rem; /* Adjusted size */
+    background: linear-gradient(45deg, #ffffff, #cccccc); /* Code 1 gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    /* Code 1 text shadow (toned down) */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.category-header h6 i {
+    /* Style icon similarly */
+    font-size: 0.9em;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+     text-shadow: none; /* Remove shadow from icon if distracting */
+}
+
+/* Scroll Arrows - Keep Code 2 functional style */
+.scroll-arrows {
+    display: flex;
+    gap: 10px;
+}
+.scroll-arrow {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.scroll-arrow:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+
+/* --- Game Button Containers --- */
+/* Keep Code 2 functional styles */
+.btn-container,
+.favorite-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 5px 20px 5px;
+    gap: 20px;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth; /* ESSENTIAL for JS scrolling */
+}
+.btn-container::-webkit-scrollbar,
+.favorite-container::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* --- Game Button Styling --- */
+/* Keep Code 2 functional base, slightly adjust aesthetics if needed */
+.btn {
+    display: inline-block;
+    /* Slightly lighter gradient than pure black version */
+    background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible border */
+    border-radius: 8px;
+    padding: 0;
+    width: 180px;
+    overflow: hidden;
+    text-align: left;
+    color: #ddd;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    vertical-align: top;
+    flex-shrink: 0;
+
+    /* --- Animation Properties (Keep from working version) --- */
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease-out,
+                transform 0.3s ease-out,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+    will-change: opacity, transform;
+}
+
+/* Keep working hover effect */
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.25); /* Slightly more visible hover border */
+    background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85)); /* Slightly lighter hover */
+}
+
+/* Keep functional hidden class */
+.btn.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+/* Keep Image Styling */
+.btn .imgg {
+    display: block;
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #222;
+}
+
+/* Keep Text/Name Styling */
+.btn span { /* If name is in span */
+    display: block;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ddd;
+}
+
+/* Keep Heart Icon Styling */
+.btn .heart-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 4px 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+.btn:hover .heart-icon {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.btn .heart-icon.hearted {
+    color: #ff6b6b;
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.8);
+}
+.btn .heart-icon.hearted:hover {
+     color: #ff4747;
+}
+
+/* Keep Favorites Section Styling */
+.favorites-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    /* display: none; -- Controlled by JS */
+}
+
+/* --- Responsive Adjustments (Merge/Keep Code 2's, adjust if needed) --- */
+@media (max-width: 1200px) {
+    main.hub-container { padding: 90px 30px 20px 30px; } /* Adjust padding-top */
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .btn { width: 160px; }
+    .btn .imgg { height: 90px; }
+}
+
+@media (max-width: 768px) {
+    /* Merge Code 1 & 2 header changes */
+    header { padding: 10px 20px; flex-direction: column; align-items: center; /* Stack header items */}
+    header nav { margin-top: 10px; /* Space below logo */ }
+    nav ul { gap: 10px; justify-content: center; flex-wrap: wrap;}
+    nav ul li a.nav-link { font-size: 0.9rem; padding: 8px 12px; /* Adjusted padding */ }
+    .discord-btn { padding: 8px 16px; font-size: 0.9rem; }
+
+    main.hub-container { padding: 140px 15px 20px 15px; } /* Increase padding-top for stacked header */
+    .hub-controls { flex-direction: column; align-items: stretch; padding: 10px; }
+    .search-wrapper { max-width: none; }
+    .category-header h6 { font-size: 1.4rem; } /* Slightly larger than pure Code 2 */
+    .scroll-arrow { width: 30px; height: 30px; font-size: 0.9rem; }
+    .btn-container, .favorite-container { gap: 15px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+    .btn { width: 140px; }
+    .btn .imgg { height: 80px; }
+    .btn span { font-size: 0.85rem; padding: 8px 10px; }
+    .btn .heart-icon { font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+     header { padding: 10px 15px; }
+     nav ul { gap: 8px; }
+     nav ul li a.nav-link, .discord-btn { font-size: 0.85rem; padding: 6px 10px; /* Adjusted padding */ }
+    main.hub-container { padding-top: 130px; /* Adjust again */ }
+    .category-header h6 { font-size: 1.2rem; } /* Slightly larger */
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    .btn { width: 120px; }
+    .btn .imgg { height: 70px; }
+    .btn span { font-size: 0.8rem; }
+}
