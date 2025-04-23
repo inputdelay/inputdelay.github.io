@@ -1344,34 +1344,25 @@
   </script>
       <!-- Particles.js Initialization (Self-contained in IIFE) -->
       <script>
-         // --- Particles.js Initialization ---
-         (() => {
-             document.addEventListener('DOMContentLoaded', () => {
-                 const particlesElement = document.getElementById('particles-js');
-                 if (!particlesElement) { console.error("Particles.js Error: Target element #particles-js not found."); return; }
-                 if (typeof particlesJS === 'undefined') { console.error("Particles.js Error: particlesJS library not found."); particlesElement.style.display = 'none'; return; }
-                 try {
-                     particlesJS("particles-js", { // Using your latest config with grey colors
-                         "particles": {
-                             "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-                             "color": { "value": "#888888" }, // Grey color
-                             "shape": { "type": "circle" },
-                             "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.4, "opacity_min": 0.05, "sync": false } },
-                             "size": { "value": 2.5, "random": true, "anim": { "enable": false } },
-                             "line_linked": { "enable": true, "distance": 150, "color": "#555555", "opacity": 0.2, "width": 1 }, // Darker lines
-                             "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-                         },
-                         "interactivity": {
-                             "detect_on": "canvas",
-                             "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false }, "resize": true },
-                             "modes": { "repulse": { "distance": 80, "duration": 0.4 } }
-                         },
-                         "retina_detect": true
-                     });
-                 } catch (error) { console.error("Error initializing Particles.js:", error); particlesElement.style.display = 'none'; }
-             });
-         })();
-         // --- END Particles.js ---
+        console.log("Initializing Particles.js with light gray lines...");
+        particlesJS("particles-js", {
+          "particles": {
+            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#3D3D3D" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.4, "opacity_min": 0.05, "sync": false } },
+            "size": { "value": 2.5, "random": true, "anim": { "enable": false } },
+            "line_linked": { "enable": true, "distance": 150, "color": "#E8ECEF", "opacity": 0.6, "width": 1.5 },
+            "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false }, "resize": true },
+            "modes": { "repulse": { "distance": 80, "duration": 0.4 } }
+          },
+          "retina_detect": true
+        });
+        console.log("Particles.js initialized successfully.");
       </script>
       <!-- FINAL Initializer Script -->
       <script>
