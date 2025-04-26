@@ -1,4 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-crazycattle3dgithub.io	TRUE	/	FALSE	1999999999	PHPSESSID	6al07js58ps0aoq4laoovjg2d8
-
