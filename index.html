@@ -22,15 +22,15 @@
     font-family: 'Lato', sans-serif;
 }
 .version-text {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        font-size: 0.7rem; /* Tiny text size */
-        color: rgba(255, 255, 255, 0.5); /* Subtle white for readability */
-        z-index: 110; /* Above header (z-index: 100) and particles */
-        pointer-events: none; /* Prevent interaction */
-        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Slight shadow for contrast */
-      }
+    position: fixed;
+    bottom: 10px; /* Changed from top: 10px */
+    right: 10px; /* Changed from left: 10px */
+    font-size: 0.7rem; /* Tiny text size */
+    color: rgba(255, 255, 255, 0.5); /* Subtle white for readability */
+    z-index: 110; /* Above header (z-index: 100) and particles */
+    pointer-events: none; /* Prevent interaction */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Slight shadow for contrast */
+}
 html, body {
      scroll-behavior: smooth; /* For page jumps like #links */
      height: 100%; /* Ensure height for fixed background */
@@ -884,93 +884,115 @@ main.hub-container {
           opacity: 1;
       }
 
+      /* Moving Phrases Container */
+/* Moving Phrases Container */
+.moving-phrases {
+  position: absolute;
+  bottom: 50px; /* Fixed position for visibility */
+  left: 0;
+  width: 100%;
+  height: 120px; /* Space for phrases */
+  background: rgba(0, 0, 0, 0.2); /* Keep red for debugging */
+  overflow: hidden; /* Hide out-of-bounds phrases */
+  pointer-events: none; /* Allow clicks through */
+  z-index: 50; /* Above other elements */
+}
+
+/* Moving Phrase Text */
+.moving-phrase {
+  position: absolute;
+  font-size: 1.5rem; /* Larger for visibility */
+  color: #ffffff !important; /* Force fallback color */
+  background: linear-gradient(45deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
+  white-space: nowrap; /* Prevent wrapping */
+  opacity: 0; /* Start invisible for animation */
+  will-change: transform, opacity; /* Optimize animation */
+  border: 1px solid #ffffff; /* Debug border to see element */
+}
 
       /* Responsive adjustments */
       @media (max-width: 768px) {
-        header {
-          flex-direction: column; /* Stack header items */
-          padding: 10px 20px;
-          align-items: flex-start;
-        }
-        header img {
-            height: 40px; /* Smaller logo */
-            margin-bottom: 10px;
-        }
-         /* Adjust header/logo/nav delays for mobile if stacking changes timing feel */
-        header { animation-delay: 0s !important; }
-        header img { animation-delay: 0.1s !important; }
-        nav ul li:nth-child(1) { animation-delay: 0.2s !important; }
-        nav ul li:nth-child(2) { animation-delay: 0.25s !important; }
-        nav ul li:nth-child(3) { animation-delay: 0.3s !important; }
-        nav ul li:nth-child(4) { animation-delay: 0.35s !important; }
-        nav ul li:nth-child(5) { animation-delay: 0.4s !important; }
-        nav ul li:nth-child(6) { animation-delay: 0.45s !important; }
-
-
-        header h1 {
-          font-size: 1.6rem;
-          margin-left: 0; /* Remove left margin */
-        }
-        nav ul {
-          margin-top: 10px;
-          gap: 8px;
-          flex-wrap: wrap; /* Allow nav items to wrap */
-          justify-content: center;
-        }
-
-
-        nav ul li a,
-        nav ul li .discord-btn {
-          font-size: 0.8rem;
-          padding: 6px 12px;
-        }
-        .hero {
-          padding: 15px;
-          justify-content: flex-start; /* Align content to top on small screens */
-          padding-top: 120px; /* Add padding to account for fixed header */
-        }
-        .hero h2 {
-          font-size: 3rem;
-          margin-bottom: 30px;
-           /* white-space and overflow handled by JS after typing */
-        }
-
-         /* Adjust typing cursor size/position for small screens */
-        .hero h2::after {
-            width: 2px;
-        }
-
-        .hero .button-container {
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 10px;
-            margin-top: 20px;
-            width: 80%; /* Constrain button width */
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-         .hero .button-container .get-started-btn {
-             width: 100%; /* Make stacked buttons full width */
-         }
-         /* Adjust button delays for mobile if stacking changes timing feel */
-         .hero .button-container .get-started-btn:nth-child(1) { animation-delay: 0.9s !important; }
-         .hero .button-container .get-started-btn:nth-child(2) { animation-delay: 1.0s !important; }
-         .hero .button-container .get-started-btn:nth-child(3) { animation-delay: 1.1s !important; }
-         .hero .button-container .get-started-btn:nth-child(4) { animation-delay: 1.2s !important; }
-      }
-
-       /* Style to remove white-space and overflow constraints after typing */
-       /* Also adds the blinking cursor */
-       .hero h2.typing-done {
-           white-space: normal; /* Allow text wrapping */
-           overflow: visible; /* Allow overflow (fixes glow clipping) */
-           /* Blinking cursor is now handled by this class */
-       }
+  /* Existing styles */
+  header {
+    flex-direction: column;
+    padding: 10px 20px;
+    align-items: flex-start;
+  }
+  header img {
+    height: 40px;
+    margin-bottom: 10px;
+  }
+  header { animation-delay: 0s !important; }
+  header img { animation-delay: 0.1s !important; }
+  nav ul li:nth-child(1) { animation-delay: 0.2s !important; }
+  nav ul li:nth-child(2) { animation-delay: 0.25s !important; }
+  nav ul li:nth-child(3) { animation-delay: 0.3s !important; }
+  nav ul li:nth-child(4) { animation-delay: 0.35s !important; }
+  nav ul li:nth-child(5) { animation-delay: 0.4s !important; }
+  nav ul li:nth-child(6) { animation-delay: 0.45s !important; }
+  header h1 {
+    font-size: 1.6rem;
+    margin-left: 0;
+  }
+  nav ul {
+    margin-top: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav ul li a,
+  nav ul li .discord-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  .hero {
+    padding: 15px;
+    justify-content: flex-start;
+    padding-top: 120px;
+    overflow: visible !important;
+    position: relative;
+  }
+  .hero h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  .hero h2::after {
+    width: 2px;
+  }
+  .hero .button-container {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero .button-container .get-started-btn {
+    width: 100%;
+  }
+  .hero .button-container .get-started-btn:nth-child(1) { animation-delay: 0.9s !important; }
+  .hero .button-container .get-started-btn:nth-child(2) { animation-delay: 1.0s !important; }
+  .hero .button-container .get-started-btn:nth-child(3) { animation-delay: 1.1s !important; }
+  .hero .button-container .get-started-btn:nth-child(4) { animation-delay: 1.2s !important; }
+  .moving-phrases {
+    height: 80px; /* Smaller space */
+    bottom: 30px; /* Higher up */
+  }
+  .moving-phrase {
+    font-size: 1rem; /* Smaller text */
+    border: 1px solid #ffffff; /* Debug border */
+  }
+}
 
     </style>
   </head>
   <body>
-    <div class="version-text">V1.0 ID</div>
+    <div class="version-text">V1.0 ID UPD: Fairly Good Release</div>
     <!-- Particles.js Background -->
     <div id="particles-js"></div>
     <!-- Header -->
@@ -1002,156 +1024,180 @@ main.hub-container {
             <a href="https://docs.google.com/document/d/1dulPAgELy_sAnjRUcffULBklERN8qkAtK3KmaxIMiQU/edit?usp=sharing" target="_blank" class="get-started-btn">More Links</a>
         </div>
       </div>
+      <!-- Moving Phrases Container -->
+      <div class="moving-phrases" id="moving-phrases"></div>
     </section>
 
     <script>
-      // Particles.js configuration (can be adjusted for different effects)
-      
+      // Particles.js configuration
       particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#ffffff"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        });
-
-
-      // JavaScript for Typing Animation
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#ffffff"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            }
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 40,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.4,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 6,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+              "enable": false,
+              "rotateX": 600,
+              "rotateY": 1200
+            }
+          }
+        },
+        "interactivity": {
+          "detect_on": "window",
+          "events": {
+            "onhover": {
+              "enable": false
+            }
+          }
+        },
+        "retina_detect": true
+      });
+    
+      // JavaScript for Typing Animation and Moving Phrases
       document.addEventListener('DOMContentLoaded', () => {
           const textElement = document.getElementById('typing-text');
           const originalText = textElement.textContent;
           textElement.textContent = ''; // Clear text initially
           textElement.style.visibility = 'visible'; // Make element visible, but content is empty
-
+    
           let charIndex = 0;
           const typingSpeed = 80; // Adjust typing speed (milliseconds per character)
           const delayBeforeGlow = 200; // Delay after typing finishes before glow starts (milliseconds)
-
+    
           // Add class to show cursor and indicate typing state
           textElement.classList.add('typing');
-
-
+    
           function typeWriter() {
               if (charIndex < originalText.length) {
                   textElement.textContent += originalText.charAt(charIndex);
                   charIndex++;
-                   // Use rAF for smoother updates, but setTimeout controls speed
                   requestAnimationFrame(() => setTimeout(typeWriter, typingSpeed));
               } else {
-                  // Typing finished
-                  // Remove typing class and add typing-done class (handles overflow, whitespace, and blinking cursor)
                   textElement.classList.remove('typing');
                   textElement.classList.add('typing-done');
-
-                  // Add glow class after a small delay
                   setTimeout(() => {
                       textElement.classList.add('glow');
                   }, delayBeforeGlow);
               }
           }
-
-          // Start the typing animation after header and nav animations have started/finished
-          // Adjusted delay for faster start, coordinating with other animations
-          const startTypingDelay = 600; // Start typing after 0.6 seconds
+    
+          const startTypingDelay = 600;
           setTimeout(typeWriter, startTypingDelay);
+    
+        // Moving Phrases Animation
+console.log('Initializing moving phrases');
+const phrasesContainer = document.getElementById('moving-phrases');
+const phrases = [
+'No, this didnt take 8 years mom',
+'Best games on the internet... I think',
+'My name is retep, and I am evil',
+'New features coming never!',
+'Are you sure?',
+'Whoops, I accidentally nuked Poland!',
+'Im still stuck in the bathroom send help',
+'If you paid for this, you got scammed lil bro',
+'Maybe with ads!',
+'Muhehehehehehehehehehehehehehehehehehehehehehehehehehehehehe',
+'What is 8+7? You dont know? Well too bad.',
+'Frank Ocean please come back!'
+];
 
-      });
+function createPhrase() {
+    const phraseElement = document.createElement('div');
+    phraseElement.className = 'moving-phrase';
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    phraseElement.textContent = randomPhrase;
+    phrasesContainer.appendChild(phraseElement);
 
+    // Random vertical position (10px to 100px)
+    const verticalPos = 10 + Math.random() * 100;
+    // Fixed duration for testing
+    const duration = 6;
+    // No delay for immediate visibility
+    const delay = 0;
+
+    // Generate a unique keyframes name
+    const keyframesName = `movePhrase${Math.random().toString(36).substr(2, 9)}`;
+
+    // Set initial styles
+    phraseElement.style.top = `${verticalPos}px`;
+    phraseElement.style.left = '0';
+    phraseElement.style.animation = `${keyframesName} ${duration}s linear ${delay}s forwards`;
+
+    // Define animation keyframes
+    const keyframes = `
+        @keyframes ${keyframesName} {
+            0% { transform: translateX(0); opacity: 0.5; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(100vw); opacity: 0; }
+        }
+    `;
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = keyframes;
+    document.head.appendChild(styleSheet);
+
+    phraseElement.addEventListener('animationend', () => {
+        phraseElement.remove();
+        styleSheet.remove();
+        createPhrase();
+    });
+}
+
+// Create 2 phrases for testing
+for (let i = 0; i < 1; i++) {
+    setTimeout(createPhrase, i * 500); // Stagger creation
+}
+    });
     </script>
   </body>
 </html>
