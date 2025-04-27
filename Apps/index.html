@@ -9,14 +9,1527 @@
     <meta name="googlebot" content="index, follow, snippet">
     <meta name="robots" content="index, follow">
 
-    <title>InputDelay - Games Hub</title>
+    <title>InputDelay - Apps Hub</title>
 
     <link rel="icon" href="2cJw7a9.png" type="image/x-icon">
     <link rel="shortcut icon" href="2cJw7a9.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Assuming games-style.css contains general hub styles -->
     <link rel="stylesheet" href="css/games-style.css">
+
+    <style>
+      /* --- Styles Merged from CODE #1 --- */
+      /* These styles add general page appearance, animations,
+         header/nav look, and structural/scrolling behavior. */
+               /* --- Animation & Sleekness CSS (Merge into games-style.css) --- */
+      /* Add this to your existing CSS file */
+
+      /* Basic reset and font already in games-style.css, but ensure Lato is linked */
+      /* * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Lato', sans-serif; scroll-behavior: smooth; } */
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+html, body {
+     scroll-behavior: smooth; /* For page jumps like #links */
+     height: 100%; /* Ensure height for fixed background */
+     overflow-x: hidden; /* Prevent horizontal scroll on body */
+}
+
+body {
+    background: url('../free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative; /* Needed for ::before */
+    min-height: 100vh; /* Ensure body takes full height */
+    overflow-y: auto; /* Allow vertical scrolling */
+    color: #eee; /* Default text color */
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Fixed overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.897); /* Overlay opacity */
+    z-index: -11; /* Behind content */
+    pointer-events: none; /* Allow clicks to pass through overlay */
+}
+
+    #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+}
+
+ /* Header */
+ header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px; /* Consistent padding */
+    backdrop-filter: blur(12px); /* Consistent blur */
+    -webkit-backdrop-filter: blur(12px);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7); /* Consistent background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Consistent border */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Consistent shadow */
+
+    /* Initial state for animation */
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
+  }
+
+.header-logo {
+    height: 45px;
+    width: auto;
+    display: block;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+    margin: 0; /* Ensure no default margin */
+    padding: 0; /* Ensure no default padding */
+}
+
+nav ul li {
+    margin: 0; /* Ensure no default margin on list items */
+    padding: 0; /* Ensure no default padding on list items */
+}
+
+nav ul li a.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block; /* Needed for transform to work correctly */
+}
+nav ul li a.nav-link:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05); /* Adjusted scale */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+nav ul li a.nav-link.active {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.discord-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #7289da, #5a70d2);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.discord-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(90deg, #6a7fcc, #566cc0);
+}
+
+/* --- Main Hub Container --- */
+main.hub-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    /* Add padding-top to account for FIXED header */
+    padding: 100px 40px 20px 40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Hub Controls (Search, Toggle) --- */
+.hub-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(30, 30, 30, 0.5);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0px 5px 0px 15px;
+    flex-grow: 1;
+    max-width: 500px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.search-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#myInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+#myInput::placeholder {
+    color: #aaa;
+}
+
+.search-icon-btn {
+    background: transparent;
+    border: none;
+    color: #ddd;
+    font-size: 1.1rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.search-icon-btn:hover {
+    color: #fff;
+}
+
+.toggle-categories-btn {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.toggle-categories-btn:hover {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.2));
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+/* --- Game Categories --- */
+.game-category {
+    margin-bottom: 40px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-header h6 {
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.category-header h6 i {
+    font-size: 0.9em;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.scroll-arrows button {
+    /* Ensure they are initially styled to appear, JS hides/shows them based on scroll */
+    display: flex; /* Use flex or block for initial display */
+    align-items: center;
+    justify-content: center;
+    /* Add padding, border, background, cursor, etc. */
+    background: rgba(0, 0, 0, 0.5); /* Example background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1; /* Ensure they are above the content */
+    position: relative; /* For z-index to work relative to siblings */
+}
+
+.scroll-arrows {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    align-items: center;
+}
+    .scroll-arrows button[style*="display: none"] {
+        display: none !important; /* Use !important if necessary, but try to avoid it */
+    }
+.scroll-arrow {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    /* Hidden by default, JS will show/hide based on scroll position */
+    display: none;
+}
+.scroll-arrow:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+
+/* --- Game Button Containers --- */
+.btn-container,
+.favorite-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 5px 20px 5px;
+    gap: 20px;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap; /* Prevent wrapping to new lines */
+
+}
+.btn-container::-webkit-scrollbar,
+.favorite-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Grid container for the "All Games" section */
+.btn-container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* --- Game Button Styling --- */
+.btn {
+    display: flex;
+    flex-direction: column; /* Stack image and info bar vertically */
+    align-items: center;
+    justify-content: flex-start; /* Start layout from the top */
+    width: 180px;
+    height: 150px; /* Define a fixed height for consistency */
+    background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden; /* Crucial to hide the info bar when it's translated down */
+    color: #ddd;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative; /* Needed for positioning the info bar and heart */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    vertical-align: top;
+    flex-shrink: 0;
+
+    /* --- Animation Properties --- */
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease-out,
+                transform 0.3s ease-out,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+    will-change: opacity, transform;
+}
+
+/* Ensure grid buttons have auto width */
+.btn-container-grid .btn {
+    width: auto;
+    height: 150px; /* Keep consistent height */
+}
+
+/* Hover state for the button */
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85));
+}
+
+/* Functional hidden class for search results */
+.btn.hidden {
+    display: none !important; /* Hide buttons not matching search */
+}
+
+/* Style for the image - should always be visible */
+.btn .imgg {
+    display: block;
+    width: 100%;
+    /* Image should take up most of the height */
+    flex-grow: 1; /* Allow image to take available space */
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #222;
+    /* No opacity transition needed if it stays visible */
+}
+
+/* Style for the game info bar container */
+.game-info-bar {
+    position: absolute; /* Position relative to the button */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Define the height of the info bar */
+    height: 40px; /* Example height, adjust as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the bar */
+    color: #ddd; /* Text color */
+    display: flex; /* Use flexbox to center text inside */
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px; /* Padding inside the bar */
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* --- Hide by default using transform --- */
+    transform: translateY(100%); /* Move the bar down by its own height */
+    transition: transform 0.3s ease-out; /* Smooth slide-up transition */
+    z-index: 2; /* Ensure it's above the image but below the heart */
+}
+
+/* Style for the game name text inside the bar */
+.game-info-bar .game-name {
+    /* Span itself might not need specific display: block/none */
+    /* Its visibility is controlled by the parent .game-info-bar */
+    display: block; /* Ensure span behaves as a block */
+    font-size: 0.95rem;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent text wrapping inside the bar */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text is too long */
+    width: 100%; /* Take full width of the bar */
+    text-align: center; /* Center the text */
+    /* No opacity transition needed here, let the parent handle it */
+}
+
+/* On button hover, show the game info bar */
+.btn:hover .game-info-bar {
+    transform: translateY(0); /* Slide the bar up into view */
+}
+
+/* Style for the heart icon */
+.btn .heart-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 4px 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    z-index: 5; /* Ensure it's above everything else */
+    cursor: pointer;
+    pointer-events: auto;
+}
+.btn:hover .heart-icon {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.btn .heart-icon.hearted {
+    color: #ff6b6b;
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.8);
+}
+.btn .heart-icon.hearted:hover {
+     color: #ff4747;
+}
+
+/* Keep Favorites Section Styling */
+.favorites-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    /* display: none; -- Controlled by JS */
+}
+
+/* Message for no search results */
+#noResultsMessage {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #ccc;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1200px) {
+    main.hub-container { padding: 90px 30px 20px 30px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .btn { width: 160px; height: 140px; } /* Adjusted height */
+    .btn .imgg { /* flex-grow will adjust height */ }
+    .game-info-bar { height: 35px; font-size: 0.9em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.9em; }
+}
+
+@media (max-width: 768px) {
+    header { padding: 10px 20px; flex-direction: column; align-items: center; }
+    header nav { margin-top: 10px; }
+    nav ul { gap: 10px; justify-content: center; flex-wrap: wrap; }
+    nav ul li a.nav-link { font-size: 0.9rem; padding: 8px 12px; }
+    .discord-btn { padding: 8px 16px; font-size: 0.9rem; }
+
+    main.hub-container { padding-top: 140px; } /* Increased padding-top */
+
+    .hub-controls { flex-direction: column; align-items: stretch; padding: 10px; gap: 10px; }
+    .search-wrapper { max-width: none; padding: 0px 5px 0px 10px; }
+    #myInput { padding: 8px; font-size: 0.9rem; }
+    .search-icon-btn { padding: 8px; }
+
+    .category-header h6 { font-size: 1.6rem; gap: 8px;}
+    .scroll-arrow { width: 30px; height: 30px; font-size: 0.9rem; }
+    .btn-container, .favorite-container { gap: 15px; padding: 8px 5px 15px 5px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+
+    .btn { width: 140px; height: 130px; } /* Adjusted size */
+    .game-info-bar { height: 30px; font-size: 0.85em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.85em; }
+    .btn .heart-icon { font-size: 1rem; top: 6px; right: 6px; padding: 3px 4px; }
+}
+
+@media (max-width: 480px) {
+     header { padding: 8px 10px; }
+     nav ul { gap: 6px; }
+     nav ul li a.nav-link, .discord-btn { font-size: 0.8rem; padding: 5px 8px; }
+
+     main.hub-container { padding-top: 120px; } /* Adjust padding-top */
+
+    .category-header h6 { font-size: 1.4rem; gap: 6px; }
+    .scroll-arrow { width: 28px; height: 28px; font-size: 0.8rem; }
+    .btn-container, .favorite-container { gap: 10px; padding: 6px 4px 12px 4px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+
+    .btn { width: 110px; height: 120px; } /* Adjusted size */
+    .game-info-bar { height: 25px; font-size: 0.75em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.75em; }
+    .btn .heart-icon { font-size: 0.9rem; top: 5px; right: 5px; padding: 3px; }
+}
+
+/* Style for the message when no results are found */
+#noResultsMessage {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #ccc;
+}
+      body {
+        overflow-x: hidden;
+        position: relative;
+        background-color: #000000; /* Consistent dark background */
+      }
+
+      /* Dark overlay - adds subtle depth */
+      body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Adjusted opacity */
+        z-index: -11;
+        pointer-events: none; /* Allow clicks through the overlay */
+      }
+
+      /* Particles.js Container */
+      #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+      }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px; /* Consistent padding */
+        backdrop-filter: blur(12px); /* Consistent blur */
+        -webkit-backdrop-filter: blur(12px);
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.7); /* Consistent background */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Consistent border */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Consistent shadow */
+
+        /* Initial state for animation */
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
+      }
+
+      @keyframes headerEntrance {
+          from { opacity: 0; transform: translateY(-50px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      header img.header-logo { /* Target the logo specifically */
+          height: 50px; /* Keep size consistent */
+          /* Add animation for logo */
+          opacity: 0;
+          transform: translateX(-30px);
+          animation: logoEntrance 0.5s ease-out forwards 0.1s; /* Faster Animation with slight delay */
+      }
+
+      @keyframes logoEntrance {
+          from { opacity: 0; transform: translateX(-30px); }
+          to { opacity: 1; transform: translateX(0); }
+      }
+
+      header h1 { /* Add styles if you decide to add a title next to the logo */
+        font-size: 2rem;
+        color: white; /* Or a gradient if desired */
+        margin-left: 15px;
+      }
+
+      /* Navigation */
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 15px; /* Consistent gap */
+        align-items: center;
+      }
+
+      nav ul li {
+          /* Initial state for staggered animation */
+          opacity: 0;
+          transform: translateY(-20px);
+          animation: navItemEntrance 0.4s ease-out forwards; /* Faster Animation */
+      }
+
+      /* Staggering navigation items (Adjust delays to be faster) */
+      nav ul li:nth-child(1) { animation-delay: 0.2s; } /* Home */
+      nav ul li:nth-child(2) { animation-delay: 0.25s; } /* Games */
+      nav ul li:nth-child(3) { animation-delay: 0.3s; } /* Apps */
+      nav ul li:nth-child(4) { animation-delay: 0.35s; } /* DMCA */
+      nav ul li:nth-child(5) { animation-delay: 0.4s; } /* Built With Pulsar */
+      nav ul li:nth-child(6) { animation-delay: 0.45s; } /* Join Discord */
+
+
+      @keyframes navItemEntrance {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+
+      nav ul li a {
+        text-decoration: none;
+        font-size: 1rem; /* Consistent font size */
+        color: rgba(255, 255, 255, 0.8); /* Softer white */
+        padding: 8px 15px; /* Consistent padding */
+        border-radius: 5px; /* Softer corners */
+        transition: all 0.3s ease;
+        position: relative; /* Needed for potential pseudo-elements */
+      }
+
+       nav ul li a.active {
+           color: white;
+           background: rgba(255, 255, 255, 0.15);
+           text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+       }
+
+
+      nav ul li a:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Softer shadow on hover */
+      }
+
+      /* Discord/Special Buttons in Nav */
+       nav ul li .discord-btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #6d84d8, #546ab9); /* Consistent gradient */
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px; /* Adjusted padding */
+        border-radius: 5px; /* Softer corners */
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(114, 137, 218, 0.4); /* Discord color shadow */
+        transition: all 0.3s ease;
+      }
+
+      nav ul li .discord-btn:hover {
+        transform: translateY(-2px); /* Slight lift effect */
+        box-shadow: 0 0 20px rgba(114, 137, 218, 0.6);
+      }
+
+
+      /* Main Content Area - Needs top padding to not be hidden by fixed header */
+      .hub-container {
+          padding: 100px 20px 20px 20px; /* Add top padding equal to or more than header height */
+          position: relative; /* Needed for particles z-index */
+          z-index: 1; /* Ensure content is above particles */
+      }
+
+      /* Search and Controls section animation */
+      .hub-controls {
+         /* Your existing styles */
+         opacity: 0;
+         transform: translateY(20px);
+         animation: controlsEntrance 0.6s ease-out forwards 0.7s; /* Animation with delay */
+         margin-bottom: 30px; /* Space below search */
+      }
+
+      @keyframes controlsEntrance {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Category Wrapper entrance animation (optional, or stagger categories/buttons) */
+      .categories-wrapper {
+          /* Your existing styles */
+          opacity: 0;
+          transform: translateY(20px);
+          animation: categoriesEntrance 0.6s ease-out forwards 0.9s; /* Animation with delay */
+      }
+
+      @keyframes categoriesEntrance {
+           from { opacity: 0; transform: translateY(20px); }
+           to { opacity: 1; transform: translateY(0); }
+      }
+
+
+       /* You might want to add entrance animations for category headers or individual buttons */
+       /* Example for category headers: */
+       .game-category .category-header h6 {
+           opacity: 0;
+           transform: translateX(-20px);
+           animation: categoryHeaderEntrance 0.5s ease-out forwards;
+           /* Delay could be staggered per category or depend on the wrapper anim */
+           /* For simplicity, let's just give it a base delay */
+           animation-delay: 1.2s;
+       }
+        @keyframes categoryHeaderEntrance {
+           from { opacity: 0; transform: translateX(-20px); }
+           to { opacity: 1; transform: translateX(0); }
+        }
+
+
+       /* Example for individual game buttons - this would require a lot of nth-child or JS staggering */
+       /* .btn {
+           opacity: 0;
+           transform: translateY(10px);
+           animation: buttonEntrance 0.4s ease-out forwards;
+           animation-delay: calc(1.3s + var(--button-index) * 0.05s); // Example using CSS variable and JS
+       } */
+       /* @keyframes buttonEntrance {
+           from { opacity: 0; transform: translateY(10px); }
+           to { opacity: 1; transform: translateY(0); }
+       } */
+
+
+      /* No Results Message animation */
+      #noResultsMessage {
+          /* Your existing styles */
+          opacity: 0; /* Start hidden */
+          transform: translateY(20px);
+          animation: noResultsEntrance 0.5s ease-out forwards; /* Animation */
+          animation-delay: 1.5s; /* Delay it after other elements appear */
+      }
+
+      @keyframes noResultsEntrance {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* --- FIX FOR HEADER/BUTTON CONTAINER LAYOUT --- */
+      /* Add these rules to your games-style.css */
+      .game-category {
+          display: flex; /* Make the section a flex container */
+          flex-direction: column; /* Stack the children (.category-header and .btn-container) vertically */
+          margin-bottom: 30px; /* Add spacing between categories */
+      }
+
+      .category-header {
+          display: flex; /* Make the header div a flex container */
+          justify-content: space-between; /* Space out the h6 and scroll arrows */
+          align-items: center; /* Vertically align the h6 and scroll arrows */
+          margin-bottom: 15px; /* Add space between the header and the button container */
+      }
+      /* --- END FIX --- */
+
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          padding: 10px 20px;
+          align-items: flex-start;
+        }
+        header img.header-logo {
+            height: 40px;
+            margin-bottom: 10px;
+            animation-delay: 0.1s !important;
+        }
+         header { animation-delay: 0s !important; } /* Start header anim earlier on mobile */
+
+         nav ul li:nth-child(1) { animation-delay: 0.4s !important; } /* Adjust nav delays */
+         nav ul li:nth-child(2) { animation-delay: 0.45s !important; }
+         nav ul li:nth-child(3) { animation-delay: 0.5s !important; }
+         nav ul li:nth-child(4) { animation-delay: 0.55s !important; }
+         nav ul li:nth-child(5) { animation-delay: 0.6s !important; }
+         nav ul li:nth-child(6) { animation-delay: 0.65s !important; }
+
+
+        header h1 {
+          font-size: 1.6rem;
+          margin-left: 0;
+        }
+        nav ul {
+          margin-top: 10px;
+          gap: 8px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        nav ul li a,
+        nav ul li .discord-btn {
+          font-size: 0.8rem;
+          padding: 6px 12px;
+        }
+
+        .hub-container {
+             padding-top: 100px; /* Maintain padding for header */
+             padding-left: 10px;
+             padding-right: 10px;
+        }
+
+         .hub-controls {
+             animation-delay: 0.8s !important;
+         }
+
+        .categories-wrapper {
+            animation-delay: 1s !important;
+        }
+         .game-category .category-header h6 {
+            animation-delay: 1.3s !important;
+         }
+
+         #noResultsMessage {
+             animation-delay: 1.6s !important;
+         }
+      }
+/* Arrow animations */
+/* Arrow animations */
+.scroll-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transform: scale(1) translateZ(0); /* Add translateZ for GPU acceleration */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    will-change: opacity, transform; /* Optimize for animation */
+}
+
+.scroll-arrow.hidden {
+    opacity: 0;
+    transform: scale(0.8) translateZ(0);
+    pointer-events: none;
+}
+
+.scroll-arrow:hover {
+    transform: scale(1.1) translateZ(0);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.scroll-arrow:active {
+    transform: scale(0.95) translateZ(0);
+    transition: transform 0.1s ease;
+}
+
+@keyframes arrowPulse {
+    0% { transform: scale(1) translateZ(0); }
+    50% { transform: scale(1.15) translateZ(0); }
+    100% { transform: scale(1) translateZ(0); }
+}
+
+.scroll-arrow.show-pulse {
+    animation: arrowPulse 0.4s ease;
+}
+
+/* Container scrolling */
+.btn-container, .favorite-container, .btn-container-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: auto; /* Disable native smooth scrolling for custom animation */
+    will-change: scroll-position; /* Optimize for scrolling */
+    transform: translateZ(0); /* Force GPU rendering */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.btn-container::-webkit-scrollbar, 
+.favorite-container::-webkit-scrollbar, 
+.btn-container-grid::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.btn {
+    flex: 0 0 auto;
+    transform: translateZ(0); /* GPU acceleration for buttons */
+    /* Avoid heavy styles like box-shadow or complex gradients */
+}
+         .btn {
+    display: flex;
+    flex-direction: column; /* Stack image and info bar vertically */
+    align-items: center;
+    justify-content: flex-start; /* Start layout from the top */
+    width: 180px; /* Fixed width for button and image */
+    height: 150px; /* Fixed height for button and image */
+    background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden; /* Hide info bar when translated */
+    color: #ddd;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative; /* For positioning info bar and heart */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    flex: 0 0 auto; /* From CODE #1: Prevent shrinking in flex containers */
+    flex-shrink: 0; /* Reinforced for consistency */
+    transform: translateZ(0); /* GPU acceleration from CODE #1 */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease; /* From CODE #2 */
+}
+
+/* Button Hover Effect (Explicitly from CODE #2) */
+.btn:hover {
+    transform: translateY(-3px) scale(1.02) translateZ(0); /* Added translateZ(0) for GPU consistency */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85));
+}
+
+/* Image Styles (From CODE #2) */
+.btn .imgg {
+    display: block;
+    width: 180px; /* Exact width */
+    height: 150px; /* Exact height */
+    object-fit: cover; /* Ensure image covers the area without distortion */
+    background-color: #222; /* Fallback background */
+}
+
+/* Style for the App Info Bar (From CODE #2) */
+.game-info-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 2;
+}
+
+/* Make Info Bar Visible on Button Hover (From CODE #2) */
+.btn:hover .game-info-bar {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* App Name Text Inside Info Bar (From CODE #2) */
+.game-info-bar .game-name {
+    display: block;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+/* Heart Icon (From CODE #2) */
+.heart-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2em;
+    color: #ccc;
+    cursor: pointer;
+    z-index: 3;
+    transition: color 0.2s ease-in-out;
+}
+
+.heart-icon.hearted {
+    color: #e74c3c; /* Red when favorited */
+}
+
+.heart-icon:hover {
+    color: white;
+}
+
+/* Hide Filtered Buttons (From CODE #2) */
+.btn.hidden {
+    display: none !important;
+}
+      body {
+        overflow-x: hidden;
+        position: relative;
+        background-color: #000000; /* Consistent dark background */
+      }
+
+      /* Dark overlay - adds subtle depth */
+      body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Adjusted opacity */
+        z-index: -11;
+        pointer-events: none; /* Allow clicks through the overlay */
+      }
+
+      /* Particles.js Container */
+      #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+      }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px; /* Consistent padding */
+        backdrop-filter: blur(12px); /* Consistent blur */
+        -webkit-backdrop-filter: blur(12px);
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.7); /* Consistent background */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Consistent border */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Consistent shadow */
+
+        /* Initial state for animation */
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
+      }
+
+      @keyframes headerEntrance {
+          from { opacity: 0; transform: translateY(-50px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      header img.header-logo { /* Target the logo specifically */
+          height: 50px; /* Keep size consistent */
+          /* Add animation for logo */
+          opacity: 0;
+          transform: translateX(-30px);
+          animation: logoEntrance 0.5s ease-out forwards 0.1s; /* Faster Animation with slight delay */
+      }
+
+      @keyframes logoEntrance {
+          from { opacity: 0; transform: translateX(-30px); }
+          to { opacity: 1; transform: translateX(0); }
+      }
+
+      header h1 { /* Add styles if you decide to add a title next to the logo */
+        font-size: 2rem;
+        color: white; /* Or a gradient if desired */
+        margin-left: 15px;
+      }
+
+      /* Navigation */
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 15px; /* Consistent gap */
+        align-items: center;
+      }
+
+      nav ul li {
+          /* Initial state for staggered animation */
+          opacity: 0;
+          transform: translateY(-20px);
+          animation: navItemEntrance 0.4s ease-out forwards; /* Faster Animation */
+      }
+
+      /* Staggering navigation items (Adjust delays to be faster) */
+      nav ul li:nth-child(1) { animation-delay: 0.2s; } /* Home */
+      nav ul li:nth-child(2) { animation-delay: 0.25s; } /* Games */
+      nav ul li:nth-child(3) { animation-delay: 0.3s; } /* Apps */
+      nav ul li:nth-child(4) { animation-delay: 0.35s; } /* DMCA */
+      nav ul li:nth-child(5) { animation-delay: 0.4s; } /* Built With Pulsar */
+      nav ul li:nth-child(6) { animation-delay: 0.45s; } /* Join Discord */
+
+
+      @keyframes navItemEntrance {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+
+      nav ul li a {
+        text-decoration: none;
+        font-size: 1rem; /* Consistent font size */
+        color: rgba(255, 255, 255, 0.8); /* Softer white */
+        padding: 8px 15px; /* Consistent padding */
+        border-radius: 5px; /* Softer corners */
+        transition: all 0.3s ease;
+        position: relative; /* Needed for potential pseudo-elements */
+      }
+
+       nav ul li a.active {
+           color: white;
+           background: rgba(255, 255, 255, 0.15);
+           text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+       }
+
+
+      nav ul li a:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Softer shadow on hover */
+      }
+
+      /* Discord/Special Buttons in Nav */
+       nav ul li .discord-btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #6d84d8, #546ab9); /* Consistent gradient */
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px; /* Adjusted padding */
+        border-radius: 5px; /* Softer corners */
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(114, 137, 218, 0.4); /* Discord color shadow */
+        transition: all 0.3s ease;
+      }
+
+      nav ul li .discord-btn:hover {
+        transform: translateY(-2px); /* Slight lift effect */
+        box-shadow: 0 0 20px rgba(114, 137, 218, 0.6);
+      }
+
+
+      /* Main Content Area - Needs top padding to not be hidden by fixed header */
+      .hub-container {
+          padding: 100px 20px 20px 20px; /* Add top padding equal to or more than header height */
+          position: relative; /* Needed for particles z-index */
+          z-index: 1; /* Ensure content is above particles */
+      }
+
+      /* Search and Controls section animation */
+      .hub-controls {
+         /* Your existing styles */
+         opacity: 0;
+         transform: translateY(20px);
+         animation: controlsEntrance 0.6s ease-out forwards 0.7s; /* Animation with delay */
+         margin-bottom: 30px; /* Space below search */
+      }
+
+      @keyframes controlsEntrance {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Category Wrapper entrance animation (optional, or stagger categories/buttons) */
+      .categories-wrapper {
+          /* Your existing styles */
+          opacity: 0;
+          transform: translateY(20px);
+          animation: categoriesEntrance 0.6s ease-out forwards 0.9s; /* Animation with delay */
+      }
+
+      @keyframes categoriesEntrance {
+           from { opacity: 0; transform: translateY(20px); }
+           to { opacity: 1; transform: translateY(0); }
+      }
+
+
+       /* You might want to add entrance animations for category headers or individual buttons */
+       /* Example for category headers: */
+       .game-category .category-header h6 {
+           opacity: 0;
+           transform: translateX(-20px);
+           animation: categoryHeaderEntrance 0.5s ease-out forwards;
+           /* Delay could be staggered per category or depend on the wrapper anim */
+           /* For simplicity, let's just give it a base delay */
+           animation-delay: 1.2s;
+       }
+        @keyframes categoryHeaderEntrance {
+           from { opacity: 0; transform: translateX(-20px); }
+           to { opacity: 1; transform: translateX(0); }
+        }
+
+      /* No Results Message animation */
+      #noResultsMessage {
+          /* Your existing styles */
+          opacity: 0; /* Start hidden */
+          transform: translateY(20px);
+          animation: noResultsEntrance 0.5s ease-out forwards; /* Animation */
+          animation-delay: 1.5s; /* Delay it after other elements appear */
+      }
+
+      @keyframes noResultsEntrance {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* --- FIX FOR HEADER/BUTTON CONTAINER LAYOUT --- */
+      /* Add these rules to your games-style.css */
+      .game-category {
+          display: flex; /* Make the section a flex container */
+          flex-direction: column; /* Stack the children (.category-header and .btn-container) vertically */
+          margin-bottom: 30px; /* Add spacing between categories */
+      }
+
+      .category-header {
+          display: flex; /* Make the header div a flex container */
+          justify-content: space-between; /* Space out the h6 and scroll arrows */
+          align-items: center; /* Vertically align the h6 and scroll arrows */
+          margin-bottom: 15px; /* Add space between the header and the button container */
+      }
+      /* Arrow animations */
+.scroll-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transform: scale(1) translateZ(0); /* GPU acceleration */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    will-change: opacity, transform;
+}
+
+.scroll-arrow.hidden {
+    opacity: 0;
+    transform: scale(0.8) translateZ(0);
+    pointer-events: none;
+}
+
+.scroll-arrow:hover {
+    transform: scale(1.1) translateZ(0);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.scroll-arrow:active {
+    transform: scale(0.95) translateZ(0);
+    transition: transform 0.1s ease;
+}
+
+@keyframes arrowPulse {
+    0% { transform: scale(1) translateZ(0); }
+    50% { transform: scale(1.15) translateZ(0); }
+    100% { transform: scale(1) translateZ(0); }
+}
+
+.scroll-arrow.show-pulse {
+    animation: arrowPulse 0.4s ease;
+}
+
+/* Container scrolling */
+.favorite-container, .btn-container-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: auto; /* Disable native smooth scrolling for custom animation */
+    will-change: scroll-position;
+    transform: translateZ(0); /* GPU acceleration */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.favorite-container::-webkit-scrollbar, 
+.btn-container-grid::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+      /* --- END FIX --- */
+
+
+      /* Arrow animations */
+      .scroll-arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 1;
+          transform: scale(1) translateZ(0); /* Add translateZ for GPU acceleration */
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          pointer-events: auto;
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border-radius: 50%;
+          will-change: opacity, transform; /* Optimize for animation */
+      }
+
+      .scroll-arrow.hidden {
+          opacity: 0;
+          transform: scale(0.8) translateZ(0);
+          pointer-events: none;
+      }
+
+      .scroll-arrow:hover {
+          transform: scale(1.1) translateZ(0);
+          background: rgba(0, 0, 0, 0.7);
+      }
+
+      .scroll-arrow:active {
+          transform: scale(0.95) translateZ(0);
+          transition: transform 0.1s ease;
+      }
+
+      @keyframes arrowPulse {
+          0% { transform: scale(1) translateZ(0); }
+          50% { transform: scale(1.15) translateZ(0); }
+          100% { transform: scale(1) translateZ(0); }
+      }
+
+      .scroll-arrow.show-pulse {
+          animation: arrowPulse 0.4s ease;
+      }
+
+      /* Container scrolling */
+      .btn-container, .favorite-container, .btn-container-grid {
+          display: flex; /* Keep flex for horizontal containers */
+          overflow-x: auto;
+          scroll-behavior: auto; /* Disable native smooth scrolling for custom animation */
+          will-change: scroll-position; /* Optimize for scrolling */
+          transform: translateZ(0); /* Force GPU rendering */
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE/Edge */
+      }
+
+      .btn-container::-webkit-scrollbar,
+      .favorite-container::-webkit-scrollbar,
+      .btn-container-grid::-webkit-scrollbar {
+          display: none; /* Chrome/Safari */
+      }
+
+      /* Note: Specific .btn styles are defined below, this is just for scroll context *
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          padding: 10px 20px;
+          align-items: flex-start;
+        }
+        header img.header-logo {
+            height: 40px;
+            margin-bottom: 10px;
+            animation-delay: 0.1s !important;
+        }
+         header { animation-delay: 0s !important; } /* Start header anim earlier on mobile */
+
+         /* Adjust nav delays for mobile if needed, matching the original code */
+         nav ul li:nth-child(1) { animation-delay: 0.4s !important; }
+         nav ul li:nth-child(2) { animation-delay: 0.45s !important; }
+         nav ul li:nth-child(3) { animation-delay: 0.5s !important; }
+         nav ul li:nth-child(4) { animation-delay: 0.55s !important; }
+         nav ul li:nth-child(5) { animation-delay: 0.6s !important; }
+         nav ul li:nth-child(6) { animation-delay: 0.65s !important; }
+
+        header h1 {
+          font-size: 1.6rem;
+          margin-left: 0;
+        }
+        nav ul {
+          margin-top: 10px;
+          gap: 8px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        nav ul li a,
+        nav ul li .discord-btn {
+          font-size: 0.8rem;
+          padding: 6px 12px;
+        }
+
+        .hub-container {
+             padding-top: 100px; /* Maintain padding for header */
+             padding-left: 10px;
+             padding-right: 10px;
+        }
+
+         .hub-controls {
+             animation-delay: 0.8s !important;
+         }
+
+        .categories-wrapper {
+            animation-delay: 1s !important;
+        }
+         .game-category .category-header h6 {
+            animation-delay: 1.3s !important;
+         }
+
+         #noResultsMessage {
+             animation-delay: 1.6s !important;
+         }
+      }
+
+      /* --- Existing CODE #2 Button and Layout Styles (Retained) --- */
+      /* These styles are specific to the app item presentation and layout */
+/* Button Styles (Merged from CODE #1 and CODE #2, with Hover Effect from CODE #2) */
+
+      /* Favorites Section */
+      .favorites-section {
+          margin-bottom: 20px;
+      }
+
+      /* Favorites Container: Horizontal Flexbox */
+      /* This exists in both, but the CODE #2 version seems more specific to the item size */
+      /* Keeping the CODE #2 version and adding CODE #1 scroll behavior */
+      .favorite-container {
+          display: flex;
+          overflow-x: auto; /* Scrolling added from CODE #1 */
+          scroll-behavior: auto; /* Scrolling behavior added from CODE #1 */
+          padding: 10px 0;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          will-change: scroll-position; /* Added from CODE #1 */
+          transform: translateZ(0); /* Added from CODE #1 */
+      }
+
+      .favorite-container::-webkit-scrollbar {
+          display: none;
+      }
+
+      .favorite-container .btn {
+          margin: 0 10px; /* Horizontal spacing */
+          flex-shrink: 0; /* Added from CODE #1 related to scrolling */
+      }
+
+      /* Grid Container for All Apps */
+      /* This exists in both, but the CODE #2 version defines the grid layout */
+      /* Keeping the CODE #2 version and adding CODE #1 scroll behavior */
+      .btn-container-grid {
+          display: grid; /* Grid display */
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjusted for 180px buttons */
+          gap: 20px;
+          padding: 10px;
+          justify-items: center;
+          /* Scroll behavior added from CODE #1 - Note: overflow-x: auto on grid makes a horizontal scroll,
+             which might be unintended for a grid. The JS scrolling targets the grid container,
+             which scrolls *itself*. If the intention is a scrolling ROW of grids, this is wrong.
+             Assuming the intention is that the grid *itself* can scroll horizontally if items don't wrap
+             or if the grid needs to be narrower than the container. Let's keep the grid layout
+             and add the scroll behavior. If the grid *shouldn't* scroll horizontally, these
+             overflow/scroll properties would need adjustment, but the prompt asks to add the styles.
+             Let's prioritize the grid display from CODE #2. */
+          overflow-x: auto;
+          scroll-behavior: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          will-change: scroll-position;
+          transform: translateZ(0);
+      }
+       .btn-container-grid::-webkit-scrollbar {
+           display: none;
+       }
+
+
+      .btn-container-grid .btn {
+          margin: 0; /* No margin needed with grid gap */
+          flex-shrink: 0; /* Added from CODE #1 related to scrolling */
+      }
+
+
+      /* Ensure the non-grid .btn-container from CODE #1 styles is also handled
+         if it might be used elsewhere (though seems specific to horizontal rows) */
+      .btn-container { /* This class might not be on any container in CODE #2 HTML */
+          display: flex; /* Default to flex for horizontal rows */
+          overflow-x: auto;
+          scroll-behavior: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          will-change: scroll-position;
+          transform: translateZ(0);
+      }
+      .btn-container::-webkit-scrollbar {
+          display: none;
+      }
+      .btn-container .btn {
+          flex-shrink: 0;
+      }
+    </style>
+
 
     <!-- *** FIXED PATH *** Using CDN for particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -29,76 +1542,90 @@
 
     <!-- Header -->
     <header>
-        <a href="index.html"><img src="2cJw7a9.png" alt="Pulsar Logo" class="header-logo"></a> <!-- Changed alt text -->
+        <a href="../index.html"><img src="2cJw7a9.png" alt="Pulsar Logo" class="header-logo"></a> <!-- Adjusted path for index.html -->
         <nav>
             <ul>
                 <li><a href="../index.html" class="nav-link">Home</a></li>
-                <li><a href="../Games/index.html" class="nav-link active">Games</a></li>
+                <li><a href="../Games/index.html" class="nav-link">Games</a></li> <!-- Adjusted path for Games page -->
                 <li><a href="index.html" class="nav-link active">Apps</a></li>
-                <li><a href="https://forms.gle/CkQLAFKJyxR4qTLs8" class="nav-link active">File A DMCA Takedown Request</a></li>
+                <li><a href="../AI/aiiframe.html" class="nav-link">AI</a></li>
+                <li><a href="https://forms.gle/CkQLAFKJyxR4qTLs8" target="_blank" class="nav-link">File A DMCA Takedown Request</a></li>
                 <li><a href="https://github.com/Yeti1o1/Pulsar" target="_blank" class="discord-btn">Built With Pulsar</a></li>
-                <li><a href="https://discord.com/kRq8HvUrJX" target="_blank" class="discord-btn">Join The Discord</a></li>
+                <li><a href="https://discord.gg/kRq8HvUrJX" target="_blank" class="discord-btn">Join The Discord</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main Game Hub Content Area -->
+    <!-- Main App Hub Content Area -->
     <main class="hub-container">
 
         <!-- Search and Controls -->
         <section class="hub-controls">
             <div class="search-wrapper" id="searchWrapper">
-                <input type="text" id="myInput" placeholder="Search for games...">
+                <input type="text" id="myInput" placeholder="Search for apps..."> <!-- Changed placeholder -->
                 <button class="search-icon-btn" aria-label="Search">
                    <i class="fa fa-search"></i>
                 </button>
             </div>
+             <!-- Assuming a toggle button for categories might exist elsewhere,
+                  keeping the toggle script reference but commenting out if no button -->
+            <!-- <button id="Toggle">Hide Categories</button> -->
         </section>
 
         <!-- Container for Categories -->
         <div class="categories-wrapper" id="categoriesWrapper">
-            <!-- All Games Section -->
-            <section class="game-category all-games-section">
+             <!-- Favorited Apps Section -->
+            <!-- This section's display is controlled by the JS based on favorite count -->
+            <section class="game-category favorites-section" id="favoritesSection">
                  <div class="category-header">
-                    <h6><i class="fas fa-border-all"></i> All Apps</h6>
-                 </div>
-                 <div class="btn-container-grid">
-                  <button class="btn" data-path="Apps/Simple Calculator.html"><img class="imgg" src="Imgs/Simple Calculator.png" alt="Simple Calculator">Simple Calculator<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Neutron.html"><img class="imgg" src="Imgs/Neutron.png" alt="Neutron">Neutron<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/MiniWiki.html"><img class="imgg" src="Imgs/MiniWiki.png" alt="MiniWiki">MiniWiki<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Algebra Calculator.html"><img class="imgg" src="Imgs/Algebra Calculator.png" alt="Algebra Calculator">Algebra Calculator<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Advanced Code Editor 1.html"><img class="imgg" src="Imgs/Advanced Code Editor V1.png" alt="Advanced Code Editor V1">Advanced Code Editor V1<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Advanced Code Editor 2.html"><img class="imgg" src="Imgs/Advanced Code Editor V2.png" alt="Advanced Code Editor V2">Advanced Code Editor V2<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Wordle Bot/Wordle Bot.html"><img class="imgg" src="Imgs/Wordle Bot.png" alt="Wordle Bot">Wordle Bot<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Weavesilk/index.html"><img class="imgg" src="Imgs/Weavesilk.png" alt="Weavesilk">Weavesilk<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Turbowarp/Turbowarp.html"><img class="imgg" src="Imgs/Turbowarp.png" alt="Turbowarp">Turbowarp<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Ruffle/Ruffle.html"><img class="imgg" src="Imgs/Ruffle.png" alt="Ruffle">Ruffle<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/HTML Unleashed/HTML Unleashed.html"><img class="imgg" src="Imgs/HTML Unleashed.png" alt="HTML Unleashed">HTML Unleashed<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Emulators/Emulator JS/Emulator JS.html"><img class="imgg" src="Imgs/Emulator JS.png" alt="Emulator JS">Emulator JS<i class="fa fa-heart heart-icon"></i></button>
-                  <button class="btn" data-path="Apps/Emulators/Emulator WebRetro/WebRetro.html"><img class="imgg" src="Imgs/WebRetro.png" alt="WebRetro">WebRetro<i class="fa fa-heart heart-icon"></i></button>
-
-
+                    <h6><i class="fas fa-heart"></i> Favorited Apps</h6>
+                    <div class="scroll-arrows">
+                        <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                        <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
                     </div>
-                </section>
+                </div>
+                <div class="btn-container favorite-container">
+                    <!-- Favorite buttons added dynamically by JS -->
+                </div>
+            </section>
+            <!-- All Apps Section -->
+            <section class="game-category all-games-section"> <!-- Keeping game-related class names for CSS consistency -->
+                 <div class="category-header">
+                    <h6><i class="fas fa-border-all"></i> All Apps</h6> <!-- Changed title -->
+                 </div>
+                 <div class="btn-container-grid"> <!-- Keeping grid class name consistent -->
+                  <!-- --- App Buttons with Info Bar Structure --- -->
+                  <!-- data-game-id is crucial for favoriting/saving -->
+                  <button class="btn" data-path="Games/Apps/Simple Calculator.html" data-game-id="fav-Apps-Simple-Calculator-html"><img class="imgg" src="Imgs/Simple Calculator.png" alt="Simple Calculator"><div class="game-info-bar"><span class="game-name">Simple Calculator</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Neutron.html" data-game-id="fav-Apps-Neutron-html"><img class="imgg" src="Imgs/Neutron.png" alt="Neutron"><div class="game-info-bar"><span class="game-name">Neutron</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/MiniWiki.html" data-game-id="fav-Apps-MiniWiki-html"><img class="imgg" src="Imgs/MiniWiki.png" alt="MiniWiki"><div class="game-info-bar"><span class="game-name">MiniWiki</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Algebra Calculator.html" data-game-id="fav-Apps-Algebra-Calculator-html"><img class="imgg" src="Imgs/Algebra Calculator.png" alt="Algebra Calculator"><div class="game-info-bar"><span class="game-name">Algebra Calculator</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Advanced Code Editor 1.html" data-game-id="fav-Apps-Advanced-Code-Editor-1-html"><img class="imgg" src="Imgs/Advanced Code Editor V1.png" alt="Advanced Code Editor V1"><div class="game-info-bar"><span class="game-name">Advanced Code Editor V1</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Advanced Code Editor 2.html" data-game-id="fav-Apps-Advanced-Code-Editor-2-html"><img class="imgg" src="Imgs/Advanced Code Editor V2.png" alt="Advanced Code Editor V2"><div class="game-info-bar"><span class="game-name">Advanced Code Editor V2</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Wordle Bot/Wordle Bot.html" data-game-id="fav-Apps-Wordle-Bot-Wordle-Bot-html"><img class="imgg" src="Imgs/Wordle Bot.png" alt="Wordle Bot"><div class="game-info-bar"><span class="game-name">Wordle Bot</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Weavesilk/index.html" data-game-id="fav-Apps-Weavesilk-index-html"><img class="imgg" src="Imgs/Weavesilk.png" alt="Weavesilk"><div class="game-info-bar"><span class="game-name">Weavesilk</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Turbowarp/Turbowarp.html" data-game-id="fav-Apps-Turbowarp-Turbowarp-html"><img class="imgg" src="Imgs/Turbowarp.png" alt="Turbowarp"><div class="game-info-bar"><span class="game-name">Turbowarp</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Ruffle/Ruffle.html" data-game-id="fav-Apps-Ruffle-Ruffle-html"><img class="imgg" src="Imgs/Ruffle.png" alt="Ruffle"><div class="game-info-bar"><span class="game-name">Ruffle</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/HTML Unleashed/HTML Unleashed.html" data-game-id="fav-Apps-HTML-Unleashed-HTML-Unleashed-html"><img class="imgg" src="Imgs/HTML Unleashed.png" alt="HTML Unleashed"><div class="game-info-bar"><span class="game-name">HTML Unleashed</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Emulators/Emulator JS/Emulator JS.html" data-game-id="fav-Apps-Emulators-Emulator-JS-Emulator-JS-html"><img class="imgg" src="Imgs/Emulator JS.png" alt="Emulator JS"><div class="game-info-bar"><span class="game-name">Emulator JS</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <button class="btn" data-path="Games/Apps/Emulators/Emulator WebRetro/WebRetro.html" data-game-id="fav-Apps-Emulators-Emulator-WebRetro-WebRetro-html"><img class="imgg" src="Imgs/WebRetro.png" alt="WebRetro"><div class="game-info-bar"><span class="game-name">WebRetro</span></div><i class="fa fa-heart heart-icon"></i></button>
+                  <!-- --- End App Buttons --- -->
+                 </div>
+            </section>
+
+        </div> <!-- Close categories-wrapper -->
 
         <!-- Message for no search results -->
         <p id="noResultsMessage" style="display: none; text-align: center; margin-top: 30px; font-size: 1.3em; color: #ccc;">
-            No games found matching your search.
+            No apps found matching your search. <!-- Changed message -->
         </p>
 
     </main>
 
      <!-- --- Scripts --- -->
 
-    <!-- Debounce Function (Needs to be defined before used) -->
-    <!-- --- Scripts --- -->
-
-    <!-- Utility: Debounce Function -->
-    <!-- --- Scripts --- -->
-
-    <!-- Utility: Debounce Function -->
+    <!-- Utility: Debounce Function (Needs to be defined before used) -->
     <script>
-        // Must be defined before it's used by other scripts
         function debounce(func, wait, immediate) {
           var timeout;
           return function() {
@@ -114,597 +1641,872 @@
           };
         }
       </script>
-  
+
+      <!-- Utility: Get Button Name (Adjusted for new structure) -->
+      <script>
+        function getButtonName(button) {
+           // Try span.game-name inside .game-info-bar first (New structure)
+           const spanText = button.querySelector('.game-info-bar .game-name')?.textContent.trim();
+           if (spanText) return spanText;
+
+           // Fallback 1: Look for text node directly inside the button (Original structure - less likely now)
+           let name = "";
+           button.childNodes.forEach(node => {
+             if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") {
+               name = node.textContent.trim();
+             }
+           });
+           if (name) return name;
+
+           // Fallback 2: img alt
+           const imgAlt = button.querySelector('.imgg')?.alt;
+           if (imgAlt) return imgAlt;
+
+           // Final fallback: data-path processing
+           const path = button.getAttribute('data-path');
+           if (path) {
+               let pathName = path.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
+               return pathName.replace(/\b\w/g, l => l.toUpperCase());
+           }
+
+           return 'Unknown App'; // Changed default name
+        }
+      </script>
+
       <!-- Core Logic Function Definitions -->
       <script>
         // Define functions needed by event listeners
-  
+
         // --- Scroll Arrow Logic Definition ---
         function setupScrollArrows(category) {
-          const btnContainer = category.querySelector('.btn-container, .favorite-container');
+          // Ensure we select the correct container class(es)
+          // Targets .favorite-container for the row and .btn-container-grid for the grid
+          const btnContainer = category.querySelector('.favorite-container, .btn-container-grid');
           const leftArrow = category.querySelector('.scroll-arrow.left-arrow');
           const rightArrow = category.querySelector('.scroll-arrow.right-arrow');
-          // const categoryName = category.querySelector('h6')?.textContent || 'Unknown Category';
-  
-          if (!btnContainer || !leftArrow || !rightArrow) { return; }
-  
-          let scrollAmount = 300;
-          const updateScrollAmount = () => { scrollAmount = 300; };
-          let scrollInterval = null;
-  
-          function updateArrowVisibility() {
-            if (!category.offsetParent || !btnContainer.offsetParent) {
-               leftArrow.style.display = 'none'; rightArrow.style.display = 'none'; return;
-            }
-            const tolerance = 5;
-            const maxScrollLeft = btnContainer.scrollWidth - btnContainer.clientWidth;
-            const canScroll = btnContainer.scrollWidth > btnContainer.clientWidth + tolerance;
-            leftArrow.style.display = canScroll && btnContainer.scrollLeft > tolerance ? 'flex' : 'none';
-            rightArrow.style.display = canScroll && btnContainer.scrollLeft < maxScrollLeft - tolerance ? 'flex' : 'none';
+
+          if (!btnContainer || !leftArrow || !rightArrow) {
+              // console.warn("Missing scroll elements in category:", category.querySelector('h6')?.textContent || 'Unknown Category');
+              return;
           }
-  
-          const debouncedUpdateArrows = debounce(updateArrowVisibility, 50); // Uses global debounce
+
+          // Adjust scroll amount based on container width or a fixed value
+          let scrollAmount = btnContainer.clientWidth * 0.8; // Scroll by 80% of container width
+          const updateScrollAmount = () => {
+             scrollAmount = btnContainer.clientWidth * 0.8; // Re-calculate on resize
+             if (scrollAmount < 200) scrollAmount = 200; // Minimum scroll amount
+          };
+
+          // Initial calculation
+          updateScrollAmount();
+
+          function updateArrowVisibility() {
+              if (!category.offsetParent || !btnContainer.offsetParent || 
+                  window.getComputedStyle(btnContainer).display === 'none' || 
+                  window.getComputedStyle(category).display === 'none') {
+                  leftArrow.classList.add('hidden');
+                  rightArrow.classList.add('hidden');
+                  return;
+              }
+
+              const visibleButtons = Array.from(btnContainer.querySelectorAll('.btn'))
+                  .filter(btn => window.getComputedStyle(btn).display !== 'none');
+              if (visibleButtons.length === 0) {
+                  leftArrow.classList.add('hidden');
+                  rightArrow.classList.add('hidden');
+                  return;
+              }
+
+              const tolerance = 5;
+              const maxScrollLeft = btnContainer.scrollWidth - btnContainer.clientWidth;
+              const canScroll = btnContainer.scrollWidth > btnContainer.clientWidth + tolerance;
+
+              // Update left arrow
+              if (canScroll && btnContainer.scrollLeft > tolerance) {
+                  leftArrow.classList.remove('hidden');
+                  if (!leftArrow._wasVisible) {
+                      leftArrow.classList.add('show-pulse');
+                      setTimeout(() => leftArrow.classList.remove('show-pulse'), 400);
+                  }
+                  leftArrow._wasVisible = true;
+              } else {
+                  leftArrow.classList.add('hidden');
+                  leftArrow._wasVisible = false;
+              }
+
+              // Update right arrow
+              if (canScroll && btnContainer.scrollLeft < maxScrollLeft - tolerance) {
+                  rightArrow.classList.remove('hidden');
+                  if (!rightArrow._wasVisible) {
+                      rightArrow.classList.add('show-pulse');
+                      setTimeout(() => rightArrow.classList.remove('show-pulse'), 400);
+                  }
+                  rightArrow._wasVisible = true;
+              } else {
+                  rightArrow.classList.add('hidden');
+                  rightArrow._wasVisible = false;
+              }
+          }
+
+          const debouncedUpdateArrows = debounce(updateArrowVisibility, 50);
           category._updateArrowVisibility = debouncedUpdateArrows;
-  
+
           btnContainer.addEventListener('scroll', debouncedUpdateArrows);
+
           const resizeObserver = new ResizeObserver(() => {
-            updateScrollAmount(); debouncedUpdateArrows();
+              updateScrollAmount();
+              debouncedUpdateArrows();
           });
           resizeObserver.observe(btnContainer);
           resizeObserver.observe(category);
-  
+
+          // Easing function: ease-in-out quadratic
+          const easeInOutQuad = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+          // Custom scroll animation with requestAnimationFrame
+          let isAnimating = false;
+          const animateScroll = (direction, duration = 400) => {
+              if (isAnimating) return;
+              isAnimating = true;
+
+              const start = btnContainer.scrollLeft;
+              const target = start + direction * scrollAmount;
+              const startTime = performance.now();
+
+              const animate = (currentTime) => {
+                  const elapsed = currentTime - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const easedProgress = easeInOutQuad(progress);
+                  btnContainer.scrollLeft = start + (target - start) * easedProgress;
+
+                  if (progress < 1) {
+                      requestAnimationFrame(animate);
+                  } else {
+                      isAnimating = false;
+                  }
+              };
+
+              requestAnimationFrame(animate);
+          };
+
           const scrollStep = (direction) => {
-            if (isNaN(scrollAmount) || scrollAmount <= 0) return;
-            btnContainer.scrollBy({ left: direction * scrollAmount });
+              if (isNaN(scrollAmount) || scrollAmount <= 0) return;
+              animateScroll(direction, 400); // 400ms duration
           };
-          const startScrolling = (direction) => {
-            stopScrolling(); scrollStep(direction);
-            scrollInterval = setInterval(() => scrollStep(direction), 150);
-          };
-          const stopScrolling = () => { clearInterval(scrollInterval); scrollInterval = null; };
-  
-          // Clone/Replace arrows
-          const newLeftArrow = leftArrow.cloneNode(true);
-          const newRightArrow = rightArrow.cloneNode(true);
-          leftArrow.parentNode.replaceChild(newLeftArrow, leftArrow);
-          rightArrow.parentNode.replaceChild(newRightArrow, rightArrow);
-  
-          // Attach listeners to NEW arrows
+
+          // Clone arrows to remove old listeners
+          const oldLeftArrow = leftArrow;
+          const oldRightArrow = rightArrow;
+          const newLeftArrow = oldLeftArrow.cloneNode(true);
+          const newRightArrow = oldRightArrow.cloneNode(true);
+          oldLeftArrow.parentNode.replaceChild(newLeftArrow, oldLeftArrow);
+          oldRightArrow.parentNode.replaceChild(newRightArrow, oldRightArrow);
+
+          // Attach click listeners
           newLeftArrow.addEventListener('click', () => scrollStep(-1));
           newRightArrow.addEventListener('click', () => scrollStep(1));
-          const addHoldListeners = (arrow, direction) => {
-            arrow.addEventListener('mousedown', () => startScrolling(direction));
-            arrow.addEventListener('touchstart', (e) => { e.preventDefault(); startScrolling(direction); }, { passive: false });
-            arrow.addEventListener('mouseup', stopScrolling);
-            arrow.addEventListener('mouseleave', stopScrolling);
-            arrow.addEventListener('touchend', stopScrolling);
-            arrow.addEventListener('touchcancel', stopScrolling);
+
+          // Hold-to-scroll
+          let scrollHoldInterval = null;
+          const startHoldScrolling = (direction) => {
+              stopHoldScrolling();
+              if (!isAnimating) {
+                  scrollStep(direction); // Immediate scroll
+                  scrollHoldInterval = setInterval(() => {
+                      if (!isAnimating) scrollStep(direction);
+                  }, 450); // Slightly longer than animation duration
+              }
           };
-          addHoldListeners(newLeftArrow, -1);
-          addHoldListeners(newRightArrow, 1);
-  
-          // Initial check
-          setTimeout(() => { updateScrollAmount(); updateArrowVisibility(); }, 100);
-          // No need for window resize listener here, ResizeObserver handles container/category changes
-        }
-        // --- END Scroll Arrow Logic Definition ---
-  
-  
-        // --- Search Filter Logic Definition ---
-              // --- Search Filter Logic Definition (REVISED - Put setTimeout back for arrows) ---
-      function filterGames() {
-        const input = document.getElementById('myInput');
-        const filter = input.value.toUpperCase().trim();
-        const categoriesWrapper = document.getElementById('categoriesWrapper');
-        const categories = categoriesWrapper?.querySelectorAll('.game-category:not(.all-games-section):not(.favorites-section)');
-        const allGamesGrid = document.querySelector('.all-games-section .btn-container-grid');
-        const allGameButtons = allGamesGrid?.querySelectorAll('.btn');
-        const noResultsMessage = document.getElementById('noResultsMessage');
-        let hasVisibleGames = false;
+          const stopHoldScrolling = () => {
+              clearInterval(scrollHoldInterval);
+              scrollHoldInterval = null;
+          };
 
-        // console.log(`--- Filtering for: "${filter}" ---`); // Keep logs if helpful
+          // Mouse events
+          newLeftArrow.addEventListener('mousedown', () => startHoldScrolling(-1));
+          newLeftArrow.addEventListener('mouseup', stopHoldScrolling);
+          newLeftArrow.addEventListener('mouseleave', stopHoldScrolling);
 
-        const getButtonName = (button) => { /* ... unchanged helper ... */
-            let name = ""; button.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") name = node.textContent.trim(); }); return name || button.querySelector('img')?.alt || 'Unknown Button';
-        }
+          newRightArrow.addEventListener('mousedown', () => startHoldScrolling(1));
+          newRightArrow.addEventListener('mouseup', stopHoldScrolling);
+          newRightArrow.addEventListener('mouseleave', stopHoldScrolling);
 
-        categories?.forEach(category => {
-          const buttons = category.querySelectorAll('.btn');
-          buttons.forEach(button => {
-            let txtValue = ""; /* ... unchanged extraction ... */ button.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") txtValue = node.textContent.trim(); }); if (!txtValue) txtValue = button.querySelector('img')?.alt || '';
-            const buttonName = getButtonName(button);
+          // Touch events
+          newLeftArrow.addEventListener('touchstart', (e) => { e.preventDefault(); startHoldScrolling(-1); }, { passive: false });
+          newLeftArrow.addEventListener('touchend', stopHoldScrolling);
+          newLeftArrow.addEventListener('touchcancel', stopHoldScrolling);
 
-            if (txtValue.toUpperCase().includes(filter)) {
-              if (button.classList.contains('hidden')) { /* console.log(` ✅ Showing: ${buttonName}`); */ button.classList.remove('hidden'); }
-              hasVisibleGames = true;
-            } else {
-              if (!button.classList.contains('hidden')) { /* console.log(` ❌ Hiding: ${buttonName}`); */ button.classList.add('hidden'); }
-            }
-          });
-          // Update category arrows
-          const updateFunc = category._updateArrowVisibility;
-          if (typeof updateFunc === 'function') {
-            // updateFunc(); // REMOVE direct call
-            setTimeout(updateFunc, 50); // <<<--- PUT TIMEOUT BACK HERE
-          }
-        });
+          newRightArrow.addEventListener('touchstart', (e) => { e.preventDefault(); startHoldScrolling(1); }, { passive: false });
+          newRightArrow.addEventListener('touchend', stopHoldScrolling);
+          newRightArrow.addEventListener('touchcancel', stopHoldScrolling);
 
-        if (allGameButtons) {
-          allGameButtons.forEach(button => {
-            let txtValue = ""; /* ... unchanged extraction ... */ button.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") txtValue = node.textContent.trim(); }); if (!txtValue) txtValue = button.querySelector('img')?.alt || '';
-            const buttonName = getButtonName(button);
-
-            if (txtValue.toUpperCase().includes(filter)) {
-              if (button.classList.contains('hidden')) { /* console.log(` ✅ Showing (All): ${buttonName}`); */ button.classList.remove('hidden'); }
-              hasVisibleGames = true;
-            } else {
-              if (!button.classList.contains('hidden')) { /* console.log(` ❌ Hiding (All): ${buttonName}`); */ button.classList.add('hidden'); }
-            }
-          });
-        }
-
-        if (noResultsMessage) {
-          noResultsMessage.style.display = (filter !== '' && !hasVisibleGames) ? 'block' : 'none';
-        }
-
-        // Re-evaluate favorites visibility
-        const favSection = document.getElementById('favoritesSection');
-        const favContainer = favSection?.querySelector('.favorite-container');
-         if (favSection && favContainer) {
-             const shouldBeVisible = favContainer.children.length > 0;
-             favSection.style.display = shouldBeVisible ? '' : 'none';
-             if (shouldBeVisible) {
-                const updateFavArrows = favSection._updateArrowVisibility;
-                if (typeof updateFavArrows === 'function') {
-                   // updateFavArrows(); // REMOVE direct call
-                   setTimeout(updateFavArrows, 50); // <<<--- PUT TIMEOUT BACK HERE
-                }
-             }
-         }
-        // console.log(`--- Filtering done for: "${filter}" ---`); // Keep logs if helpful
+          // Initial updates
+          setTimeout(() => { updateScrollAmount(); debouncedUpdateArrows(); }, 0);
+          setTimeout(() => { updateScrollAmount(); debouncedUpdateArrows(); }, 100);
       }
-      // --- END Search Filter Logic Definition ---
-  
-  
-        // --- Game Launch Logic Definition ---
-        function addGameLaunchListener(button) {
-          console.log("Attempting to add listener to:", button); // DEBUG
-          if (button._hasGameLaunchListener) {
-               console.log("Listener already exists, skipping."); // DEBUG
-               return;
+
+      // Debounce function
+      function debounce(func, wait) {
+          let timeout;
+          return function executedFunction(...args) {
+              const later = () => {
+                  clearTimeout(timeout);
+                  func(...args);
+              };
+              clearTimeout(timeout);
+              timeout = setTimeout(later, wait);
+          };
+      }
+        // --- END Scroll Arrow Logic Definition ---
+
+
+        // --- Search Filter Logic (Adjusted for "Apps") ---
+        function filterApps() {
+          const input = document.getElementById('myInput');
+          const filter = input.value.toUpperCase().trim();
+          const categoriesWrapper = document.getElementById('categoriesWrapper');
+          // Select all categories, including favorites for filtering their contents
+          const categories = categoriesWrapper?.querySelectorAll('.game-category');
+          const noResultsMessage = document.getElementById('noResultsMessage');
+          let hasVisibleItemsOverall = false; // Track if ANY item is visible after filtering across all categories
+
+          // console.log(`--- Filtering for: "${filter}" ---`);
+
+          categories?.forEach(category => {
+            // Select the correct container within the category (favorite or grid)
+            const btnContainer = category.querySelector('.favorite-container, .btn-container-grid');
+            if (!btnContainer) return; // Skip categories without a button container
+
+            const buttons = btnContainer.querySelectorAll('.btn');
+            let categoryHasVisibleButton = false; // Does this specific category have a button visible after filtering?
+
+            buttons.forEach(button => {
+              // Get the name robustly
+              const itemName = getButtonName(button);
+              const buttonMatches = itemName.toUpperCase().includes(filter);
+
+              // Decide whether to show or hide the button based on the filter
+              if (filter === '' || buttonMatches) {
+                // If filter is empty, or button matches filter, show it
+                if (button.classList.contains('hidden')) {
+                     button.classList.remove('hidden');
+                }
+                hasVisibleItemsOverall = true; // At least one item is visible overall
+                categoryHasVisibleButton = true; // Found a visible button in this category
+              } else {
+                 // Filter is active and button does not match, hide it
+                 if (!button.classList.contains('hidden')) {
+                   button.classList.add('hidden');
+                 }
+              }
+            });
+
+             // Update category display based on filter
+             // Favorites section visibility is controlled by its own logic (updateFavoritesSectionVisibility)
+             // based on whether it has any children *at all*.
+             // Non-favorites sections are hidden if the filter is active and no items within them match.
+             if (filter !== '') {
+                 if (!category.classList.contains('favorites-section')) {
+                      category.style.display = categoryHasVisibleButton ? '' : 'none';
+                 }
+             } else {
+                 // When filter is cleared, make all non-favorite categories visible again
+                 if (!category.classList.contains('favorites-section')) {
+                      category.style.display = ''; // Revert to CSS display
+                 }
+             }
+
+            // Trigger arrow update for this category *after* potentially changing button visibility
+            // Add a small delay to allow layout to settle
+            const updateFunc = category._updateArrowVisibility;
+            if (typeof updateFunc === 'function') {
+                setTimeout(updateFunc, 50); // Use a slight delay
+            }
+          });
+
+          // Handle "No Results" message
+          if (noResultsMessage) {
+            // Show the message only if the filter is NOT empty AND no items were marked visible anywhere
+            noResultsMessage.style.display = (filter !== '' && !hasVisibleItemsOverall) ? 'block' : 'none';
+             noResultsMessage.textContent = `No apps found matching "${filter}".`; // Update message text
           }
-  
-          button.addEventListener('click', function(event) {
-           console.log("Button clicked!", this); // DEBUG
-           // IMPORTANT: Do not launch if the click was on the heart icon
-           if (event.target.classList.contains('heart-icon') || event.target.closest('.heart-icon')) {
-             console.log("Heart icon click detected, preventing game launch."); // DEBUG
-             return;
+
+           // Ensure favorites section visibility is re-checked after filtering,
+           // as hiding/showing buttons inside might affect scrollability and arrow visibility.
+           // The section's *display* property is controlled by the favoriting script,
+           // but filtering can change button visibility *within* it.
+           const favSection = document.getElementById('favoritesSection');
+           if (favSection) {
+               // Call the favorite section's stored visibility update function.
+               // This function checks total children, not just visible ones after filter,
+               // to decide if the section should be shown/hidden.
+               const updateFavVisibility = favSection._updateSectionVisibility;
+               if (typeof updateFavVisibility === 'function') {
+                   // This function also triggers its own arrow update.
+                   updateFavVisibility();
+               }
            }
-  
-           const path = this.getAttribute('data-path');
-           let gameName = "";
-  
-           // Extract game name reliably
-           this.childNodes.forEach(node => {
-             if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") { gameName = node.textContent.trim(); }
-           });
-           if (!gameName) { /* ... unchanged fallback logic ... */ const imgAlt = this.querySelector('img')?.getAttribute('alt'); if (imgAlt) { gameName = imgAlt; } else { gameName = path ? path.split('/').pop().split('.')[0].replace(/[-_]/g, ' ') : 'Unknown Game'; gameName = gameName.replace(/\b\w/g, l => l.toUpperCase()); } }
-  
-           if (path && gameName) {
-             console.log(`LAUNCHING Game: ${gameName} from path: ${path}`); // DEBUG
-             localStorage.setItem("lastClickedUrl", path);
-             localStorage.setItem("lastClickedGame", gameName);
-             window.location.href = "game.html"; // Ensure game.html exists
-           } else {
-             console.error("Error launching game: Missing data-path or failed to extract name.", this);
-             alert("Error: Could not determine game path or name.");
-           }
-         });
-         button._hasGameLaunchListener = true; // Mark that listener has been added
-         console.log("Listener ADDED for:", getButtonName ? getButtonName(button) : 'button'); // DEBUG using helper if available
-       }
-        // --- END Game Launch Logic Definition ---
-  
+        // console.log(`--- Filtering done for: "${filter}" ---`);
+      }
+      // --- END Search Filter Logic ---
+
+
+        // --- Item Launch Logic (Adjusted for "Apps") ---
+        // This function is primarily used by the favoriting script when it clones buttons
+        // to ensure the cloned heart icon can be clicked. The actual app launch
+        // for *all* buttons (both original in the main grid and cloned in the favorites section).
+        // is handled by the delegated listener on the main container below.
+        function addItemLaunchListener(button) {
+          // console.log("addItemLaunchListener called for:", getButtonName(button)); // DEBUG
+          // The delegated listener on the main container handles the click for launching.
+          // This function does not add a *new* launch listener here.
+        }
+        // --- END Item Launch Logic ---
+
       </script>
-  
-      <!-- Favoriting Logic (Self-contained in IIFE) -->
+
+      <!-- Favoriting Logic (Self-contained in IIFE) (Adjusted for "Apps" and key format) -->
       <script>
           // --- Favoriting Logic ---
-          (() => { // Using an IIFE
+          (() => { // Using an Immediately Invoked Function Expression (IIFE) to keep variables local
               let favoriteContainer = null;
               let favoritesSection = null;
-  
+
+              // Function to show/hide the favorites section based on its content
               function updateFavoritesSectionVisibility() {
-                   if (!favoriteContainer || !favoritesSection) return;
-                   const shouldBeVisible = favoriteContainer.children.length > 0;
-                   favoritesSection.style.display = shouldBeVisible ? '' : 'none';
-                   if (shouldBeVisible) {
-                       const updateFunc = favoritesSection._updateArrowVisibility; // Assumes setupScrollArrows stored it
-                       if (typeof updateFunc === 'function') setTimeout(updateFunc);
+                   if (!favoriteContainer || !favoritesSection) {
+                       console.error("Favorites container or section not found in updateFavoritesSectionVisibility.");
+                       return;
                    }
+                   // The section should be visible if it has ANY child buttons
+                   const hasAnyFavorites = favoriteContainer.children.length > 0;
+                   // Set display property. Use '' to revert to CSS default (which should be flex/block as per new CSS)
+                   favoritesSection.style.display = hasAnyFavorites ? '' : 'none';
+
+                   // Always trigger arrow update if the section *could* be visible
+                   if (hasAnyFavorites) {
+                       const updateFunc = favoritesSection._updateArrowVisibility; // Assumes setupScrollArrows stored it
+                       if (typeof updateFunc === 'function') setTimeout(updateFunc, 10); // Delay slightly to allow display change to take effect
+                   }
+                   console.log(`Favoriting script: Favorites section visibility updated. Has favorites: ${hasAnyFavorites ? 'Yes (' + favoriteContainer.children.length + ' items)' : 'No'}. Display: ${favoritesSection.style.display}`); // Debug
               }
-  
-              function handleHeartClickRevised(event) {
-                  event.stopPropagation();
-                  toggleHeartRevised(event.currentTarget);
+              // Store the visibility update function on the element for other scripts (like filterApps)
+              // This allows filterApps to trigger a re-check after hiding/showing buttons within it due to search.
+               favoritesSection = document.getElementById('favoritesSection');
+               if(favoritesSection) favoritesSection._updateSectionVisibility = updateFavoritesSectionVisibility;
+
+
+              // Handles the click event specifically on the heart icon
+              function handleHeartIconClick(event) {
+                  event.stopPropagation(); // Prevent the parent button's click event (for launching) from firing
+                  const heartIcon = event.currentTarget;
+                  const button = heartIcon.closest(".btn");
+                  if (!button) {
+                       console.error("Favoriting script: Heart icon click: Could not find parent button.");
+                       return;
+                  }
+                   console.log("Favoriting script: Heart icon clicked for:", getButtonName(button)); // Debug
+
+                  toggleFavoriteState(button); // Pass the button element to toggle its state
               }
-  
-               function toggleHeartRevised(clickedHeartIcon) {
-                   const button = clickedHeartIcon.closest(".btn");
-                   if (!button) return;
-                   const gameId = button.dataset.gameId;
-                   if (!gameId) { console.error("Fav toggle: Missing gameId", button); return; }
-                   const isCurrentlyHearted = clickedHeartIcon.classList.contains("hearted");
-                   const allMatchingButtons = document.querySelectorAll(`.btn[data-game-id="${gameId}"]`);
-  
+
+              // Toggles the hearted class, updates localStorage, and manages the Favorites section
+               function toggleFavoriteState(button) {
+                   const heartIcon = button.querySelector('.heart-icon');
+                   if (!heartIcon) {
+                       console.error("Favoriting script: Toggle state: Heart icon not found on button.");
+                       return;
+                   }
+
+                   // Get or generate a stable unique ID for the item based on its path
+                   let itemId = button.dataset.gameId;
+                   if (!itemId) {
+                       const itemPath = button.getAttribute("data-path");
+                       // Generate a safe, unique ID from the path
+                       itemId = itemPath ? `fav-${itemPath.replace(/[^a-zA-Z0-9]+/g, '-')}` : `fav-unknown-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+                       button.dataset.gameId = itemId; // Add the generated ID to the button
+                       console.warn(`Favoriting script: Generated missing data-game-id: ${itemId} for path: ${itemPath}`); // Warn if ID was missing
+                   }
+
+                   // Use a consistent key format for localStorage across different pages (apps/games)
+                   const localStorageKey = `heartState-${itemId}`;
+                   console.log(`Favoriting script: Toggling state for ID: ${itemId}, localStorage key: ${localStorageKey}`); // Debug
+
+                   const isCurrentlyHearted = heartIcon.classList.contains("hearted");
+                   // Select ALL buttons with this unique ID on the page (original list + favorites list)
+                   const allMatchingButtons = document.querySelectorAll(`.btn[data-game-id="${itemId}"]`);
+
                    if (isCurrentlyHearted) {
+                       // Item was favorited, now unfavoriting
+                       console.log(`Favoriting script: Unfavoriting: ${itemId}`); // Debug
+                       // Remove 'hearted' class from all buttons representing this item
                        allMatchingButtons.forEach(btn => btn.querySelector('.heart-icon')?.classList.remove("hearted"));
-                       localStorage.setItem(`heartState-${gameId}`, "false");
-                       removeFromFavoritesRevised(gameId);
+                       // Update state in localStorage
+                       localStorage.setItem(localStorageKey, "false");
+                       // Remove the item from the favorites section
+                       removeFromFavorites(itemId);
                    } else {
+                       // Item was not hearted, now favoriting
+                       console.log(`Favoriting script: Favoriting: ${itemId}`); // Debug
+                        // Add 'hearted' class to all buttons representing this item
                        allMatchingButtons.forEach(btn => btn.querySelector('.heart-icon')?.classList.add("hearted"));
-                       localStorage.setItem(`heartState-${gameId}`, "true");
-                       const originalButton = document.querySelector(`.categories-wrapper .btn[data-game-id="${gameId}"]:not(#favoritesSection .btn)`); // Ensure we select from main list
+                       // Update state in localStorage
+                       localStorage.setItem(localStorageKey, "true");
+                       // Add the item to the favorites section.
+                       // We need the original button (not the clone potentially already in favorites section) to clone from.
+                       // Ensure we select from containers that are NOT the favorites container itself
+                       const originalButton = document.querySelector('.btn-container-grid .btn[data-game-id="' + itemId + '"]');
+                        console.log("Favoriting script: Original button found for adding:", originalButton); // Debug
                        if (originalButton) {
-                           moveToFavoritesRevised(originalButton);
+                           addToFavorites(originalButton); // Add to the favorites section
                        } else {
-                           // If only the favorite exists (e.g., page reloaded), ensure it's visually correct (already done)
-                           console.warn("Could not find original button to clone for favorite:", gameId);
+                            console.warn(`Favoriting script: Original button with data-game-id="${itemId}" not found outside favorites section. Cannot clone.`); // Should not happen if logic is correct
+                            // If original wasn't found but we are favoriting, it implies the button might
+                            // already be in the favorites section but lost its state or listener?
+                            // In this case, just ensure visibility/arrows are correct.
+                             updateFavoritesSectionVisibility();
                        }
                    }
                }
-  
-               function moveToFavoritesRevised(originalButton) {
-                   if (!favoriteContainer) return;
-                   const gameId = originalButton.dataset.gameId;
-                   const existingFavorite = favoriteContainer.querySelector(`.btn[data-game-id="${gameId}"]`);
-  
+
+               // Adds a cloned version of the button to the favorites container
+               function addToFavorites(originalButton) {
+                   if (!favoriteContainer) {
+                        console.error("Favoriting script: favoriteContainer is null in addToFavorites.");
+                        return;
+                   }
+                   const itemId = originalButton.dataset.gameId;
+                   if (!itemId) {
+                       console.error("Favoriting script: Cannot add to favorites: original button missing data-game-id.");
+                       return;
+                   }
+                   // Check if a favorite button with this ID already exists in the favorites container
+                   const existingFavorite = favoriteContainer.querySelector(`.btn[data-game-id="${itemId}"]`);
+
                    if (!existingFavorite) {
+                       console.log(`Favoriting script: Cloning and adding to favorites: ${itemId}`); // Debug
+                       // Clone the button and all its child nodes
                        const clonedButton = originalButton.cloneNode(true);
+
+                       // Ensure the cloned heart icon has the 'hearted' class (state should be set by toggleFavoriteState already)
                        const clonedHeartIcon = clonedButton.querySelector('.heart-icon');
                        if (clonedHeartIcon) {
-                           clonedHeartIcon.classList.add('hearted');
-                           clonedHeartIcon.addEventListener('click', handleHeartClickRevised); // Listener for clone's heart
+                           clonedHeartIcon.classList.add('hearted'); // Ensure red heart
+                           // *** IMPORTANT: Re-add the click listener to the heart icon on the CLONED button ***
+                           // The delegated listener on the main container handles the *launch* click for clones,
+                           // but the *heart toggle* needs a listener directly on the icon itself.
+                           clonedHeartIcon.addEventListener('click', handleHeartIconClick);
+                       } else {
+                            console.error("Favoriting script: Cloned button missing heart icon:", clonedButton); // Debug
                        }
-                       // *** Calls the globally defined addGameLaunchListener ***
-                       addGameLaunchListener(clonedButton); // Listener for clone's main click
-                       // *** ***
+
+                       // Remove any 'hidden' class the filter might have applied
+                       clonedButton.classList.remove('hidden');
+
+                       // Add the cloned button to the favorites container
                        favoriteContainer.appendChild(clonedButton);
+                       console.log(`Favoriting script: Successfully added clone of ${itemId} to favorites.`); // Debug
                    } else {
-                        existingFavorite.querySelector('.heart-icon')?.classList.add('hearted'); // Ensure state is correct
+                       console.log(`Favoriting script: Item ${itemId} already exists in favorites container. Ensuring visible.`); // Debug
+                       // If it already exists, just ensure its heart icon is red (should be already)
+                       existingFavorite.querySelector('.heart-icon')?.classList.add('hearted');
+                       // Ensure it's not hidden by the filter if it was previously hidden
+                       existingFavorite.classList.remove('hidden');
                    }
+
+                   // Update the visibility and scroll arrows of the favorites section
                    updateFavoritesSectionVisibility();
-                   triggerFavoriteArrowUpdateRevised();
                }
-  
-               function removeFromFavoritesRevised(gameId) {
-                   const favoritedItem = favoriteContainer?.querySelector(`.btn[data-game-id="${gameId}"]`);
+
+               // Removes the button with the given ID from the favorites container
+               function removeFromFavorites(itemId) {
+                   if (!favoriteContainer) {
+                       console.error("Favoriting script: favoriteContainer is null in removeFromFavorites.");
+                       return;
+                   }
+                   // Find the button specifically within the favorites container using its ID
+                   const favoritedItem = favoriteContainer.querySelector(`.btn[data-game-id="${itemId}"]`);
+                    console.log(`Favoriting script: Attempting to remove ${itemId} from favorites. Found element:`, favoritedItem); // Debug
                    if (favoritedItem) {
-                       favoriteContainer.removeChild(favoritedItem);
-                   }
-                   updateFavoritesSectionVisibility();
-                   triggerFavoriteArrowUpdateRevised();
-               }
-  
-               function triggerFavoriteArrowUpdateRevised() {
-                   if (!favoritesSection) return;
-                   const updateFunc = favoritesSection._updateArrowVisibility;
-                   if (typeof updateFunc === 'function') {
-                       setTimeout(updateFunc);
+                       // Remove the button element from the DOM
+                       favoritedItem.remove(); // .remove() is a modern way to remove an element
+                       console.log(`Favoriting script: Successfully removed ${itemId} from favorites.`); // Debug
                    } else {
-                      const favContainer = favoritesSection.querySelector('.favorite-container');
-                      if (favContainer) favContainer.dispatchEvent(new Event('scroll')); // Fallback
+                       console.warn(`Favoriting script: Could not find ${itemId} in favorites container to remove.`); // Debug
                    }
+                   // Update the visibility and scroll arrows of the favorites section
+                   updateFavoritesSectionVisibility();
                }
-  
-              // This runs when the DOM is ready for *this script block*
+
+
+              // --- Initialization Logic (Runs when DOM is ready) ---
               document.addEventListener("DOMContentLoaded", function() {
+                   console.log("Favoriting script: DOMContentLoaded.");
+
                    favoriteContainer = document.querySelector("#favoritesSection .favorite-container");
                    favoritesSection = document.getElementById('favoritesSection');
-                   if (!favoriteContainer || !favoritesSection) { return; }
-  
-                   // Pass 1: Assign IDs, Listeners, Initial State (only needs heart listener here)
-                   document.querySelectorAll(".categories-wrapper .btn").forEach(button => {
+
+                   if (!favoriteContainer || !favoritesSection) {
+                       console.error("Favoriting script initialization failed: Favorites container or section not found."); // Debug missing elements
+                       return; // Stop if essential elements are missing
+                   }
+                   // Store the visibility update function on the section element
+                   favoritesSection._updateSectionVisibility = updateFavoritesSectionVisibility;
+
+
+                   // Pass 1: Process all original buttons on the page (those in the main grid)
+                   // Ensure we only target buttons in the main grid, not potentially leftover ones in the fav section on reload
+                   document.querySelectorAll(".btn-container-grid .btn[data-path]").forEach(button => {
                       const heartIcon = button.querySelector(".heart-icon");
-                      if (!heartIcon) return;
-                      const gamePath = button.getAttribute("data-path");
-                      const gameId = gamePath ? `fav-${gamePath.replace(/[^a-zA-Z0-9]+/g, '-')}` : `fav-unknown-${Math.random().toString(16).slice(2)}`;
-                      button.dataset.gameId = gameId;
-                      heartIcon.addEventListener('click', handleHeartClickRevised);
-                      const isHearted = localStorage.getItem(`heartState-${gameId}`);
-                      if (isHearted === "true") { heartIcon.classList.add("hearted"); }
+                      if (!heartIcon) {
+                           console.warn("Favoriting script: Button missing heart icon:", button);
+                          return; // Skip buttons without heart icons
+                      }
+
+                      // Get or generate a stable unique ID for the item based on its path
+                      let itemId = button.dataset.gameId;
+                       if (!itemId) {
+                           const itemPath = button.getAttribute("data-path");
+                            // Use Date.now() + random for a more unique fallback ID if data-path somehow isn't unique
+                           itemId = itemPath ? `fav-${itemPath.replace(/[^a-zA-Z0-9]+/g, '-')}` : `fav-unknown-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+                           button.dataset.gameId = itemId; // Add the generated ID
+                           console.warn(`Favoriting script: Generated missing data-game-id: ${itemId} for path: ${itemPath}`);
+                       }
+                        // console.log(`Favoriting script: Processing original button: ${itemId}`); // Debug
+
+                      // *** Attach the heart click listener to the heart icon on the original button ***
+                      // This listener is needed for the initial click on the original button.
+                      heartIcon.addEventListener('click', handleHeartIconClick);
+
+                      // Check localStorage for initial state using the derived key
+                      const localStorageKey = `heartState-${itemId}`;
+                      const isHearted = localStorage.getItem(localStorageKey) === "true";
+
+                      // Set the 'hearted' class on the original button's heart icon based on saved state
+                      if (isHearted) {
+                          heartIcon.classList.add("hearted");
+                          // console.log(`Favoriting script: Item ${itemId} is favorited in localStorage.`); // Debug
+                      } else {
+                          heartIcon.classList.remove("hearted");
+                          // console.log(`Favoriting script: Item ${itemId} is NOT favorited in localStorage.`); // Debug
+                      }
                    });
-  
-                   // Pass 2: Populate Favorites (calls moveToFavoritesRevised which adds necessary listeners)
-                   document.querySelectorAll(".categories-wrapper .btn[data-game-id]").forEach(button => {
-                       const gameId = button.dataset.gameId;
-                       const isHearted = localStorage.getItem(`heartState-${gameId}`);
-                       // Add check to ensure button is NOT already in favorites before moving
-                       if (isHearted === "true" && !button.closest('#favoritesSection .favorite-container')) {
-                           moveToFavoritesRevised(button);
+                    console.log("Favoriting script: Pass 1 (Original buttons in grid) complete.");
+
+                   // Pass 2: Populate Favorites Section based on saved state
+                   // Iterate through all buttons in the main grid again (now they all have data-game-id)
+                   document.querySelectorAll(".btn-container-grid .btn[data-game-id]").forEach(button => {
+                       const itemId = button.dataset.gameId;
+                       const localStorageKey = `heartState-${itemId}`;
+                       const isHearted = localStorage.getItem(localStorageKey) === "true";
+
+                       // If the item is marked as hearted in localStorage, add it to the favorites section
+                       if (isHearted) {
+                           // Check again if it's somehow already there (redundancy check, shouldn't happen with fresh DOM)
+                            if (!favoriteContainer.querySelector(`.btn[data-game-id="${itemId}"]`)) {
+                                console.log(`Favoriting script: Populating favorites: Adding ${itemId} from saved state.`); // Debug
+                                // addToFavorites handles cloning and listener for the cloned heart icon
+                                addToFavorites(button);
+                            } else {
+                                // This case might happen on reload if the browser cached content before JS runs,
+                                // or if there's an issue clearing the fav container. Ensure it's visible.
+                                const existingFavButton = favoriteContainer.querySelector(`.btn[data-game-id="${itemId}"]`);
+                                if(existingFavButton) existingFavButton.classList.remove('hidden');
+                                console.log(`Favoriting script: Populating favorites: ${itemId} already present. Ensured visible.`); // Debug
+                            }
                        }
                    });
-  
-                   updateFavoritesSectionVisibility(); // Check visibility after populating
+                    console.log("Favoriting script: Pass 2 (Populating favorites) complete.");
+
+                   // Final step: Update the visibility of the favorites section based on populated items
+                   updateFavoritesSectionVisibility();
+                    console.log("Favoriting script initialization complete.");
               });
-          })(); // Immediately invoke
+          })(); // Immediately invoke the IIFE
           // --- END Favoriting Logic ---
       </script>
-  
+
       <!-- Category Toggle Logic (Self-contained in IIFE) -->
       <script>
         // --- Category Toggle Logic ---
+        // This assumes you have a button with id="Toggle" to hide/show the main categories wrapper
         (() => {
             document.addEventListener('DOMContentLoaded', () => { // Wait for elements
+                  // Check if the toggle button exists before adding listeners
                   const toggleBtn = document.getElementById('Toggle');
                   const categoriesWrapper = document.getElementById('categoriesWrapper');
-                  if(!toggleBtn || !categoriesWrapper) { return; }
-  
+
+                  // If the toggle button or wrapper doesn't exist, this script isn't needed
+                  if(!toggleBtn || !categoriesWrapper) {
+                       // console.log("Category Toggle script: Toggle button or categories wrapper not found. Skipping.");
+                       return;
+                  }
+                  // console.log("Category Toggle script: Initializing.");
+
                   toggleBtn.addEventListener('click', () => {
                       const isHidden = window.getComputedStyle(categoriesWrapper).display === 'none';
                       if (isHidden) {
-                          categoriesWrapper.style.display = '';
+                          categoriesWrapper.style.display = ''; // Show wrapper (revert to default/CSS display)
                           toggleBtn.textContent = 'Hide Categories';
                           toggleBtn.setAttribute('aria-expanded', 'true');
-                          document.querySelectorAll('.game-category').forEach(category => {
-                              if (window.getComputedStyle(category).display !== 'none') {
-                                  const updateFunc = category._updateArrowVisibility;
-                                  if (typeof updateFunc === 'function') setTimeout(updateFunc);
-                              }
-                          });
+                           console.log("Category Toggle: Showing categories.");
+                          // Trigger arrow updates for all visible categories after showing
+                          // Use a delay to allow layout to update before calculating scroll
+                          setTimeout(() => {
+                              document.querySelectorAll('.game-category').forEach(category => {
+                                  // Only update visible ones
+                                  if (window.getComputedStyle(category).display !== 'none') {
+                                      const updateFunc = category._updateArrowVisibility;
+                                      if (typeof updateFunc === 'function') {
+                                          // console.log(`Category Toggle: Triggering arrow update for ${category.querySelector('h6')?.textContent || 'Unknown'}`);
+                                          updateFunc(); // Call the stored debounced function
+                                      }
+                                  }
+                              });
+                          }, 50); // Small delay
                       } else {
-                          categoriesWrapper.style.display = 'none';
+                          categoriesWrapper.style.display = 'none'; // Hide wrapper
                           toggleBtn.textContent = 'Show Categories';
                           toggleBtn.setAttribute('aria-expanded', 'false');
+                           console.log("Category Toggle: Hiding categories.");
+                          // No need to update arrows for hidden sections
                       }
                   });
-                  toggleBtn.setAttribute('aria-expanded', window.getComputedStyle(categoriesWrapper).display !== 'none');
+
+                  // Set initial ARIA state based on the initial CSS display of the wrapper
+                  const initialDisplay = window.getComputedStyle(categoriesWrapper).display;
+                   toggleBtn.setAttribute('aria-expanded', initialDisplay !== 'none');
+                   // console.log(`Category Toggle: Initial state set to ${initialDisplay !== 'none'}`);
             });
         })();
         // --- END Category Toggle Logic ---
       </script>
-  
+
       <!-- Main Initializer (Runs on DOMContentLoaded) -->
       <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Main DOMContentLoaded: Initializing setup..."); // DEBUG
+            console.log("Main Initializer: DOM Loaded. Initializing...");
 
-            // --- Setup Scroll Arrows ---
-            console.log("Setting up scroll arrows..."); // DEBUG
-            document.querySelectorAll('.game-category').forEach(setupScrollArrows); // Calls function defined above
-            console.log("Scroll arrow setup done."); // DEBUG
-
-            // --- Attach Game Launch Listeners to initial buttons ---
-            const initialButtons = document.querySelectorAll('.categories-wrapper > .game-category:not(#favoritesSection) .btn');
-            console.log(`Found ${initialButtons.length} initial buttons for game launch listener.`); // DEBUG
-            initialButtons.forEach(button => {
-                addGameLaunchListener(button); // Calls function defined above
-             });
-            console.log("Attempted to add game launch listeners via function."); // DEBUG
-
-            // ---->>>> START SIMPLE CLICK TEST <<<<----
-            console.log("Attaching DIRECT test listeners to ALL .btn elements...");
-            const allBtns = document.querySelectorAll('.categories-wrapper .btn'); // Select ALL buttons again for test
-            console.log(`Found ${allBtns.length} total buttons for DIRECT test.`);
-            allBtns.forEach((button, index) => {
-                // Generate a unique ID for logging this specific listener
-                const testId = `test-listener-${index}`;
-                console.log(`Attaching direct listener ${testId} to:`, button);
-
-                button.addEventListener('click', function(event) {
-                    // Use alert for unavoidable confirmation
-                    alert(`DIRECT CLICK TEST #${testId} FIRED! Clicked on: ${event.target.tagName}`);
-                    // Log details to console as well
-                    console.log(`%c DIRECT CLICK TEST #${testId} FIRED!`, 'color: lime; font-weight: bold;', 'Button:', this, 'Target:', event.target);
-
-                    // *** Temporarily prevent default button behavior if any exists ***
-                    // event.preventDefault();
-                    // *** Temporarily stop propagation to see if something else was catching it ***
-                    // event.stopPropagation();
-                });
-            });
-            console.log("DIRECT test listeners attached.");
-            // ---->>>> END SIMPLE CLICK TEST <<<<----
-
-
-            // --- Attach Search Listeners ---
-            console.log("Attaching search listeners..."); // DEBUG
-            const searchInput = document.getElementById('myInput');
-            const searchIconBtn = document.querySelector('.search-icon-btn');
-
-            searchIconBtn?.addEventListener('click', () => {
-              searchInput?.focus();
-              filterGames(); // Calls function defined above
-            });
-
-            searchInput?.addEventListener('keypress', function(event) {
-              if (event.key === 'Enter') {
-                event.preventDefault();
-                filterGames();
-              }
-            });
-
-            searchInput?.addEventListener('keyup', debounce(filterGames, 250)); // Uses debounce & filterGames defined above
-            console.log("Search listeners attached."); // DEBUG
-
-            // --- Initial Filter on Load (if search has value) ---
-            if (searchInput?.value.trim() !== '') {
-              console.log("Performing initial filter on load."); // DEBUG
-              filterGames();
-            }
-
-             console.log("Main DOMContentLoaded: Setup complete."); // DEBUG
-        });
-     </script>
-  <!-- NEW: Event Delegation for Game Launch -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const mainContainer = document.querySelector('main.hub-container');
-
-      if (mainContainer) {
-        console.log("Attaching delegated listener to main.hub-container"); // DEBUG
-
-        mainContainer.addEventListener('click', function(event) {
-          // Find the closest ancestor element that is a button with class 'btn' and has a data-path
-          const clickedButton = event.target.closest('.btn[data-path]');
-
-          // If we didn't click on a button (or inside one), do nothing
-          if (!clickedButton) {
-            // console.log("Clicked outside a game button."); // Optional debug
-            return;
-          }
-
-          console.log("Delegated listener caught click on or inside:", clickedButton); // DEBUG
-
-          // IMPORTANT: Check if the click was specifically on the heart icon INSIDE this button
-          if (event.target.classList.contains('heart-icon') || event.target.closest('.heart-icon')) {
-             console.log("Heart icon click detected via delegation, preventing game launch."); // DEBUG
-             return; // Stop processing if heart was clicked
-          }
-
-          // --- If we reached here, it was a valid click on the button (not the heart) ---
-
-          const path = clickedButton.getAttribute('data-path');
-          let gameName = "";
-
-          // Extract game name reliably from the clicked button
-          clickedButton.childNodes.forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") { gameName = node.textContent.trim(); }
-          });
-          if (!gameName) { /* ... fallback logic ... */ const imgAlt = clickedButton.querySelector('img')?.getAttribute('alt'); if (imgAlt) { gameName = imgAlt; } else { gameName = path ? path.split('/').pop().split('.')[0].replace(/[-_]/g, ' ') : 'Unknown Game'; gameName = gameName.replace(/\b\w/g, l => l.toUpperCase()); } }
-
-          if (path && gameName) {
-            console.log(`LAUNCHING (Delegated) Game: ${gameName} from path: ${path}`); // DEBUG
-            localStorage.setItem("lastClickedUrl", path);
-            localStorage.setItem("lastClickedGame", gameName);
-            window.location.href = "game.html"; // Ensure game.html exists
-          } else {
-            console.error("Error launching game (Delegated): Missing data-path or failed to extract name.", clickedButton);
-            alert("Error: Could not determine game path or name.");
-          }
-        });
-         console.log("Delegated listener attached."); // DEBUG
-      } else {
-          console.error("Could not find main.hub-container to attach delegated listener.");
-      }
-    });
-  </script>
-      <!-- Particles.js Initialization (Self-contained in IIFE) -->
-      <script>
-        console.log("Initializing Particles.js with light gray lines...");
-        particlesJS("particles-js", {
-          "particles": {
-            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#3D3D3D" },
-            "shape": { "type": "circle" },
-            "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.4, "opacity_min": 0.05, "sync": false } },
-            "size": { "value": 2.5, "random": true, "anim": { "enable": false } },
-            "line_linked": { "enable": true, "distance": 150, "color": "#E8ECEF", "opacity": 0.6, "width": 1.5 },
-            "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false }, "resize": true },
-            "modes": { "repulse": { "distance": 80, "duration": 0.4 } }
-          },
-          "retina_detect": true
-        });
-        console.log("Particles.js initialized successfully.");
-      </script>
-      <!-- FINAL Initializer Script -->
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOM Loaded. Initializing...");
+             // NOTE: Favoriting logic runs *within* its own DOMContentLoaded listener
+             // and populates the favorites section *before* this script continues
+             // beyond its initial setup. This is good.
 
             // 1. Setup Scroll Arrows for ALL categories
+            // This needs to run *after* the DOM is fully loaded and potentially populated by
+            // other scripts like the favoriting logic. The IIFE ensures the favoriting
+            // population happens during DOMContentLoaded.
             try {
-                console.log("Setting up scroll arrows...");
-                document.querySelectorAll('.game-category').forEach(setupScrollArrows); // Uses function defined above
-                console.log("Scroll arrow setup complete.");
+                console.log("Main Initializer: Setting up scroll arrows for all categories...");
+                 // Select all elements with class 'game-category' and run setupScrollArrows on them.
+                 // This will now target both the favorites section (with its favorite-container)
+                 // and the All Apps section (with its btn-container-grid).
+                document.querySelectorAll('.game-category').forEach(setupScrollArrows);
+                console.log("Main Initializer: Scroll arrow setup complete.");
             } catch (error) {
-                console.error("Error setting up scroll arrows:", error);
+                console.error("Main Initializer: Error setting up scroll arrows:", error);
             }
 
-            // 2. Attach Delegated Game Launch Listener
+            // 2. Attach Delegated Item Launch Listener (Adjusted for "Apps")
+            // This single listener on the main container handles clicks for *all* buttons
+            // (both original in the main grid and cloned in the favorites section).
             try {
                 const mainContainer = document.querySelector('main.hub-container');
                 if (mainContainer) {
-                    console.log("Attaching delegated game launch listener to main.hub-container");
+                    console.log("Main Initializer: Attaching delegated item launch listener to main.hub-container");
                     mainContainer.addEventListener('click', function(event) {
+                        // Find the closest ancestor element that is a button with class 'btn' and has a data-path
                         const clickedButton = event.target.closest('.btn[data-path]');
-                        if (!clickedButton) return; // Clicked outside a game button
+                        if (!clickedButton) {
+                            // console.log("Delegated listener: Clicked element is not a button with data-path."); // Debug non-button clicks
+                            return; // Clicked outside an item button
+                        }
 
-                        // Check for heart icon click
+                        // Check if the click originated from the heart icon *within* the button
+                        // This prevents launching the app when trying to favorite/unfavorite
+                        // We check for the icon itself or any ancestor that is the icon (like its SVG content)
                         if (event.target.classList.contains('heart-icon') || event.target.closest('.heart-icon')) {
-                           console.log("Delegated listener: Heart click detected, stopping.");
+                           console.log("Delegated listener: Heart click detected, stopping app launch.");
+                           // The handleHeartIconClick listener already called stopPropagation(),
+                           // but this check adds another layer of safety in case stopPropagation fails or is missed.
                            return;
                         }
 
-                        console.log("Delegated listener: Valid button click detected:", clickedButton); // DEBUG
+                        console.log("Delegated listener: Valid button click detected for launching:", clickedButton); // DEBUG
 
                         const path = clickedButton.getAttribute('data-path');
-                        let gameName = "";
-                        // Extract name (ensure this logic matches your button structure)
-                        clickedButton.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") { gameName = node.textContent.trim(); } });
-                        if (!gameName) { const imgAlt = clickedButton.querySelector('img')?.getAttribute('alt'); if (imgAlt) { gameName = imgAlt; } else { gameName = path ? path.split('/').pop().split('.')[0].replace(/[-_]/g, ' ') : 'Unknown Game'; gameName = gameName.replace(/\b\w/g, l => l.toUpperCase()); } }
+                        const itemName = getButtonName(clickedButton); // Use the robust helper function
 
-                        if (path && gameName) {
-                          console.log(`LAUNCHING (Delegated): ${gameName} from ${path}`); // DEBUG
+                        // Check if the path is valid and not just a placeholder '#'
+                        if (path && path !== '#') {
+                          console.log(`LAUNCHING (Delegated): "${itemName}" from path: "${path}"`); // DEBUG
+                          // Save details to localStorage so the game.html page knows what to load
                           localStorage.setItem("lastClickedUrl", path);
-                          localStorage.setItem("lastClickedGame", gameName);
-                          window.location.href = "game.html"; // Navigate
+                          localStorage.setItem("lastClickedGame", itemName); // Storing app name in 'lastClickedGame' for now
+                          // Navigate to the generic loader page
+                          window.location.href = "../Games/game.html"; // Adjusted path to game.html
                         } else {
-                          console.error("Delegated Launch Error: Missing path or name.", clickedButton);
-                          alert("Error: Could not determine game details.");
+                          console.error("Delegated Launch Error: Button missing or has invalid data-path.", clickedButton);
+                          alert("Error: Could not determine app details to launch.");
                         }
                     });
-                    console.log("Delegated game launch listener attached.");
+                    console.log("Main Initializer: Delegated item launch listener attached.");
                 } else {
-                     console.error("Could not find main.hub-container for delegated listener.");
+                     console.error("Main Initializer: Could not find main.hub-container for delegated listener.");
                 }
             } catch (error) {
-                 console.error("Error attaching delegated game launch listener:", error);
+                 console.error("Main Initializer: Error attaching delegated item launch listener:", error);
             }
 
 
-            // 3. Attach Search Listeners
+            // 3. Attach Search Listeners (Uses filterApps now)
             try {
-                console.log("Attaching search listeners...");
+                console.log("Main Initializer: Attaching search listeners...");
                 const searchInput = document.getElementById('myInput');
                 const searchIconBtn = document.querySelector('.search-icon-btn');
 
                 if (searchInput && searchIconBtn) {
+                     // Clicking the icon focuses the input and performs filter
                      searchIconBtn.addEventListener('click', () => {
                        searchInput.focus();
-                       filterGames(); // Uses function defined above
+                       filterApps(); // Call the updated function
                      });
 
+                     // Pressing Enter in the input performs filter
                      searchInput.addEventListener('keypress', function(event) {
                        if (event.key === 'Enter') {
-                         event.preventDefault();
-                         filterGames();
+                         event.preventDefault(); // Prevent form submission if input was in a form
+                         filterApps(); // Call the updated function
                        }
                      });
 
-                     // Debounce keyup for better performance
-                     searchInput.addEventListener('keyup', debounce(filterGames, 250)); // Uses debounce & filterGames defined above
-                     console.log("Search listeners attached.");
+                     // Debounce keyup/input for better performance as user types
+                     searchInput.addEventListener('input', debounce(filterApps, 250)); // Use 'input' for clears etc.
+                     console.log("Main Initializer: Search listeners attached.");
                  } else {
-                    console.error("Search input or button not found.");
+                    console.error("Main Initializer: Search input (#myInput) or button (.search-icon-btn) not found.");
                  }
 
-                // 4. Initial Filter on Load (if search has value)
-                if (searchInput?.value.trim() !== '') {
-                  console.log("Performing initial filter on load.");
-                  filterGames();
+                // 4. Initial Filter on Load (if search has a value from browser history/refresh)
+                // Perform this check *after* favoriting script might have added/removed elements.
+                if (searchInput && searchInput.value.trim() !== '') {
+                  console.log("Main Initializer: Performing initial filter based on input value.");
+                  filterApps(); // Call the updated function
+                } else {
+                   console.log("Main Initializer: No initial search value, skipping filter.");
                 }
             } catch (error) {
-                 console.error("Error attaching search listeners or performing initial filter:", error);
+                 console.error("Main Initializer: Error attaching search listeners or performing initial filter:", error);
             }
 
-            console.log("Initialization complete.");
+            console.log("Main Initializer: Initialization complete.");
         });
     </script>
+     <!-- Particles.js Initialization (Self-contained in IIFE) -->
+      <script>
+        console.log("Initializing Particles.js with light gray lines...");
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        console.log("Particles.js initialized successfully.");
+      </script>
   </body>
   </html>

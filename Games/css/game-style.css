@@ -1,0 +1,362 @@
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif; /* Using Lato for consistency */
+}
+
+html, body {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden; /* Hide main scrollbar, iframe will handle its own */
+    background-color: #222831; /* Dark background */
+    color: #eee; /* Default text color */
+}
+
+/* Particles.js background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2; /* Behind everything */
+    pointer-events: none;
+}
+
+/* Optional: Overlay for background dimming */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Example dimming */
+    z-index: -1; /* Behind content, above particles */
+    pointer-events: none;
+}
+
+/* --- Header Area (Implicit) --- */
+/* The space at the top is implicitly created by the Back Button and Name Container */
+/* Let's define heights for these fixed elements */
+:root {
+    --header-height: 80px; /* Combined height for title/back button area */
+    --button-bar-height: 60px; /* Height for the bottom button bar */
+    --side-padding: 20px; /* Horizontal padding around the iframe */
+}
+
+/* --- Back Button --- */
+#backBtn {
+    position: fixed;
+    top: 20px; /* Space from top */
+    left: 40px; /* Space from left */
+    z-index: 1010; /* Very high, above header/title */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+#backBtn i {
+    color: inherit;
+    font-size: 1.1em;
+}
+
+#backBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+}
+
+/* --- Game Name Display --- */
+#nameContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center text vertically within its fixed height */
+    height: var(--header-height); /* Give it a fixed height */
+    z-index: 999; /* Below back button, above iframe */
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 100px; /* Add padding to prevent title overlapping back/fullscreen buttons */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+#gameNameDisplay {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    text-align: center;
+    max-width: 100%; /* Allow it to take full width of the container (with padding) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* --- Iframe Wrapper --- */
+/* Position the wrapper fixed to fill the space between header and button bar */
+.game-frame-wrapper {
+    position: fixed;
+    top: var(--header-height); /* Start below the header area */
+    left: var(--side-padding); /* Space from left */
+    right: var(--side-padding); /* Space from right */
+    bottom: var(--button-bar-height); /* End above the button bar */
+    z-index: 10; /* Above background, below fixed controls */
+    display: none; /* Hidden by default, JS will show it */
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+#gameFrame {
+    display: block;
+    width: 100%; /* Fill wrapper width */
+    height: 100%; /* Fill wrapper height */
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Button Container --- */
+#buttonContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--button-bar-height); /* Give it a fixed height */
+    gap: 20px;
+    padding: 0 40px; /* Horizontal padding */
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000; /* Above iframe */
+    flex-wrap: wrap; /* Allow buttons to wrap if space is tight */
+    box-sizing: border-box; /* Include padding in height */
+}
+
+/* --- Control Buttons --- */
+#viewBtn,
+#likeBtn,
+#dislikeBtn,
+#heartBtn,
+#fullscreenBtn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    margin: 0 5px;
+}
+
+#viewBtn:hover,
+#likeBtn:hover,
+#dislikeBtn:hover,
+#heartBtn:hover,
+#fullscreenBtn:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Specific colors for interactive states */
+#heartBtn i.heart.favorited {
+    color: rgb(0, 132, 255);
+}
+#heartBtn i.heart.favorited:hover {
+     color: rgb(50, 162, 255);
+}
+
+#likeBtn.liked {
+    color: rgb(0, 255, 0);
+}
+#likeBtn.liked:hover {
+    color: rgb(50, 255, 50);
+}
+
+#dislikeBtn.disliked {
+    color: rgb(255, 0, 0);
+}
+#dislikeBtn.disliked:hover {
+    color: rgb(255, 50, 50);
+}
+
+/* Style for icons within buttons */
+#viewBtn i,
+#likeBtn i,
+#dislikeBtn i,
+#heartBtn i,
+#fullscreenBtn i {
+    font-size: 1em;
+    margin-right: 5px;
+    color: inherit;
+}
+
+/* Style for text/count spans within buttons */
+#viewBtn span,
+#likeBtn span,
+#dislikeBtn span {
+    font-size: 0.9em;
+    color: inherit;
+    margin-left: 0; /* Reset margin */
+}
+
+/* Adjust margin for heart/fullscreen buttons which don't have text */
+#heartBtn i,
+#fullscreenBtn i {
+    margin-right: 0;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1200px) {
+    :root {
+        --header-height: 70px;
+        --button-bar-height: 55px;
+        --side-padding: 15px;
+    }
+    #backBtn {
+        top: 15px;
+        left: 20px;
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
+    }
+    #nameContainer {
+        padding: 0 80px;
+    }
+    #gameNameDisplay {
+        font-size: 1.6rem;
+    }
+    #buttonContainer {
+        padding: 0 20px;
+        gap: 15px;
+    }
+    #viewBtn, #likeBtn, #dislikeBtn, #heartBtn, #fullscreenBtn {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+     :root {
+        --header-height: 65px;
+        --button-bar-height: 50px;
+        --side-padding: 10px;
+    }
+    #backBtn {
+        top: 10px;
+        left: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+        padding: 0; /* Icon positioning centers it */
+    }
+     #backBtn i {
+         font-size: 1em;
+     }
+    #nameContainer {
+        padding: 0 60px;
+    }
+    #gameNameDisplay {
+        font-size: 1.4rem;
+    }
+
+    #buttonContainer {
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    #viewBtn, #likeBtn, #dislikeBtn, #heartBtn, #fullscreenBtn {
+        font-size: 1rem;
+         margin: 0 3px;
+    }
+    #viewBtn i, #likeBtn i, #dislikeBtn i { margin-right: 3px; }
+    #viewBtn span, #likeBtn span, #dislikeBtn span { font-size: 0.9em; }
+
+    /* Ensure buttons wrap if needed */
+    #buttonContainer {
+        flex-wrap: wrap;
+        height: auto; /* Allow height to adjust if wrapping */
+        min-height: var(--button-bar-height); /* Ensure minimum height */
+        padding: 10px; /* Add padding when wrapping occurs */
+    }
+
+    .game-frame-wrapper {
+         top: var(--header-height);
+         left: var(--side-padding);
+         right: var(--side-padding);
+         /* Calculate bottom based on potential wrapping button container height */
+         /* This is tricky with pure CSS. A simpler approach is fixed bottom based on MIN height */
+         bottom: var(--button-bar-height);
+    }
+     /* If buttonContainer wraps, the iframe might be hidden. JS might be needed for perfect layout. */
+}
+
+@media (max-width: 480px) {
+     :root {
+        --header-height: 55px;
+        --button-bar-height: 45px;
+        --side-padding: 5px;
+    }
+     #backBtn {
+        top: 8px;
+        left: 8px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+     }
+      #backBtn i {
+         font-size: 1em;
+     }
+    #nameContainer {
+        padding: 0 40px;
+    }
+    #gameNameDisplay {
+        font-size: 1.2rem;
+    }
+    #buttonContainer {
+        gap: 8px;
+         padding: 8px 5px;
+         min-height: var(--button-bar-height);
+    }
+    #viewBtn, #likeBtn, #dislikeBtn, #heartBtn, #fullscreenBtn {
+        font-size: 0.9rem;
+         margin: 0 2px;
+    }
+     #viewBtn i, #likeBtn i, #dislikeBtn i { margin-right: 2px; }
+     #viewBtn span, #likeBtn span, #dislikeBtn span { font-size: 0.85em; }
+
+     .game-frame-wrapper {
+         top: var(--header-height);
+         left: var(--side-padding);
+         right: var(--side-padding);
+         bottom: var(--button-bar-height);
+     }
+}

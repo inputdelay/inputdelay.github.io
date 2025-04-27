@@ -6,10 +6,562 @@
     <title>Input Delay</title>
     <!-- Favicon -->
     <link rel="icon" href="2cJw7a9.png" type="image/x-icon">
+    <!-- Google Fonts: Lato -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4207227785539100"
          crossorigin="anonymous"></script>
     <style>
+      /* General Styles */
+      /* --- Base Styles --- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+.version-text {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 0.7rem; /* Tiny text size */
+        color: rgba(255, 255, 255, 0.5); /* Subtle white for readability */
+        z-index: 110; /* Above header (z-index: 100) and particles */
+        pointer-events: none; /* Prevent interaction */
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Slight shadow for contrast */
+      }
+html, body {
+     scroll-behavior: smooth; /* For page jumps like #links */
+     height: 100%; /* Ensure height for fixed background */
+     overflow-x: hidden; /* Prevent horizontal scroll on body */
+}
+
+body {
+    background: url('../free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative; /* Needed for ::before */
+    min-height: 100vh; /* Ensure body takes full height */
+    overflow-y: auto; /* Allow vertical scrolling */
+    color: #eee; /* Default text color */
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Fixed overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.897); /* Overlay opacity */
+    z-index: -11; /* Behind content */
+    pointer-events: none; /* Allow clicks to pass through overlay */
+}
+
+    #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+}
+
+ /* Header */
+ header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px; /* Consistent padding */
+    backdrop-filter: blur(12px); /* Consistent blur */
+    -webkit-backdrop-filter: blur(12px);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7); /* Consistent background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Consistent border */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Consistent shadow */
+
+    /* Initial state for animation */
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
+  }
+
+.header-logo {
+    height: 45px;
+    width: auto;
+    display: block;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+    margin: 0; /* Ensure no default margin */
+    padding: 0; /* Ensure no default padding */
+}
+
+nav ul li {
+    margin: 0; /* Ensure no default margin on list items */
+    padding: 0; /* Ensure no default padding on list items */
+}
+
+nav ul li a.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block; /* Needed for transform to work correctly */
+}
+nav ul li a.nav-link:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05); /* Adjusted scale */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+nav ul li a.nav-link.active {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.discord-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #7289da, #5a70d2);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.discord-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(90deg, #6a7fcc, #566cc0);
+}
+
+/* --- Main Hub Container --- */
+main.hub-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    /* Add padding-top to account for FIXED header */
+    padding: 100px 40px 20px 40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Hub Controls (Search, Toggle) --- */
+.hub-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(30, 30, 30, 0.5);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0px 5px 0px 15px;
+    flex-grow: 1;
+    max-width: 500px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.search-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#myInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+#myInput::placeholder {
+    color: #aaa;
+}
+
+.search-icon-btn {
+    background: transparent;
+    border: none;
+    color: #ddd;
+    font-size: 1.1rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.search-icon-btn:hover {
+    color: #fff;
+}
+
+.toggle-categories-btn {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.toggle-categories-btn:hover {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.2));
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+/* --- Game Categories --- */
+.game-category {
+    margin-bottom: 40px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-header h6 {
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.category-header h6 i {
+    font-size: 0.9em;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.scroll-arrows button {
+    /* Ensure they are initially styled to appear, JS hides/shows them based on scroll */
+    display: flex; /* Use flex or block for initial display */
+    align-items: center;
+    justify-content: center;
+    /* Add padding, border, background, cursor, etc. */
+    background: rgba(0, 0, 0, 0.5); /* Example background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1; /* Ensure they are above the content */
+    position: relative; /* For z-index to work relative to siblings */
+}
+
+.scroll-arrows {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    align-items: center;
+}
+    .scroll-arrows button[style*="display: none"] {
+        display: none !important; /* Use !important if necessary, but try to avoid it */
+    }
+.scroll-arrow {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    /* Hidden by default, JS will show/hide based on scroll position */
+    display: none;
+}
+.scroll-arrow:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+
+/* --- Game Button Containers --- */
+.btn-container,
+.favorite-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 5px 20px 5px;
+    gap: 20px;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap; /* Prevent wrapping to new lines */
+
+}
+.btn-container::-webkit-scrollbar,
+.favorite-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Grid container for the "All Games" section */
+.btn-container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* --- Game Button Styling --- */
+.btn {
+    display: flex;
+    flex-direction: column; /* Stack image and info bar vertically */
+    align-items: center;
+    justify-content: flex-start; /* Start layout from the top */
+    width: 180px;
+    height: 150px; /* Define a fixed height for consistency */
+    background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden; /* Crucial to hide the info bar when it's translated down */
+    color: #ddd;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative; /* Needed for positioning the info bar and heart */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    vertical-align: top;
+    flex-shrink: 0;
+
+    /* --- Animation Properties --- */
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease-out,
+                transform 0.3s ease-out,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+    will-change: opacity, transform;
+}
+
+/* Ensure grid buttons have auto width */
+.btn-container-grid .btn {
+    width: auto;
+    height: 150px; /* Keep consistent height */
+}
+
+/* Hover state for the button */
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85));
+}
+
+/* Functional hidden class for search results */
+.btn.hidden {
+    display: none !important; /* Hide buttons not matching search */
+}
+
+/* Style for the image - should always be visible */
+.btn .imgg {
+    display: block;
+    width: 100%;
+    /* Image should take up most of the height */
+    flex-grow: 1; /* Allow image to take available space */
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #222;
+    /* No opacity transition needed if it stays visible */
+}
+
+/* Style for the game info bar container */
+.game-info-bar {
+    position: absolute; /* Position relative to the button */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Define the height of the info bar */
+    height: 40px; /* Example height, adjust as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the bar */
+    color: #ddd; /* Text color */
+    display: flex; /* Use flexbox to center text inside */
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px; /* Padding inside the bar */
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* --- Hide by default using transform --- */
+    transform: translateY(100%); /* Move the bar down by its own height */
+    transition: transform 0.3s ease-out; /* Smooth slide-up transition */
+    z-index: 2; /* Ensure it's above the image but below the heart */
+}
+
+/* Style for the game name text inside the bar */
+.game-info-bar .game-name {
+    /* Span itself might not need specific display: block/none */
+    /* Its visibility is controlled by the parent .game-info-bar */
+    display: block; /* Ensure span behaves as a block */
+    font-size: 0.95rem;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent text wrapping inside the bar */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text is too long */
+    width: 100%; /* Take full width of the bar */
+    text-align: center; /* Center the text */
+    /* No opacity transition needed here, let the parent handle it */
+}
+
+/* On button hover, show the game info bar */
+.btn:hover .game-info-bar {
+    transform: translateY(0); /* Slide the bar up into view */
+}
+
+/* Style for the heart icon */
+.btn .heart-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 4px 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    z-index: 5; /* Ensure it's above everything else */
+    cursor: pointer;
+    pointer-events: auto;
+}
+.btn:hover .heart-icon {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.btn .heart-icon.hearted {
+    color: #ff6b6b;
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.8);
+}
+.btn .heart-icon.hearted:hover {
+     color: #ff4747;
+}
+
+/* Keep Favorites Section Styling */
+.favorites-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    /* display: none; -- Controlled by JS */
+}
+
+/* Message for no search results */
+#noResultsMessage {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #ccc;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1200px) {
+    main.hub-container { padding: 90px 30px 20px 30px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .btn { width: 160px; height: 140px; } /* Adjusted height */
+    .btn .imgg { /* flex-grow will adjust height */ }
+    .game-info-bar { height: 35px; font-size: 0.9em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.9em; }
+}
+
+@media (max-width: 768px) {
+    header { padding: 10px 20px; flex-direction: column; align-items: center; }
+    header nav { margin-top: 10px; }
+    nav ul { gap: 10px; justify-content: center; flex-wrap: wrap; }
+    nav ul li a.nav-link { font-size: 0.9rem; padding: 8px 12px; }
+    .discord-btn { padding: 8px 16px; font-size: 0.9rem; }
+
+    main.hub-container { padding-top: 140px; } /* Increased padding-top */
+
+    .hub-controls { flex-direction: column; align-items: stretch; padding: 10px; gap: 10px; }
+    .search-wrapper { max-width: none; padding: 0px 5px 0px 10px; }
+    #myInput { padding: 8px; font-size: 0.9rem; }
+    .search-icon-btn { padding: 8px; }
+
+    .category-header h6 { font-size: 1.6rem; gap: 8px;}
+    .scroll-arrow { width: 30px; height: 30px; font-size: 0.9rem; }
+    .btn-container, .favorite-container { gap: 15px; padding: 8px 5px 15px 5px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+
+    .btn { width: 140px; height: 130px; } /* Adjusted size */
+    .game-info-bar { height: 30px; font-size: 0.85em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.85em; }
+    .btn .heart-icon { font-size: 1rem; top: 6px; right: 6px; padding: 3px 4px; }
+}
+
+@media (max-width: 480px) {
+     header { padding: 8px 10px; }
+     nav ul { gap: 6px; }
+     nav ul li a.nav-link, .discord-btn { font-size: 0.8rem; padding: 5px 8px; }
+
+     main.hub-container { padding-top: 120px; } /* Adjust padding-top */
+
+    .category-header h6 { font-size: 1.4rem; gap: 6px; }
+    .scroll-arrow { width: 28px; height: 28px; font-size: 0.8rem; }
+    .btn-container, .favorite-container { gap: 10px; padding: 6px 4px 12px 4px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+
+    .btn { width: 110px; height: 120px; } /* Adjusted size */
+    .game-info-bar { height: 25px; font-size: 0.75em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.75em; }
+    .btn .heart-icon { font-size: 0.9rem; top: 5px; right: 5px; padding: 3px; }
+}
+
+/* Style for the message when no results are found */
+#noResultsMessage {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #ccc;
+}
       * {
         margin: 0;
         padding: 0;
@@ -17,10 +569,14 @@
         font-family: 'Lato', sans-serif;
         scroll-behavior: smooth;
       }
+
       body {
         overflow-x: hidden;
         position: relative;
+        background-color: #000000; /* Slightly darker base background */
       }
+
+      /* Dark overlay - less needed with dark base color, but can add depth */
       body::before {
         content: '';
         position: absolute;
@@ -28,63 +584,136 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.897);
+        background: rgba(0, 0, 0, 0.5); /* Adjusted opacity */
         z-index: -11;
+        pointer-events: none; /* Allow clicks through the overlay */
       }
+
+      /* Particles.js Container */
+      #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+      }
+
+      /* Header */
       header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px 40px;
-        backdrop-filter: blur(10px);
+        padding: 15px 40px; /* Slightly adjusted padding */
+        backdrop-filter: blur(12px); /* Slightly more blur */
+        -webkit-backdrop-filter: blur(12px);
         position: fixed;
         width: 100%;
-        z-index: 100; /* High z-index for header */
-        background: rgba(0, 0, 0, 0.6);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.7); /* Slightly darker background */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Softer border */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Added subtle shadow */
+
+        /* Initial state for animation */
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
       }
+
+      @keyframes headerEntrance {
+          from { opacity: 0; transform: translateY(-50px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      header img {
+          height: 50px; /* Keep size consistent */
+          /* Add animation for logo */
+          opacity: 0;
+          transform: translateX(-30px);
+          animation: logoEntrance 0.5s ease-out forwards 0.1s; /* Faster Animation with slight delay */
+      }
+
+      @keyframes logoEntrance {
+          from { opacity: 0; transform: translateX(-30px); }
+          to { opacity: 1; transform: translateX(0); }
+      }
+
+
       header h1 {
-        font-size: 2.5rem;
-        background: linear-gradient(45deg, #ffffff, #cccccc);
+        font-size: 2rem; /* Slightly reduced size */
+        background: linear-gradient(45deg, #e0e0e0, #a0a0a0); /* Slightly adjusted gradient */
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* Softer shadow */
+        margin-left: 15px; /* Space between logo and title if both are shown */
       }
+
+      /* Navigation */
       nav ul {
         display: flex;
         list-style: none;
-        gap: 20px;
+        gap: 15px; /* Slightly reduced gap */
         align-items: center;
       }
+
+      nav ul li {
+          /* Initial state for staggered animation */
+          opacity: 0;
+          transform: translateY(-20px);
+          animation: navItemEntrance 0.4s ease-out forwards; /* Faster Animation */
+      }
+
+      /* Staggering navigation items (Adjust delays to be faster) */
+      nav ul li:nth-child(1) { animation-delay: 0.2s; }
+      nav ul li:nth-child(2) { animation-delay: 0.25s; }
+      nav ul li:nth-child(3) { animation-delay: 0.3s; }
+      nav ul li:nth-child(4) { animation-delay: 0.35s; } /* DMCA */
+      nav ul li:nth-child(5) { animation-delay: 0.4s; } /* Built With Pulsar */
+      nav ul li:nth-child(6) { animation-delay: 0.45s; } /* Join Discord */
+
+
+      @keyframes navItemEntrance {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+
       nav ul li a {
         text-decoration: none;
-        font-size: 1.1rem;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
+        font-size: 1rem; /* Slightly reduced font size */
+        color: rgba(255, 255, 255, 0.8); /* Softer white */
+        padding: 8px 15px; /* Slightly adjusted padding */
+        border-radius: 5px; /* Softer corners */
         transition: all 0.3s ease;
+        position: relative; /* Needed for potential pseudo-elements */
       }
+
       nav ul li a:hover {
-        background: rgba(255, 255, 255, 0.3);
-        transform: scale(1.05);
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        color: white;
+        background: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Softer shadow on hover */
       }
-      .discord-btn {
+
+      /* Discord/Special Buttons in Nav */
+       nav ul li .discord-btn {
         display: inline-block;
-        background: linear-gradient(90deg, #7289da, #5a70d2);
+        background: linear-gradient(90deg, #6d84d8, #546ab9); /* Slightly adjusted gradient */
         color: white;
         text-decoration: none;
-        padding: 12px 25px;
-        border-radius: 8px;
+        padding: 10px 20px; /* Adjusted padding */
+        border-radius: 5px; /* Softer corners */
         font-weight: bold;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 10px rgba(114, 137, 218, 0.4); /* Discord color shadow */
+        transition: all 0.3s ease;
       }
-      .discord-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
+
+      nav ul li .discord-btn:hover {
+        transform: translateY(-2px); /* Slight lift effect */
+        box-shadow: 0 0 20px rgba(114, 137, 218, 0.6);
       }
+
+
+      /* Hero Section */
       .hero {
         height: 100vh;
         display: flex;
@@ -93,128 +722,436 @@
         text-align: center;
         padding: 20px;
         position: relative;
-        z-index: 10; /* Ensure hero is above particles */
+        z-index: 10;
+        flex-direction: column; /* Stack elements vertically */
       }
+
       .hero h2 {
         font-size: 6rem;
         background: linear-gradient(45deg, #ffffff, #cccccc);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.7);
-        animation: glow 1.5s infinite alternate;
+
+        /* Set display to inline-block so element width fits content width */
+        display: inline-block; /* Key to making ::after position relative to text end */
+
+        /* Initial state for typing animation - Hidden */
+        visibility: hidden; /* Use visibility to hide text content initially */
+        white-space: nowrap; /* Prevent text from wrapping DURING typing */
+        overflow: hidden; /* Hide overflowing text DURING typing */
+        position: relative; /* Needed for the cursor */
+        margin-bottom: 40px; /* Space below the title */
+
+         /* Initial state for glow transition */
+        text-shadow: none;
       }
+
+      /* Typing cursor */
+      .hero h2::after {
+        content: '';
+        position: absolute;
+        top: 0;
+         /* Use left: 100% to position relative to the text content's right edge */
+         /* Will be set by JS after typing, right:0 used during typing */
+        width: 3px; /* Cursor width */
+        height: 100%; /* Match text height */
+        background-color: white; /* Cursor color */
+         /* Animation controlled by classes */
+        animation: none;
+        visibility: hidden; /* Hidden by default */
+        transition: left 0s ease-out, right 0s ease-out; /* Ensure position change is instant */
+      }
+
+      /* State to show cursor and follow typing (non-blinking) */
+       .hero h2.typing::after {
+           visibility: visible;
+           animation: none; /* Ensure no blinking during typing */
+           right: 0; /* Position at the right edge of the overflowed box */
+           left: auto; /* Reset left */
+       }
+
+
+      /* State to show cursor with blinking (after typing) */
+       .hero h2.typing-done::after {
+          visibility: visible;
+          animation: cursorBlink 1s infinite step-end; /* Blinking animation */
+          left: 100%; /* Position at the right edge of the inline-block h2 content */
+          right: auto; /* Reset right */
+       }
+
+
+      @keyframes cursorBlink {
+          0%, 100% { background-color: transparent; }
+          50% { background-color: white; }
+      }
+
+       /* Glow animation keyframes - fades in the shadow effect */
       @keyframes glow {
         0% {
-          text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+          text-shadow: none; /* Start with no shadow */
         }
         100% {
-          text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.8);
+          text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.8); /* Full glow */
         }
       }
+
+      /* Apply glow animation once typing is done */
+      .hero h2.glow {
+          /* Apply the glow animation */
+          animation: glow 1s ease-out forwards, /* Fade in the glow over 1s */
+                     glowRepeat 1.5s infinite alternate 1s; /* Then loop the main glow effect */
+      }
+
+      /* Separate keyframes for the repeating glow */
+      @keyframes glowRepeat {
+          0% {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+          }
+          100% {
+            text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.8);
+          }
+      }
+
+
+      /* Container for buttons */
+      .hero .button-container {
+          display: flex;
+          gap: 20px; /* Space between buttons */
+          margin-top: 30px; /* Space above buttons */
+      }
+
       .get-started-btn {
         display: inline-block;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+        background: rgba(255, 255, 255, 0.1); /* Simpler semi-transparent background */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
         color: white;
         text-decoration: none;
-        padding: 15px 50px;
-        border-radius: 8px;
-        margin-top: 90px;
-        transition: transform 0.5s ease, box-shadow 0.7s ease;
+        padding: 15px 30px; /* Adjusted padding */
+        border-radius: 5px;
+        transition: all 0.3s ease;
         font-weight: bold;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(8px); /* Increased blur */
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle initial shadow */
+        position: relative; /* Needed for potential effects */
+        overflow: hidden; /* Hide pseudo-elements initially */
+
+        /* Initial state for animation */
+        opacity: 0;
+        transform: translateY(30px);
+        animation: buttonEntrance 0.5s ease-out forwards; /* Faster Animation */
       }
+
+      /* Staggering buttons (Adjust delays to start sooner, potentially overlap with typing) */
+      .hero .button-container .get-started-btn:nth-child(1) { animation-delay: 0.9s; }
+      .hero .button-container .get-started-btn:nth-child(2) { animation-delay: 1.0s; }
+      .hero .button-container .get-started-btn:nth-child(3) { animation-delay: 1.1s; }
+      .hero .button-container .get-started-btn:nth-child(4) { animation-delay: 1.2s; }
+
+
+      @keyframes buttonEntrance {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+
       .get-started-btn:hover {
-        transform: scale(1.03);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 50px rgba(255, 255, 255, 0.6);
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px); /* Slight lift */
       }
-      #particles-js {
-        position: fixed; /* Use fixed to cover entire viewport */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -10; /* Lower z-index to ensure it's behind everything */
+
+       /* Optional: Add a ripple or subtle effect on hover */
+      .get-started-btn::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease; /* Include opacity */
+          z-index: 0;
+          opacity: 0;
+          pointer-events: none; /* Don't interfere with clicks */
       }
+
+      .get-started-btn:hover::before {
+          width: 200px;
+          height: 200px;
+          opacity: 1;
+      }
+
+
+      /* Responsive adjustments */
       @media (max-width: 768px) {
         header {
+          flex-direction: column; /* Stack header items */
           padding: 10px 20px;
+          align-items: flex-start;
         }
+        header img {
+            height: 40px; /* Smaller logo */
+            margin-bottom: 10px;
+        }
+         /* Adjust header/logo/nav delays for mobile if stacking changes timing feel */
+        header { animation-delay: 0s !important; }
+        header img { animation-delay: 0.1s !important; }
+        nav ul li:nth-child(1) { animation-delay: 0.2s !important; }
+        nav ul li:nth-child(2) { animation-delay: 0.25s !important; }
+        nav ul li:nth-child(3) { animation-delay: 0.3s !important; }
+        nav ul li:nth-child(4) { animation-delay: 0.35s !important; }
+        nav ul li:nth-child(5) { animation-delay: 0.4s !important; }
+        nav ul li:nth-child(6) { animation-delay: 0.45s !important; }
+
+
         header h1 {
           font-size: 1.6rem;
+          margin-left: 0; /* Remove left margin */
         }
         nav ul {
-          gap: 10px;
+          margin-top: 10px;
+          gap: 8px;
+          flex-wrap: wrap; /* Allow nav items to wrap */
+          justify-content: center;
         }
-        nav ul li a {
+
+
+        nav ul li a,
+        nav ul li .discord-btn {
           font-size: 0.8rem;
           padding: 6px 12px;
         }
-        .discord-btn {
-          padding: 8px 16px;
-          font-size: 0.8rem;
-        }
         .hero {
           padding: 15px;
+          justify-content: flex-start; /* Align content to top on small screens */
+          padding-top: 120px; /* Add padding to account for fixed header */
         }
         .hero h2 {
           font-size: 3rem;
+          margin-bottom: 30px;
+           /* white-space and overflow handled by JS after typing */
         }
-        .get-started-btn {
-          padding: 12px 30px;
-          font-size: 0.9rem;
+
+         /* Adjust typing cursor size/position for small screens */
+        .hero h2::after {
+            width: 2px;
         }
+
+        .hero .button-container {
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 10px;
+            margin-top: 20px;
+            width: 80%; /* Constrain button width */
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+         .hero .button-container .get-started-btn {
+             width: 100%; /* Make stacked buttons full width */
+         }
+         /* Adjust button delays for mobile if stacking changes timing feel */
+         .hero .button-container .get-started-btn:nth-child(1) { animation-delay: 0.9s !important; }
+         .hero .button-container .get-started-btn:nth-child(2) { animation-delay: 1.0s !important; }
+         .hero .button-container .get-started-btn:nth-child(3) { animation-delay: 1.1s !important; }
+         .hero .button-container .get-started-btn:nth-child(4) { animation-delay: 1.2s !important; }
       }
+
+       /* Style to remove white-space and overflow constraints after typing */
+       /* Also adds the blinking cursor */
+       .hero h2.typing-done {
+           white-space: normal; /* Allow text wrapping */
+           overflow: visible; /* Allow overflow (fixes glow clipping) */
+           /* Blinking cursor is now handled by this class */
+       }
+
     </style>
   </head>
   <body>
+    <div class="version-text">V1.0 ID</div>
     <!-- Particles.js Background -->
     <div id="particles-js"></div>
     <!-- Header -->
     <header>
-      <img src="2cJw7a9.png" alt="Input Delay" style="height: 50px;">
+      <!-- Logo -->
+      <img src="2cJw7a9.png" alt="Input Delay Logo">
+      <!-- Navigation -->
       <nav>
         <ul>
           <li><a href="#home" class="nav-link">Home</a></li>
           <li><a href="Games/index.html" class="nav-link">Games</a></li>
-          <li><a href="Apps/index.html" class="nav-link active">Apps</a></li>
-          <li><a href="https://forms.gle/CkQLAFKJyxR4qTLs8" class="nav-link active">File A DMCA Takedown Request</a></li>
+          <li><a href="Apps/index.html" class="nav-link">Apps</a></li>
+          <li><a href="AI/aiiframe.html" class="nav-link">AI</a></li>
+          <li><a href="https://forms.gle/CkQLAFKJyxR4qTLs8" target="_blank" class="nav-link">DMCA Takedown Request</a></li>
           <li><a href="https://github.com/Yeti1o1/Pulsar" target="_blank" class="discord-btn">Built With Pulsar</a></li>
-          <li><a href="https://discord.com/kRq8HvUrJX" target="_blank" class="discord-btn">Join The Discord</a></li>
+          <li><a href="https://discord.gg/kRq8HvUrJX" target="_blank" class="discord-btn">Join The Discord</a></li>
         </ul>
       </nav>
     </header>
     <!-- Hero Section -->
     <section id="home" class="hero">
       <div>
-        <h2>Input Delay</h2>
-        <a href="Games/index.html" class="get-started-btn">Games</a>
-        <a href="AI/aiiframe.html" class="get-started-btn">AI</a>
-        <a href="Apps/index.html" class="get-started-btn">Apps</a>
-        <a href="https://docs.google.com/document/d/1dulPAgELy_sAnjRUcffULBklERN8qkAtK3KmaxIMiQU/edit?usp=sharing" class="get-started-btn">More Links</a>
+        <h2 id="typing-text">Input Delay</h2>
+        <!-- Button Container for layout and staggering -->
+        <div class="button-container">
+            <a href="Games/index.html" class="get-started-btn">Games</a>
+            <a href="AI/aiiframe.html" class="get-started-btn">AI</a>
+            <a href="Apps/index.html" class="get-started-btn">Apps</a>
+            <a href="https://docs.google.com/document/d/1dulPAgELy_sAnjRUcffULBklERN8qkAtK3KmaxIMiQU/edit?usp=sharing" target="_blank" class="get-started-btn">More Links</a>
+        </div>
       </div>
     </section>
+
     <script>
-      console.log("Initializing Particles.js with light gray lines...");
+      // Particles.js configuration (can be adjusted for different effects)
+      
       particlesJS("particles-js", {
-        "particles": {
-          "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-          "color": { "value": "#3D3D3D" },
-          "shape": { "type": "circle" },
-          "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.4, "opacity_min": 0.05, "sync": false } },
-          "size": { "value": 2.5, "random": true, "anim": { "enable": false } },
-          "line_linked": { "enable": true, "distance": 150, "color": "#E8ECEF", "opacity": 0.6, "width": 1.5 },
-          "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false }, "resize": true },
-          "modes": { "repulse": { "distance": 80, "duration": 0.4 } }
-        },
-        "retina_detect": true
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+
+      // JavaScript for Typing Animation
+      document.addEventListener('DOMContentLoaded', () => {
+          const textElement = document.getElementById('typing-text');
+          const originalText = textElement.textContent;
+          textElement.textContent = ''; // Clear text initially
+          textElement.style.visibility = 'visible'; // Make element visible, but content is empty
+
+          let charIndex = 0;
+          const typingSpeed = 80; // Adjust typing speed (milliseconds per character)
+          const delayBeforeGlow = 200; // Delay after typing finishes before glow starts (milliseconds)
+
+          // Add class to show cursor and indicate typing state
+          textElement.classList.add('typing');
+
+
+          function typeWriter() {
+              if (charIndex < originalText.length) {
+                  textElement.textContent += originalText.charAt(charIndex);
+                  charIndex++;
+                   // Use rAF for smoother updates, but setTimeout controls speed
+                  requestAnimationFrame(() => setTimeout(typeWriter, typingSpeed));
+              } else {
+                  // Typing finished
+                  // Remove typing class and add typing-done class (handles overflow, whitespace, and blinking cursor)
+                  textElement.classList.remove('typing');
+                  textElement.classList.add('typing-done');
+
+                  // Add glow class after a small delay
+                  setTimeout(() => {
+                      textElement.classList.add('glow');
+                  }, delayBeforeGlow);
+              }
+          }
+
+          // Start the typing animation after header and nav animations have started/finished
+          // Adjusted delay for faster start, coordinating with other animations
+          const startTypingDelay = 600; // Start typing after 0.6 seconds
+          setTimeout(typeWriter, startTypingDelay);
+
       });
-      console.log("Particles.js initialized successfully.");
+
     </script>
   </body>
 </html>

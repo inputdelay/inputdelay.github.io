@@ -1,22 +1,20 @@
-/* --- Base Styles (Merged) --- */
+/* --- Base Styles --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
-    /* scroll-behavior: smooth; /* Apply globally from Code 1 */
-    /* Let's keep smooth scrolling only where needed (html/body, .btn-container) */
 }
 
 html, body {
      scroll-behavior: smooth; /* For page jumps like #links */
+     height: 100%; /* Ensure height for fixed background */
+     overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 body {
-    /* Style from Code 1 */
     background: url('../free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
     background-size: cover;
-    overflow-x: hidden;
     position: relative; /* Needed for ::before */
     min-height: 100vh; /* Ensure body takes full height */
     overflow-y: auto; /* Allow vertical scrolling */
@@ -24,115 +22,121 @@ body {
 }
 
 body::before {
-    /* Style from Code 1 (slightly adjusted for fixed positioning if needed) */
     content: '';
     position: fixed; /* Fixed overlay */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.897); /* Code 1's overlay opacity */
+    background: rgba(0, 0, 0, 0.897); /* Overlay opacity */
     z-index: -11; /* Behind content */
-    pointer-events: none;
+    pointer-events: none; /* Allow clicks to pass through overlay */
 }
 
-#particles-js {
-    /* Style from Code 1 (using fixed for better background effect) */
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -2; /* Behind overlay */
-    pointer-events: none;
+    #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
 }
 
-/* --- Header Styles (Merged from Code 1 Aesthetics) --- */
-header {
+ /* Header */
+ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px; /* Code 1 padding */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    position: fixed; /* Code 1 uses fixed */
-    top: 0;
+    padding: 15px 40px; /* Consistent padding */
+    backdrop-filter: blur(12px); /* Consistent blur */
+    -webkit-backdrop-filter: blur(12px);
+    position: fixed;
     width: 100%;
-    z-index: 1000; /* High z-index */
-    background: rgba(0, 0, 0, 0.6); /* Code 1 background */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Code 1 border */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Added shadow for depth */
-}
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7); /* Consistent background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Consistent border */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Consistent shadow */
 
-/* Use logo style from Code 2 */
+    /* Initial state for animation */
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
+  }
+
 .header-logo {
-    height: 45px; /* Adjust size as needed */
+    height: 45px;
     width: auto;
     display: block;
 }
 
-/* Nav styles from Code 1 */
 nav ul {
     display: flex;
     list-style: none;
     gap: 20px;
     align-items: center;
+    margin: 0; /* Ensure no default margin */
+    padding: 0; /* Ensure no default padding */
+}
+
+nav ul li {
+    margin: 0; /* Ensure no default margin on list items */
+    padding: 0; /* Ensure no default padding on list items */
 }
 
 nav ul li a.nav-link {
     text-decoration: none;
-    font-size: 1.1rem; /* Code 1 font size */
-    color: white; /* Code 1 color */
-    padding: 10px 20px; /* Code 1 padding */
-    border-radius: 8px; /* Code 1 radius */
+    font-size: 1.1rem;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
     transition: all 0.3s ease;
+    display: inline-block; /* Needed for transform to work correctly */
 }
 nav ul li a.nav-link:hover {
-    background: rgba(255, 255, 255, 0.3); /* Code 1 hover bg */
-    transform: scale(1.05) translateY(0); /* Code 1 hover transform (reset translateY) */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Code 1 hover shadow */
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05); /* Adjusted scale */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
-/* Keep active class styling from Code 2 */
+
 nav ul li a.nav-link.active {
     color: #ffffff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Discord button styles from Code 1 */
 .discord-btn {
     display: inline-block;
     background: linear-gradient(90deg, #7289da, #5a70d2);
     color: white;
     text-decoration: none;
-    padding: 12px 25px; /* Code 1 padding */
-    border-radius: 8px; /* Code 1 radius */
+    padding: 12px 25px;
+    border-radius: 8px;
     font-weight: bold;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Code 1 shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Include background transition */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 .discord-btn:hover {
-    transform: scale(1.1); /* Code 1 hover scale */
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Code 1 hover shadow */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8); /* Code 1 hover text shadow */
-     background: linear-gradient(90deg, #6a7fcc, #566cc0); /* Added hover background change */
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(90deg, #6a7fcc, #566cc0);
 }
 
 /* --- Main Hub Container --- */
 main.hub-container {
     width: 100%;
-    max-width: 1600px; /* Or keep Code 2's value */
-    margin: 0 auto; /* Center container */
+    max-width: 1600px;
+    margin: 0 auto;
     /* Add padding-top to account for FIXED header */
-    padding: 100px 40px 20px 40px; /* Approx Header height + desired top/bottom padding */
+    padding: 100px 40px 20px 40px;
     position: relative;
     z-index: 10;
 }
 
-/* --- Hub Controls (Search, Toggle) - Keep Code 2 Style --- */
+/* --- Hub Controls (Search, Toggle) --- */
 .hub-controls {
     display: flex;
-    justify-content: space-between; /* Keep space-between */
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
     padding: 15px;
@@ -151,7 +155,7 @@ main.hub-container {
     border-radius: 20px;
     padding: 0px 5px 0px 15px;
     flex-grow: 1;
-    max-width: 500px; /* Limit search bar width */
+    max-width: 500px;
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 .search-wrapper:focus-within {
@@ -185,7 +189,6 @@ main.hub-container {
     color: #fff;
 }
 
-/* Keep Toggle Button Style from Code 2 (or adapt if Code 1 had one) */
 .toggle-categories-btn {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
     color: #e0e0e0;
@@ -211,7 +214,6 @@ main.hub-container {
     margin-bottom: 40px;
 }
 
-/* Keep category header structure */
 .category-header {
     display: flex;
     justify-content: space-between;
@@ -221,36 +223,53 @@ main.hub-container {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Category Title H6 - Style like Code 1's Hero H2 (adjust size) */
 .category-header h6 {
-    font-size: 1.8rem; /* Adjusted size */
-    background: linear-gradient(45deg, #ffffff, #cccccc); /* Code 1 gradient */
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #ffffff, #cccccc);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    /* Code 1 text shadow (toned down) */
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 .category-header h6 i {
-    /* Style icon similarly */
     font-size: 0.9em;
     background: linear-gradient(45deg, #ffffff, #cccccc);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-     text-shadow: none; /* Remove shadow from icon if distracting */
+    text-shadow: none;
 }
 
-/* Scroll Arrows - Keep Code 2 functional style */
+.scroll-arrows button {
+    /* Ensure they are initially styled to appear, JS hides/shows them based on scroll */
+    display: flex; /* Use flex or block for initial display */
+    align-items: center;
+    justify-content: center;
+    /* Add padding, border, background, cursor, etc. */
+    background: rgba(0, 0, 0, 0.5); /* Example background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1; /* Ensure they are above the content */
+    position: relative; /* For z-index to work relative to siblings */
+}
+
 .scroll-arrows {
     display: flex;
     gap: 10px;
+    flex-shrink: 0;
+    align-items: center;
 }
+    .scroll-arrows button[style*="display: none"] {
+        display: none !important; /* Use !important if necessary, but try to avoid it */
+    }
 .scroll-arrow {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -266,6 +285,8 @@ main.hub-container {
     transition: all 0.3s ease;
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
+    /* Hidden by default, JS will show/hide based on scroll position */
+    display: none;
 }
 .scroll-arrow:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -276,7 +297,6 @@ main.hub-container {
 
 
 /* --- Game Button Containers --- */
-/* Keep Code 2 functional styles */
 .btn-container,
 .favorite-container {
     display: flex;
@@ -287,13 +307,16 @@ main.hub-container {
     white-space: nowrap;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    scroll-behavior: smooth; /* ESSENTIAL for JS scrolling */
+    scroll-behavior: smooth;
+    flex-wrap: nowrap; /* Prevent wrapping to new lines */
+
 }
 .btn-container::-webkit-scrollbar,
 .favorite-container::-webkit-scrollbar {
     display: none;
 }
 
+/* Grid container for the "All Games" section */
 .btn-container-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -302,27 +325,28 @@ main.hub-container {
 }
 
 /* --- Game Button Styling --- */
-/* Keep Code 2 functional base, slightly adjust aesthetics if needed */
 .btn {
-    display: inline-block;
-    /* Slightly lighter gradient than pure black version */
+    display: flex;
+    flex-direction: column; /* Stack image and info bar vertically */
+    align-items: center;
+    justify-content: flex-start; /* Start layout from the top */
+    width: 180px;
+    height: 150px; /* Define a fixed height for consistency */
     background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible border */
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     padding: 0;
-    width: 180px;
-    overflow: hidden;
-    text-align: left;
+    overflow: hidden; /* Crucial to hide the info bar when it's translated down */
     color: #ddd;
     text-decoration: none;
     cursor: pointer;
-    position: relative;
+    position: relative; /* Needed for positioning the info bar and heart */
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     vertical-align: top;
     flex-shrink: 0;
 
-    /* --- Animation Properties (Keep from working version) --- */
+    /* --- Animation Properties --- */
     opacity: 1;
     transform: scale(1);
     transition: opacity 0.3s ease-out,
@@ -333,44 +357,83 @@ main.hub-container {
     will-change: opacity, transform;
 }
 
-/* Keep working hover effect */
+/* Ensure grid buttons have auto width */
+.btn-container-grid .btn {
+    width: auto;
+    height: 150px; /* Keep consistent height */
+}
+
+/* Hover state for the button */
 .btn:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.25); /* Slightly more visible hover border */
-    background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85)); /* Slightly lighter hover */
+    border-color: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85));
 }
 
-/* Keep functional hidden class */
+/* Functional hidden class for search results */
 .btn.hidden {
-    opacity: 0;
-    transform: scale(0.9);
-    pointer-events: none;
+    display: none !important; /* Hide buttons not matching search */
 }
 
-/* Keep Image Styling */
+/* Style for the image - should always be visible */
 .btn .imgg {
     display: block;
     width: 100%;
-    height: 100px;
+    /* Image should take up most of the height */
+    flex-grow: 1; /* Allow image to take available space */
     object-fit: cover;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     background-color: #222;
+    /* No opacity transition needed if it stays visible */
 }
 
-/* Keep Text/Name Styling */
-.btn span { /* If name is in span */
-    display: block;
-    padding: 10px 12px;
-    font-size: 0.95rem;
-    font-weight: bold;
+/* Style for the game info bar container */
+.game-info-bar {
+    position: absolute; /* Position relative to the button */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Define the height of the info bar */
+    height: 40px; /* Example height, adjust as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the bar */
+    color: #ddd; /* Text color */
+    display: flex; /* Use flexbox to center text inside */
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px; /* Padding inside the bar */
+    box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #ddd;
+
+    /* --- Hide by default using transform --- */
+    transform: translateY(100%); /* Move the bar down by its own height */
+    transition: transform 0.3s ease-out; /* Smooth slide-up transition */
+    z-index: 2; /* Ensure it's above the image but below the heart */
 }
 
-/* Keep Heart Icon Styling */
+/* Style for the game name text inside the bar */
+.game-info-bar .game-name {
+    /* Span itself might not need specific display: block/none */
+    /* Its visibility is controlled by the parent .game-info-bar */
+    display: block; /* Ensure span behaves as a block */
+    font-size: 0.95rem;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent text wrapping inside the bar */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text is too long */
+    width: 100%; /* Take full width of the bar */
+    text-align: center; /* Center the text */
+    /* No opacity transition needed here, let the parent handle it */
+}
+
+/* On button hover, show the game info bar */
+.btn:hover .game-info-bar {
+    transform: translateY(0); /* Slide the bar up into view */
+}
+
+/* Style for the heart icon */
 .btn .heart-icon {
     position: absolute;
     top: 8px;
@@ -381,7 +444,9 @@ main.hub-container {
     padding: 4px 5px;
     border-radius: 4px;
     transition: all 0.3s ease;
-    z-index: 5;
+    z-index: 5; /* Ensure it's above everything else */
+    cursor: pointer;
+    pointer-events: auto;
 }
 .btn:hover .heart-icon {
     color: rgba(255, 255, 255, 0.8);
@@ -404,43 +469,71 @@ main.hub-container {
     /* display: none; -- Controlled by JS */
 }
 
-/* --- Responsive Adjustments (Merge/Keep Code 2's, adjust if needed) --- */
+/* Message for no search results */
+#noResultsMessage {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #ccc;
+}
+
+/* --- Responsive Adjustments --- */
 @media (max-width: 1200px) {
-    main.hub-container { padding: 90px 30px 20px 30px; } /* Adjust padding-top */
+    main.hub-container { padding: 90px 30px 20px 30px; }
     .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-    .btn { width: 160px; }
-    .btn .imgg { height: 90px; }
+    .btn { width: 160px; height: 140px; } /* Adjusted height */
+    .btn .imgg { /* flex-grow will adjust height */ }
+    .game-info-bar { height: 35px; font-size: 0.9em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.9em; }
 }
 
 @media (max-width: 768px) {
-    /* Merge Code 1 & 2 header changes */
-    header { padding: 10px 20px; flex-direction: column; align-items: center; /* Stack header items */}
-    header nav { margin-top: 10px; /* Space below logo */ }
-    nav ul { gap: 10px; justify-content: center; flex-wrap: wrap;}
-    nav ul li a.nav-link { font-size: 0.9rem; padding: 8px 12px; /* Adjusted padding */ }
+    header { padding: 10px 20px; flex-direction: column; align-items: center; }
+    header nav { margin-top: 10px; }
+    nav ul { gap: 10px; justify-content: center; flex-wrap: wrap; }
+    nav ul li a.nav-link { font-size: 0.9rem; padding: 8px 12px; }
     .discord-btn { padding: 8px 16px; font-size: 0.9rem; }
 
-    main.hub-container { padding: 140px 15px 20px 15px; } /* Increase padding-top for stacked header */
-    .hub-controls { flex-direction: column; align-items: stretch; padding: 10px; }
-    .search-wrapper { max-width: none; }
-    .category-header h6 { font-size: 1.4rem; } /* Slightly larger than pure Code 2 */
+    main.hub-container { padding-top: 140px; } /* Increased padding-top */
+
+    .hub-controls { flex-direction: column; align-items: stretch; padding: 10px; gap: 10px; }
+    .search-wrapper { max-width: none; padding: 0px 5px 0px 10px; }
+    #myInput { padding: 8px; font-size: 0.9rem; }
+    .search-icon-btn { padding: 8px; }
+
+    .category-header h6 { font-size: 1.6rem; gap: 8px;}
     .scroll-arrow { width: 30px; height: 30px; font-size: 0.9rem; }
-    .btn-container, .favorite-container { gap: 15px; }
+    .btn-container, .favorite-container { gap: 15px; padding: 8px 5px 15px 5px; }
     .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
-    .btn { width: 140px; }
-    .btn .imgg { height: 80px; }
-    .btn span { font-size: 0.85rem; padding: 8px 10px; }
-    .btn .heart-icon { font-size: 1rem; }
+
+    .btn { width: 140px; height: 130px; } /* Adjusted size */
+    .game-info-bar { height: 30px; font-size: 0.85em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.85em; }
+    .btn .heart-icon { font-size: 1rem; top: 6px; right: 6px; padding: 3px 4px; }
 }
 
 @media (max-width: 480px) {
-     header { padding: 10px 15px; }
-     nav ul { gap: 8px; }
-     nav ul li a.nav-link, .discord-btn { font-size: 0.85rem; padding: 6px 10px; /* Adjusted padding */ }
-    main.hub-container { padding-top: 130px; /* Adjust again */ }
-    .category-header h6 { font-size: 1.2rem; } /* Slightly larger */
-    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-    .btn { width: 120px; }
-    .btn .imgg { height: 70px; }
-    .btn span { font-size: 0.8rem; }
+     header { padding: 8px 10px; }
+     nav ul { gap: 6px; }
+     nav ul li a.nav-link, .discord-btn { font-size: 0.8rem; padding: 5px 8px; }
+
+     main.hub-container { padding-top: 120px; } /* Adjust padding-top */
+
+    .category-header h6 { font-size: 1.4rem; gap: 6px; }
+    .scroll-arrow { width: 28px; height: 28px; font-size: 0.8rem; }
+    .btn-container, .favorite-container { gap: 10px; padding: 6px 4px 12px 4px; }
+    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+
+    .btn { width: 110px; height: 120px; } /* Adjusted size */
+    .game-info-bar { height: 25px; font-size: 0.75em; } /* Adjusted bar height */
+    .game-info-bar .game-name { font-size: 0.75em; }
+    .btn .heart-icon { font-size: 0.9rem; top: 5px; right: 5px; padding: 3px; }
+}
+
+/* Style for the message when no results are found */
+#noResultsMessage {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #ccc;
 }
