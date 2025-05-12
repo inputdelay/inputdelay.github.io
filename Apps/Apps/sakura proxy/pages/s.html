@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.sakuraon.top/pages/s.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 May 2025 05:26:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings Page</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&amp;display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: transparent;
+    }
+  </style>
+</head>
+<body>
+<div class="notification" id="goofy-ass-notification"></div>
+  
+  <div class="center-box">
+    <h1 class="title">Settings</h1>
+    <p>Press any key to set your panic keybind.</p>
+    <div id="keybind-shit">
+      Current Panic Key: <span id="keybind-value">g</span>
+    </div>
+    
+    <div class="setting-area">
+      <label for="panic-url">Panic Redirect URL:</label>
+      <input type="text" id="panic-url" placeholder="https://google.com" />
+    </div>
+    <button id="save-button">Save</button>
+  </div>
+  
+  <script>
+    if (!localStorage.getItem('panicKey')) {
+      localStorage.setItem('panicKey', 'g');
+    }
+    if (!localStorage.getItem('panicURL')) {
+      localStorage.setItem('panicURL', 'https://google.com/');
+    }
+    document.getElementById('keybind-value').textContent = localStorage.getItem('panicKey');
+    document.getElementById('panic-url').value = localStorage.getItem('panicURL');
+
+    // update keybind
+    document.body.addEventListener('keydown', function(event) {
+      if (document.activeElement !== document.getElementById('panic-url') && event.key !== "Escape") {
+        localStorage.setItem('panicKey', event.key);
+        document.getElementById('keybind-value').textContent = event.key;
+      }
+    });
+
+    function showNotification(message) {
+      const notification = document.getElementById('goofy-ass-notification');
+      if (message.toLowerCase().includes("unsuccessful")) {
+        notification.style.height = "75px";
+        notification.style.width = "320px";
+      } else {
+        notification.style.height = "75px";
+        notification.style.width = "250px";
+      }
+      
+      // insert html content
+      notification.innerHTML = message +
+        '<div class="notification-line"></div>' +
+        '<span class="close-btn" id="close-notification">&times;</span>';
+      
+      // show go bbrrrrr
+      notification.style.display = 'block';
+      void notification.offsetWidth;
+      notification.style.opacity = 1;
+      document.getElementById('close-notification').addEventListener('click', function() {
+        notification.style.opacity = 0;
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 500);
+      });
+
+      const line = notification.querySelector('.notification-line');
+      line.addEventListener('animationend', function() {
+        notification.style.opacity = 0;
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 500);
+      });
+    }
+    
+    document.getElementById('save-button').addEventListener('click', function() {
+      const url = document.getElementById('panic-url').value.trim();
+      // or
+      if (!url.startsWith("http://") && !url.startsWith("https:///")) {
+        showNotification("its an unvalid url 😭, it must include http or https");
+        return;
+      }
+      localStorage.setItem('panicURL', url);
+      showNotification("its saved okay? 🗣️ check out dsc.gg/securedweb too");
+    });
+  </script>
+</body>
+
+<!-- Mirrored from www.sakuraon.top/pages/s.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 May 2025 05:26:23 GMT -->
+</html>
+
+
+

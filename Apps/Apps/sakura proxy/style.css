@@ -1,0 +1,910 @@
+/* --- Base Styles (Restyled with Theme 1 Aesthetic) --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Use font from Theme 1 */
+  font-family: 'Lato', sans-serif;
+}
+
+/* Particles - Adjusting based on Theme 1's fixed position */
+#particles-js {
+  /* Keep position as absolute from Theme 2, but update z-index */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* Use Theme 1 z-index */
+  z-index: -10;
+}
+
+body {
+  /* Background from Theme 1 */
+  background: url('../free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Keep height from Theme 2, but add min-height from Theme 1 */
+  height: 100vh;
+  min-height: 100vh;
+  /* Keep display flex for initial center box state from Theme 2 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Keep overflow hidden for initial state from Theme 2, but allow auto for scrolling later */
+  overflow: hidden; /* Initially hidden */
+  /* Color from Theme 1 */
+  color: #eee;
+  /* Keep flex-direction from Theme 2 */
+  flex-direction: column;
+
+  /* Add Theme 1 overlay */
+  position: relative; /* Needed for ::before */
+  overflow-y: auto; /* Allow scrolling once content is added */
+}
+
+/* Add Theme 1 overlay */
+body::before {
+  content: '';
+  position: fixed; /* Use fixed as in Theme 1 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Overlay opacity from Theme 1 */
+  background: rgba(0, 0, 0, 0.897);
+  /* Z-index behind content from Theme 1 */
+  z-index: -11;
+  /* Allow clicks to pass through from Theme 1 */
+  pointer-events: none;
+}
+
+/* Custom Scrollbar Styles (from Theme 1) */
+body::-webkit-scrollbar {
+width: 10px;
+}
+body::-webkit-scrollbar-track {
+background: rgba(255, 255, 255, 0.05);
+border-radius: 5px;
+}
+body::-webkit-scrollbar-thumb {
+background-color: rgba(255, 255, 255, 0.2);
+border-radius: 5px;
+border: 2px solid transparent;
+background-clip: padding-box;
+}
+body::-webkit-scrollbar-thumb:hover {
+background-color: rgba(255, 255, 255, 0.3);
+}
+body {
+scrollbar-width: thin;
+scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+
+p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  /* Color adjustment for dark theme */
+  color: #ccc;
+}
+
+.center-box {
+  /* Apply dark, blurred background and border from Theme 1 aesthetic */
+  background: rgba(30, 30, 30, 0.5); /* Similar to .hub-controls background */
+  padding: 35px 50px;
+  /* Use radius style from Theme 1 (e.g., 8px or similar) */
+  border-radius: 8px;
+  text-align: center;
+  /* Add Theme 1 blur */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* Add Theme 1 shadow */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  /* Add Theme 1 border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
+   /* Position relative to be above particles */
+  position: relative;
+  z-index: 1;
+}
+
+.center-box:hover {
+  /* Theme 1 subtle hover scale */
+  transform: scale(1.02);
+   /* Stronger shadow on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  /* Subtle border highlight on hover */
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  /* Use gradient text style from Theme 1's category header */
+  background: linear-gradient(45deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 20px;
+  /* Apply glowing text shadow from Theme 1's category header (adjusted) */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.5);
+  /* Keep Theme 2 animation */
+  animation: glowing 1.5s infinite alternate;
+}
+
+/* Adjust glowing animation colors to fit the dark theme */
+@keyframes glowing {
+  0% {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Search Input and Container */
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+#search-web {
+  width: 250px;
+  /* Adjust padding for icon */
+  padding: 8px 8px 8px 30px;
+  /* Apply styles similar to Theme 1 search input */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  border-radius: 20px; /* Keep Theme 2 radius or use Theme 1 (20px is fine) */
+  font-size: 1rem; /* Adjusted font size */
+  outline: none;
+  background: rgba(255, 255, 255, 0.05); /* Semi-transparent background */
+  color: #fff; /* White text */
+  transition: all 0.3s ease;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  margin-bottom: 5px;
+}
+
+#search-web::placeholder {
+  color: #aaa; /* Placeholder color from Theme 1 */
+  font-weight: 400;
+}
+
+.search-container i {
+  position: absolute;
+  left: 10px;
+  top: 50%; /* Vertically center */
+  transform: translateY(-50%);
+  font-size: 1.1rem; /* Adjust size */
+  color: #aaa; /* Icon color from Theme 1 */
+  /* Keep cursor pointer, but pointer-events: none is good practice */
+  /* cursor: pointer; */
+}
+
+#search-web:focus {
+  /* Adjust focus styles from Theme 1 search */
+  width: 280px; /* Keep Theme 2 width change on focus */
+  border-color: rgba(255, 255, 255, 0.2); /* Border color from Theme 1 focus */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Shadow from Theme 1 focus */
+  background: rgba(255, 255, 255, 0.1); /* Background from Theme 1 focus */
+}
+
+/* Loading Bar - Restyle gradient */
+#loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  /* Use a gradient fitting Theme 1 aesthetic */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+  background-size: 200% 100%;
+  animation: loadingAnim 1s linear infinite;
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.3s ease;
+  display: none;
+}
+
+@keyframes loadingAnim {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Web Icon (for link blocks) */
+.web-icon {
+  display: inline-block;
+  width: 65px;
+  height: 85px;
+  margin: 5px;
+  padding: 10px;
+  /* Background similar to Theme 1 elements */
+  background-color: rgba(45, 45, 45, 0.65);
+  /* Use radius similar to Theme 1 buttons/cards */
+  border-radius: 8px;
+  /* Add Theme 1 shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  text-align: center;
+  vertical-align: top;
+  padding-top: 10px;
+  /* Add border from Theme 1 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+   /* Add blur from Theme 1 */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.web-icon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.web-icon:hover {
+  /* Theme 1 subtle hover scale */
+  transform: scale(1.05);
+  /* Stronger shadow on hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  /* Background change on hover */
+  background-color: rgba(55, 55, 55, 0.75);
+  /* Border color change on hover */
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.web-icon:hover img {
+  /* Keep image scale on hover */
+  transform: scale(1.1);
+}
+
+.web-icon h3 {
+  margin: 5px 0;
+  font-size: 12px;
+  font-weight: 600;
+  /* Text color for dark theme */
+  color: #ddd;
+}
+
+.web-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* Add some margin/padding if needed for spacing within center-box */
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#keybind-shit {
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+  /* Color adjustment for dark theme */
+  color: #aaa;
+}
+
+#main-frame {
+transition: opacity 0.3s ease;
+opacity: 1;
+}
+
+#main-frame.fade-out {
+opacity: 0;
+}
+
+#main-frame.fade-in {
+opacity: 1;
+}
+
+/* Buttons */
+button {
+  /* Background gradient similar to Theme 1 Discord button */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+  /* Text color from Theme 1 buttons */
+  color: #eee;
+  font-size: 1rem; /* Adjusted font size */
+  padding: 10px 20px; /* Adjusted padding */
+  /* Border radius similar to Theme 1 buttons */
+  border-radius: 6px;
+  /* Add border from Theme 1 buttons */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* Add Theme 1 shadow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  /* Add Theme 1 blur */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+
+  /* Remove ::before and ::after styles as they weren't in Theme 1 buttons */
+  /* The original Theme 2 CSS *did* have ::before and ::after. Keep and restyle them */
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Restyle background to fit Theme 1 */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+   /* Restyle border to fit Theme 1 */
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  /* Background gradient change on hover from Theme 1 buttons */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.25));
+  /* Theme 1 subtle hover transform */
+  transform: translateY(-1px);
+  /* Theme 1 hover shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  /* Border color change on hover */
+  border-color: rgba(255, 255, 255, 0.3);
+  /* Color change on hover */
+  color: #fff;
+}
+
+button:hover::before {
+  opacity: 1;
+}
+
+button:hover::after {
+  opacity: 1;
+   /* Restyle border color on hover */
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+button:active {
+  /* Theme 1 active transform */
+  transform: scale(0.98);
+   /* Theme 1 active shadow */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Container Item (Likely for grid/flex layouts, e.g., initial links) */
+.container-item {
+  position: relative;
+  /* Use radius similar to Theme 1 buttons/cards */
+  border-radius: 8px;
+  overflow: hidden;
+  /* Adjust transitions */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  /* Apply background similar to Theme 1 */
+  background-color: rgba(45, 45, 45, 0.65);
+  /* Add border from Theme 1 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+   /* Add blur from Theme 1 */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.container-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Use radius similar to Theme 1 cards */
+  border-radius: 8px;
+}
+
+.container-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+/* This was a duplicate of .container-item img, removed */
+/* .container-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 15px;
+} */
+
+.container-item:hover {
+  /* Theme 1 subtle hover scale */
+  transform: scale(1.05);
+  /* Background change on hover */
+  background-color: rgba(55, 55, 55, 0.75);
+  /* Border color change on hover */
+  border-color: rgba(255, 255, 255, 0.2);
+  /* Add Theme 1 hover shadow */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.container-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Background for info bar from Theme 1 */
+  background: rgba(0, 0, 0, 0.7);
+  /* Color for info bar from Theme 1 */
+  color: #ddd;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8rem;
+   /* Use radius similar to Theme 1 info bar (match container item radius) */
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+   /* Prevent interaction */
+  pointer-events: none;
+}
+
+.container-item:hover .container-title {
+  opacity: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* Keep width */
+  width: 70px;
+  /* Apply dark background with blur from Theme 1 header */
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding-top: 20px;
+  /* Use Theme 1 header z-index */
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Add Theme 1 border */
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  /* Add Theme 1 shadow */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+
+.sidebar ul li {
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+}
+
+.sidebar ul li a {
+  /* Icon color from Theme 1 general text */
+  color: #eee;
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  margin: 0 auto;
+  /* Border radius similar to Theme 1 buttons */
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+   /* Add subtle background */
+  background-color: rgba(255, 255, 255, 0.05);
+   /* Add subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Hover effect for the icon */
+.sidebar ul li a:hover {
+  transform: scale(1.15);
+  /* Color change on hover from Theme 1 */
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* hover text box */
+.sidebar ul li .hover-text {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) translateX(0px);
+  /* Apply background similar to sidebar */
+  background-color: rgba(0, 0, 0, 0.85);
+  /* Text color */
+  color: #fff;
+  padding: 8px 16px;
+  /* Border radius */
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  /* Shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10; /* Ensure above sidebar, below overlay/notification */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  /* Add subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar ul li:hover .hover-text {
+  opacity: 1;
+  transform: translateY(-50%) translateX(10px);
+  pointer-events: auto;
+}
+
+.sidebar-info {
+  margin-top: auto;
+  padding: 15px 5px;
+  text-align: center;
+  /* Color for dark theme */
+  color: #aaa;
+  font-size: 12px;
+}
+
+#clock {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+#date {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+#battery {
+  margin-bottom: 5px;
+}
+
+#battery-icon {
+  font-size: 20px;
+}
+
+.iframe-container {
+  /* Keep structural properties */
+  margin-left: 70px;
+  width: calc(100% - 70px);
+  height: 100vh;
+  /* Ensure it's below header and sidebar */
+  padding-top: 0; /* Assuming sidebar/header handle their own height/positioning */
+  position: relative;
+  z-index: 1;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* Ensure iframe doesn't have default padding/margin affecting container */
+  display: block;
+}
+
+/* Card Grid */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  /* overflow-x: auto; Keep this if it's meant for horizontal scrolling, but flex-wrap is usually for grid */
+  /* If this grid is the 'All Games' style, remove overflow-x: auto */
+  /* Assuming this is a wrapping grid like .btn-container-grid from Theme 1 */
+  overflow-x: hidden; /* Prevent horizontal scroll if wrapping */
+  padding: 10px;
+  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card-grid:not(:empty) {
+  min-height: 230px;
+}
+
+.card {
+  position: relative;
+  width: 160px;
+  height: 220px;
+  cursor: pointer;
+  overflow: hidden;
+  /* Use radius similar to Theme 1 buttons/cards */
+  border-radius: 8px;
+  /* Add border from Theme 1 */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Apply background from Theme 1 */
+  background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
+  /* Add blur from Theme 1 */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  /* Add shadow from Theme 1 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  transform: none;
+  transition: all 0.3s ease;
+
+  /* Remove ::before and ::after as Theme 1 individual buttons didn't have them, only the button element */
+  /* Wait, the Theme 2 card *did* have ::before. Keep and restyle. */
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  /* Use radius matching the card */
+  border-radius: 10px; /* Slightly larger than card radius */
+  /* Restyle background gradient to fit Theme 1 */
+  /* Remove var(--border-color) and var(--glow-color) */
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.card:hover {
+  /* Theme 1 subtle hover transform */
+  transform: translateY(-3px);
+  /* Background change on hover */
+  background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85));
+  /* Theme 1 hover blur */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  /* Theme 1 hover shadow (combined existing + glow) */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  /* Border color change on hover */
+  border-color: rgba(255, 255, 255, 0.25);
+
+  /* Remove conflicting scale transform from original Theme 2 hover */
+  /* transform: scale(0.95); */
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-image {
+  width: 160px;
+  height: 160px;
+  /* Remove specific pink background */
+  background-color: rgba(0,0,0,0.2); /* Default dark background */
+  background-size: cover;
+  background-position: center;
+  /* Use radius similar to Theme 1 card images */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Radius matching card-image container */
+  border-radius: 0; /* Image itself shouldn't have bottom border radius if container has top only */
+}
+
+.card-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Restyle overlay color */
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.card:hover .card-image {
+  /* Theme 1 subtle image scale on hover */
+  transform: scale(1.02);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Restyle gradient to fit Theme 1 */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  /* Remove var(--transition-speed) */
+  transition: opacity 0.3s ease;
+   /* Prevent interaction with overlay itself */
+  pointer-events: none;
+}
+
+.card:hover .card-overlay {
+  opacity: 1; /* Increase opacity slightly on hover */
+}
+
+/* This was a duplicate/conflicting hover rule, removed */
+/* .card:hover {
+  transform: scale(0.95);
+} */
+
+.card-content {
+  /* Adjust padding if needed, but keep structure */
+  padding: 10px;
+  position: absolute; /* Position absolute relative to card */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3; /* Above image and image overlay */
+}
+
+.card-title {
+  font-size: 1rem; /* Adjusted font size */
+  font-weight: 600;
+  margin-bottom: 5px;
+  /* Use Theme 1 text color */
+  color: #eee;
+  /* Add subtle text shadow */
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.card-category {
+  font-size: 0.8rem; /* Adjusted font size */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Use Theme 1 secondary text color */
+  color: #aaa;
+   /* Add subtle text shadow */
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* General Input Style */
+input {
+    /* Adjust padding */
+    padding: 10px 12px;
+    /* Use radius similar to Theme 1 inputs */
+    border-radius: 6px;
+    /* Border from Theme 1 inputs */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1rem; /* Adjusted font size */
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    /* Background from Theme 1 inputs */
+    background: rgba(255, 255, 255, 0.05);
+    /* Color from Theme 1 inputs */
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+  input::placeholder {
+      color: #aaa; /* Placeholder color from Theme 1 */
+  }
+   input:focus {
+      /* Focus styles from Theme 1 inputs */
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.2);
+   }
+
+
+  .setting-area {
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  label {
+    font-weight: bold;
+    font-size: 14px;
+     /* Color for dark theme */
+    color: #eee;
+  }
+
+  #save-button {
+    margin-top: 10px;
+  }
+
+  /* Notification */
+  .notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Apply background similar to Theme 1 elements */
+    background-color: rgba(30, 30, 30, 0.85);
+    /* Color */
+    color: #fff;
+    padding: 15px;
+    /* Border radius */
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 1000;
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    opacity: 0; /* initially hidden */
+    transition: opacity 0.5s ease-out; /* fast fade effect */
+    /* Add Theme 1 border and shadow */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    /* Add Theme 1 blur */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* notification line - Restyle background */
+  .notification-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    /* Restyle background color */
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: translateX(100%);
+    animation: slideIn 3s forwards;
+  }
+
+  @keyframes slideIn {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    /* Color */
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .close-btn:hover {
+      color: #fff;
+  }

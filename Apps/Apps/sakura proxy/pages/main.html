@@ -1,0 +1,74 @@
+<!DOCTYPE html>  
+<html lang="en">
+
+<!-- Mirrored from www.sakuraon.top/pages/main.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 May 2025 05:25:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura</title>
+    <link rel="icon" type="image/x-icon" href="../images/sakura.png">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+          background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="center-box">
+        <h1 class="title" >sakura (InputDelay Remix)</h1>
+        <p>FULL CREDITS TO kyl and gghunter</p>
+        <div class="search-container">
+            <input type="text" id="search-web" placeholder="browse the internet..." />
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="web-wrapper">
+            <a class="web-icon" href="../s/embed.html#https://www.google.com">
+                <img src="https://www.google.com/favicon.ico" alt="google">
+                <h3>Google</h3>
+            </a>
+            <a class="web-icon" href="../s/embed.html#https://www.easyfun.gg">
+                <img src="../images/easyfun.png" alt="easyfun">
+                <h3>Easyfun</h3>
+            </a>
+            <a class="web-icon" href="../s/embed.html#https://github.com">
+                <img src="../images/github.jpg" alt="github">
+                <h3>GitHub</h3>
+            </a>
+            <a class="web-icon" href="../s/embed.html#https://www.wikipedia.org">
+                <img src="../../upload.wikimedia.org/wikipedia/commons/thumb/6/63/Wikipedia-logo.png/800px-Wikipedia-logo.png" alt="wiki">
+                <h3>Wiki</h3>
+            </a>
+        </div>
+    </div>
+
+
+    <script>
+  document.getElementById('search-web').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const userSearch = document.getElementById('search-web').value.trim();
+        localStorage.setItem('search', userSearch);
+
+        // super basic url check
+        const isURL = /^(https?:\/\/)|(\.[a-z]{2,})$/i.test(userSearch);
+
+        if (isURL) {
+            const url = userSearch.startsWith('http') ? userSearch : 'https://' + userSearch;
+            window.location.href = `/s/embed.html#${url}`;
+        } else {
+            const searchURL = `https://duckduckgo.com/?q=${encodeURIComponent(userSearch)}`;
+            window.location.href = `/s/embed.html#${searchURL}`;
+        }
+    }
+});
+    </script>
+    <script src="404.html"></script>
+</body>
+
+<!-- Mirrored from www.sakuraon.top/pages/main.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 May 2025 05:25:44 GMT -->
+</html>
+

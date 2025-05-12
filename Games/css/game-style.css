@@ -360,3 +360,92 @@ body::before {
          bottom: var(--button-bar-height);
      }
 }
+/* Add these styles to your existing css/game-style.css file */
+
+/* --- Unfocused Overlay Styles --- */
+#unfocused-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Use background-image set by JS based on selection */
+    background-size: cover; /* This makes the image cover the entire area */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat; /* Prevent the image from tiling */
+ 
+    /* Fallback background color if the image doesn't load */
+    background-color: #f8f8f8; /* Adjust fallback if needed */
+ 
+    display: none; /* Hidden by default, shown by JS when unfocused */
+    /* INCREASED Z-INDEX to be above ALL other content (iframe, buttons, etc.) */
+    /* Ensure it's higher than any z-index used for the game or controls */
+    z-index: 1000; /* Use a very high z-index */
+ 
+    box-sizing: border-box;
+    pointer-events: none; /* By default, the overlay doesn't block clicks */
+ }
+ 
+ /* Optional: Add body class for unfocused state to disable interaction on main content */
+ /* When the body gets the 'unfocused' class (applied by globalSettings.js), hide the main content elements */
+ body.unfocused #backBtn,
+ body.unfocused #nameContainer,
+ body.unfocused .game-frame-wrapper,
+ body.unfocused #buttonContainer {
+     display: none !important; /* Use !important to override any other display rules */
+     /* You could also use visibility: hidden; opacity: 0; with transitions if you prefer a fade effect */
+ }
+ 
+ /* Ensure particles background stays behind the overlay */
+ #particles-js {
+     z-index: -1;
+ }
+ 
+ 
+ /* Existing game-style.css would continue below */
+ 
+ /* For example: */
+ /*
+ body { ... }
+ #particles-js { ... }
+ #backBtn { ... }
+ #nameContainer { ... }
+ .game-frame-wrapper { ... }
+ #gameFrame { ... }
+ #buttonContainer { ... }
+ #viewBtn, #likeBtn, etc. { ... }
+ */
+ 
+ /* Custom Cursor Styles - You might want to move these from your HTML style block into game-style.css as well */
+ #custom-cursor {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 24px;
+     height: 24px;
+     border-radius: 50%;
+     border: 2px solid var(--cursor-border-color, rgba(255, 255, 255, 0.5)); /* Use CSS variable */
+     pointer-events: none;
+     z-index: 10000; /* Make sure cursor is on top */
+     opacity: 0; /* Hidden by default */
+     transition: opacity 0.3s ease, transform 0s linear;
+     transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+ }
+ 
+ body.custom-cursor-enabled #custom-cursor {
+      opacity: 1; /* Show when enabled */
+ }
+ 
+ body.custom-cursor-enabled {
+      cursor: none !important; /* Hide default cursor */
+ }
+ 
+ body.custom-cursor-enabled #custom-cursor.on-interactive {
+      transform: translate(var(--mouse-x), var(--mouse-y)) scale(1.5);
+      border-color: var(--cursor-hover-border-color, #007bff); /* Use CSS variable */
+      transition: opacity 0.3s ease, transform 0.1s ease, border-color 0.2s ease;
+ }
+ body.custom-cursor-enabled #custom-cursor.clicked {
+     transform: translate(var(--mouse-x), var(--mouse-y)) scale(0.8);
+     transition: opacity 0.3s ease, transform 0.1s ease;
+ }

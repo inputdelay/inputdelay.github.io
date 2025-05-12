@@ -1,1203 +1,2523 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Delay</title>
-    <!-- Favicon -->
-    <link rel="icon" href="2cJw7a9.png" type="image/x-icon">
-    <!-- Google Fonts: Lato -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4207227785539100"
-         crossorigin="anonymous"></script>
-    <style>
-      /* General Styles */
-      /* --- Base Styles --- */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
-}
-.version-text {
-    position: fixed;
-    bottom: 10px; /* Changed from top: 10px */
-    right: 10px; /* Changed from left: 10px */
-    font-size: 0.7rem; /* Tiny text size */
-    color: rgba(255, 255, 255, 0.5); /* Subtle white for readability */
-    z-index: 110; /* Above header (z-index: 100) and particles */
-    pointer-events: none; /* Prevent interaction */
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Slight shadow for contrast */
-}
-html, body {
-     scroll-behavior: smooth; /* For page jumps like #links */
-     height: 100%; /* Ensure height for fixed background */
-     overflow-x: hidden; /* Prevent horizontal scroll on body */
-}
-
-body {
-    background: url('../free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
-    background-size: cover;
-    position: relative; /* Needed for ::before */
-    min-height: 100vh; /* Ensure body takes full height */
-    overflow-y: auto; /* Allow vertical scrolling */
-    color: #eee; /* Default text color */
-}
-
-body::before {
-    content: '';
-    position: fixed; /* Fixed overlay */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.897); /* Overlay opacity */
-    z-index: -11; /* Behind content */
-    pointer-events: none; /* Allow clicks to pass through overlay */
-}
-
-    #particles-js {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -10;
-}
-
- /* Header */
- header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px; /* Consistent padding */
-    backdrop-filter: blur(12px); /* Consistent blur */
-    -webkit-backdrop-filter: blur(12px);
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.7); /* Consistent background */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Consistent border */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Consistent shadow */
-
-    /* Initial state for animation */
-    opacity: 0;
-    transform: translateY(-50px);
-    animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
-  }
-
-.header-logo {
-    height: 45px;
-    width: auto;
-    display: block;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    align-items: center;
-    margin: 0; /* Ensure no default margin */
-    padding: 0; /* Ensure no default padding */
-}
-
-nav ul li {
-    margin: 0; /* Ensure no default margin on list items */
-    padding: 0; /* Ensure no default padding on list items */
-}
-
-nav ul li a.nav-link {
-    text-decoration: none;
-    font-size: 1.1rem;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    display: inline-block; /* Needed for transform to work correctly */
-}
-nav ul li a.nav-link:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05); /* Adjusted scale */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
-nav ul li a.nav-link.active {
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.discord-btn {
-    display: inline-block;
-    background: linear-gradient(90deg, #7289da, #5a70d2);
-    color: white;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-.discord-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
-    background: linear-gradient(90deg, #6a7fcc, #566cc0);
-}
-
-/* --- Main Hub Container --- */
-main.hub-container {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    /* Add padding-top to account for FIXED header */
-    padding: 100px 40px 20px 40px;
-    position: relative;
-    z-index: 10;
-}
-
-/* --- Hub Controls (Search, Toggle) --- */
-.hub-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding: 15px;
-    background: rgba(30, 30, 30, 0.5);
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.search-wrapper {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 0px 5px 0px 15px;
-    flex-grow: 1;
-    max-width: 500px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-.search-wrapper:focus-within {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-#myInput {
-    flex-grow: 1;
-    padding: 10px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 1rem;
-    outline: none;
-}
-#myInput::placeholder {
-    color: #aaa;
-}
-
-.search-icon-btn {
-    background: transparent;
-    border: none;
-    color: #ddd;
-    font-size: 1.1rem;
-    padding: 10px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-.search-icon-btn:hover {
-    color: #fff;
-}
-
-.toggle-categories-btn {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
-    color: #e0e0e0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-}
-.toggle-categories-btn:hover {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.2));
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
-    color: #fff;
-}
-
-/* --- Game Categories --- */
-.game-category {
-    margin-bottom: 40px;
-}
-
-.category-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.category-header h6 {
-    font-size: 1.8rem;
-    background: linear-gradient(45deg, #ffffff, #cccccc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-}
-.category-header h6 i {
-    font-size: 0.9em;
-    background: linear-gradient(45deg, #ffffff, #cccccc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
-}
-
-.scroll-arrows button {
-    /* Ensure they are initially styled to appear, JS hides/shows them based on scroll */
-    display: flex; /* Use flex or block for initial display */
-    align-items: center;
-    justify-content: center;
-    /* Add padding, border, background, cursor, etc. */
-    background: rgba(0, 0, 0, 0.5); /* Example background */
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1; /* Ensure they are above the content */
-    position: relative; /* For z-index to work relative to siblings */
-}
-
-.scroll-arrows {
-    display: flex;
-    gap: 10px;
-    flex-shrink: 0;
-    align-items: center;
-}
-    .scroll-arrows button[style*="display: none"] {
-        display: none !important; /* Use !important if necessary, but try to avoid it */
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Delay</title>
+  <!-- Favicon -->
+  <link rel="icon" href="2cJw7a9.png" type="image/x-icon">
+  <!-- Google Fonts: Lato -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4207227785539100"
+       crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="globalStyles.css">
+  <style>
+    /* Fix for color button layout */
+    .settings-group .setting-item .color-button-list {
+      display: flex;
+      flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+      gap: 5px; /* Space between buttons */
+      justify-content: flex-start; /* Align buttons to the start */
+      align-items: center;
     }
-.scroll-arrow {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ccc;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    /* Hidden by default, JS will show/hide based on scroll position */
-    display: none;
-}
-.scroll-arrow:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    transform: scale(1.1);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-}
+
+    .settings-color-button {
+      width: 28px; /* Slightly larger for better click area */
+      height: 28px; /* Keep it square */
+      border-radius: 50%; /* Make them round */
+      border: 2px solid transparent; /* Default border */
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0; /* Prevent shrinking */
+      transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+    }
+
+    .settings-color-button.active {
+      border-color: var(--cursor-hover-border-color, #007bff); /* Indicate active state */
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Optional glow */
+    }
+     .settings-color-button:hover:not(.active) {
+         border-color: rgba(255, 255, 255, 0.3); /* Subtle hover effect */
+     }
 
 
-/* --- Game Button Containers --- */
-.btn-container,
-.favorite-container {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 10px 5px 20px 5px;
-    gap: 20px;
-    white-space: nowrap;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-behavior: smooth;
-    flex-wrap: nowrap; /* Prevent wrapping to new lines */
+      #settings.content-section::-webkit-scrollbar {
+    width: 10px;
+  }
+  #settings.content-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+  }
+  #settings.content-section::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  #settings.content-section::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  #settings.content-section {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+  }
+    /* Header styles (kept as per user's original request) */
+    header .header-container {
+        display: flex !important;
+        justify-content: flex-start !important; /* Align items to the left */
+        align-items: center !important;
+        gap: 15px !important; /* Space between logo and nav */
+    }
 
-}
-.btn-container::-webkit-scrollbar,
-.favorite-container::-webkit-scrollbar {
-    display: none;
-}
+    header nav ul {
+        display: flex !important;
+        align-items: center !important;
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 15px !important; /* Space between nav items */
+    }
 
-/* Grid container for the "All Games" section */
-.btn-container-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-    padding: 10px 0;
-}
+    /* Main content padding to account for fixed header */
+     /* Apply to all content sections that should appear below the header */
+     .content-section:not(#settings) { /* Apply padding-top only to non-settings sections */
+         padding-top: 100px; /* Sufficient space below the fixed header */
+         padding-bottom: 40px;
+         /* Ensure horizontal padding from globalStyles.css is respected */
+         padding-left: var(--content-padding-x, 40px); /* Use CSS variable or default */
+         padding-right: var(--content-padding-x, 40px); /* Use CSS variable or default */
+         width: 100%;
+         max-width: var(--content-max-width, 1600px); /* Use CSS variable or default */
+         margin-left: auto;
+         margin-right: auto;
+         box-sizing: border-box;
+         position: relative; /* Needed for z-index */
+         z-index: 1; /* Ensure content is above particles */
+         /* Remove fixed/absolute positioning unless a section needs it specifically */
+         position: relative; /* Or 'static' if no other positioning is needed */
+         transform: none !important; /* Prevent unintended transforms from index.html */
+     }
 
-/* --- Game Button Styling --- */
-.btn {
-    display: flex;
-    flex-direction: column; /* Stack image and info bar vertically */
-    align-items: center;
-    justify-content: flex-start; /* Start layout from the top */
-    width: 180px;
-    height: 150px; /* Define a fixed height for consistency */
-    background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    padding: 0;
-    overflow: hidden; /* Crucial to hide the info bar when it's translated down */
-    color: #ddd;
-    text-decoration: none;
-    cursor: pointer;
-    position: relative; /* Needed for positioning the info bar and heart */
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    vertical-align: top;
-    flex-shrink: 0;
+     /* Specific adjustments for the hero section if needed */
+     section.hero.content-section {
+         /* May need flex display depending on internal layout */
+         display: flex; /* Or your preferred layout for the hero */
+         flex-direction: column; /* Adjust as needed */
+         align-items: center; /* Adjust as needed */
+         justify-content: center; /* Adjust as needed */
+     }
 
-    /* --- Animation Properties --- */
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.3s ease-out,
-                transform 0.3s ease-out,
-                box-shadow 0.3s ease,
-                border-color 0.3s ease,
-                background 0.3s ease;
-    will-change: opacity, transform;
-}
 
-/* Ensure grid buttons have auto width */
-.btn-container-grid .btn {
-    width: auto;
-    height: 150px; /* Keep consistent height */
-}
-
-/* Hover state for the button */
-.btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.25);
-    background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85));
-}
-
-/* Functional hidden class for search results */
-.btn.hidden {
-    display: none !important; /* Hide buttons not matching search */
-}
-
-/* Style for the image - should always be visible */
-.btn .imgg {
-    display: block;
-    width: 100%;
-    /* Image should take up most of the height */
-    flex-grow: 1; /* Allow image to take available space */
-    object-fit: cover;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: #222;
-    /* No opacity transition needed if it stays visible */
-}
-
-/* Style for the game info bar container */
-.game-info-bar {
-    position: absolute; /* Position relative to the button */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    /* Define the height of the info bar */
-    height: 40px; /* Example height, adjust as needed */
-    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the bar */
-    color: #ddd; /* Text color */
-    display: flex; /* Use flexbox to center text inside */
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px; /* Padding inside the bar */
-    box-sizing: border-box;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    /* --- Hide by default using transform --- */
-    transform: translateY(100%); /* Move the bar down by its own height */
-    transition: transform 0.3s ease-out; /* Smooth slide-up transition */
-    z-index: 2; /* Ensure it's above the image but below the heart */
-}
-
-/* Style for the game name text inside the bar */
-.game-info-bar .game-name {
-    /* Span itself might not need specific display: block/none */
-    /* Its visibility is controlled by the parent .game-info-bar */
-    display: block; /* Ensure span behaves as a block */
-    font-size: 0.95rem;
-    font-weight: bold;
-    white-space: nowrap; /* Prevent text wrapping inside the bar */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis if text is too long */
-    width: 100%; /* Take full width of the bar */
-    text-align: center; /* Center the text */
-    /* No opacity transition needed here, let the parent handle it */
-}
-
-/* On button hover, show the game info bar */
-.btn:hover .game-info-bar {
-    transform: translateY(0); /* Slide the bar up into view */
-}
-
-/* Style for the heart icon */
-.btn .heart-icon {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 4px 5px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    z-index: 5; /* Ensure it's above everything else */
-    cursor: pointer;
-    pointer-events: auto;
-}
-.btn:hover .heart-icon {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: rgba(0, 0, 0, 0.6);
-}
-.btn .heart-icon.hearted {
-    color: #ff6b6b;
-    text-shadow: 0 0 8px rgba(255, 107, 107, 0.8);
-}
-.btn .heart-icon.hearted:hover {
-     color: #ff4747;
-}
-
-/* Keep Favorites Section Styling */
-.favorites-section {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 40px;
-    /* display: none; -- Controlled by JS */
-}
-
-/* Message for no search results */
-#noResultsMessage {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 1.3em;
-    color: #ccc;
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 1200px) {
-    main.hub-container { padding: 90px 30px 20px 30px; }
-    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-    .btn { width: 160px; height: 140px; } /* Adjusted height */
-    .btn .imgg { /* flex-grow will adjust height */ }
-    .game-info-bar { height: 35px; font-size: 0.9em; } /* Adjusted bar height */
-    .game-info-bar .game-name { font-size: 0.9em; }
-}
-
-@media (max-width: 768px) {
-    header { padding: 10px 20px; flex-direction: column; align-items: center; }
-    header nav { margin-top: 10px; }
-    nav ul { gap: 10px; justify-content: center; flex-wrap: wrap; }
-    nav ul li a.nav-link { font-size: 0.9rem; padding: 8px 12px; }
-    .discord-btn { padding: 8px 16px; font-size: 0.9rem; }
-
-    main.hub-container { padding-top: 140px; } /* Increased padding-top */
-
-    .hub-controls { flex-direction: column; align-items: stretch; padding: 10px; gap: 10px; }
-    .search-wrapper { max-width: none; padding: 0px 5px 0px 10px; }
-    #myInput { padding: 8px; font-size: 0.9rem; }
-    .search-icon-btn { padding: 8px; }
-
-    .category-header h6 { font-size: 1.6rem; gap: 8px;}
-    .scroll-arrow { width: 30px; height: 30px; font-size: 0.9rem; }
-    .btn-container, .favorite-container { gap: 15px; padding: 8px 5px 15px 5px; }
-    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
-
-    .btn { width: 140px; height: 130px; } /* Adjusted size */
-    .game-info-bar { height: 30px; font-size: 0.85em; } /* Adjusted bar height */
-    .game-info-bar .game-name { font-size: 0.85em; }
-    .btn .heart-icon { font-size: 1rem; top: 6px; right: 6px; padding: 3px 4px; }
-}
-
-@media (max-width: 480px) {
-     header { padding: 8px 10px; }
-     nav ul { gap: 6px; }
-     nav ul li a.nav-link, .discord-btn { font-size: 0.8rem; padding: 5px 8px; }
-
-     main.hub-container { padding-top: 120px; } /* Adjust padding-top */
-
-    .category-header h6 { font-size: 1.4rem; gap: 6px; }
-    .scroll-arrow { width: 28px; height: 28px; font-size: 0.8rem; }
-    .btn-container, .favorite-container { gap: 10px; padding: 6px 4px 12px 4px; }
-    .btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
-
-    .btn { width: 110px; height: 120px; } /* Adjusted size */
-    .game-info-bar { height: 25px; font-size: 0.75em; } /* Adjusted bar height */
-    .game-info-bar .game-name { font-size: 0.75em; }
-    .btn .heart-icon { font-size: 0.9rem; top: 5px; right: 5px; padding: 3px; }
-}
-
-/* Style for the message when no results are found */
-#noResultsMessage {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 1.3em;
-    color: #ccc;
-}
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Lato', sans-serif;
-        scroll-behavior: smooth;
-      }
-
-      body {
-        overflow-x: hidden;
-        position: relative;
-        background-color: #000000; /* Slightly darker base background */
-      }
-
-      /* Dark overlay - less needed with dark base color, but can add depth */
-      body::before {
-        content: '';
-        position: absolute;
+    /* --- Settings Side Menu Styles --- */
+    /* The settings section becomes the fixed side panel */
+    section#settings.content-section {
+        position: fixed; /* Fix it to the viewport */
         top: 0;
-        left: 0;
+        /* Initial hidden state */
+        right: -350px; /* Start off-screen to the right (adjust width below) */
+        visibility: hidden; /* Hide completely when off-screen */
         width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* Adjusted opacity */
-        z-index: -11;
-        pointer-events: none; /* Allow clicks through the overlay */
-      }
+        max-width: 340px; /* Set the maximum width of the side menu */
+        height: 100vh; /* Full viewport height */
+        overflow-y: auto; /* Allow scrolling within the settings panel */
+        background-color: var(--overlay-background, rgba(0, 0, 0, 0.95)); /* Use overlay color, fallback to dark */
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        z-index: 100; /* Higher than main content and particles */
+        /* Corrected Transitions:
+           - `right` transitions immediately.
+           - `visibility` transitions with a delay equal to the `right` transition duration
+             when going FROM visible TO hidden.
+           - `visibility` transitions immediately (0s delay) when going FROM hidden TO visible.
+        */
+        transition: right 0.3s ease-out, visibility 0s linear 0.3s;
 
-      /* Particles.js Container */
-      #particles-js {
+        /* Apply content-section padding internally, but adjust top for fixed header */
+        padding-top: 80px; /* Ensure space below the fixed header (adjust if header height changes) */
+        padding-bottom: 40px; /* Add padding at the bottom for scroll */
+        padding-left: 20px; /* Add some internal horizontal padding */
+        padding-right: 20px; /* Add some internal horizontal padding */
+        box-sizing: border-box; /* Include padding in width/height calculation */
+        /* Ensure it's visible for positioning, visibility is controlled by the 'right' property */
+         display: block !important; /* Override any display: none from showSection or other rules */
+    }
+
+    /* Class added by JS when the settings menu is open */
+    section#settings.content-section.is-visible {
+        right: 0; /* Slide into view */
+        visibility: visible; /* Make it visible immediately */
+        /* Transition when becoming visible: right transitions, visibility changes immediately */
+        transition: right 0.3s ease-out, visibility 0s linear 0s;
+    }
+
+    /* Settings Overlay */
+    #settings-overlay {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -10;
-      }
-
-      /* Header */
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 40px; /* Slightly adjusted padding */
-        backdrop-filter: blur(12px); /* Slightly more blur */
-        -webkit-backdrop-filter: blur(12px);
-        position: fixed;
-        width: 100%;
-        z-index: 100;
-        background: rgba(0, 0, 0, 0.7); /* Slightly darker background */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Softer border */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Added subtle shadow */
-
-        /* Initial state for animation */
+        right: 0;
+        bottom: 0;
+        /* Use the same overlay color setting for consistency, but add transparency */
+        /* This background-color is a fallback/default; the variable should control the main color */
+        background-color: rgba(0, 0, 0, 0.5); /* Default dark, semi-transparent background */
+        background-color: var(--overlay-background, rgba(0, 0, 0, 0.5)); /* Use the variable with transparency */
+        z-index: 99; /* Below the settings menu, above main content and particles */
         opacity: 0;
-        transform: translateY(-50px);
-        animation: headerEntrance 0.5s ease-out forwards; /* Faster Animation, starts immediately */
-      }
-
-      @keyframes headerEntrance {
-          from { opacity: 0; transform: translateY(-50px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-
-      header img {
-          height: 50px; /* Keep size consistent */
-          /* Add animation for logo */
-          opacity: 0;
-          transform: translateX(-30px);
-          animation: logoEntrance 0.5s ease-out forwards 0.1s; /* Faster Animation with slight delay */
-      }
-
-      @keyframes logoEntrance {
-          from { opacity: 0; transform: translateX(-30px); }
-          to { opacity: 1; transform: translateX(0); }
-      }
-
-
-      header h1 {
-        font-size: 2rem; /* Slightly reduced size */
-        background: linear-gradient(45deg, #e0e0e0, #a0a0a0); /* Slightly adjusted gradient */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* Softer shadow */
-        margin-left: 15px; /* Space between logo and title if both are shown */
-      }
-
-      /* Navigation */
-      nav ul {
-        display: flex;
-        list-style: none;
-        gap: 15px; /* Slightly reduced gap */
-        align-items: center;
-      }
-
-      nav ul li {
-          /* Initial state for staggered animation */
-          opacity: 0;
-          transform: translateY(-20px);
-          animation: navItemEntrance 0.4s ease-out forwards; /* Faster Animation */
-      }
-
-      /* Staggering navigation items (Adjust delays to be faster) */
-      nav ul li:nth-child(1) { animation-delay: 0.2s; }
-      nav ul li:nth-child(2) { animation-delay: 0.25s; }
-      nav ul li:nth-child(3) { animation-delay: 0.3s; }
-      nav ul li:nth-child(4) { animation-delay: 0.35s; } /* DMCA */
-      nav ul li:nth-child(5) { animation-delay: 0.4s; } /* Built With Pulsar */
-      nav ul li:nth-child(6) { animation-delay: 0.45s; } /* Join Discord */
-
-
-      @keyframes navItemEntrance {
-          from { opacity: 0; transform: translateY(-20px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-
-
-      nav ul li a {
-        text-decoration: none;
-        font-size: 1rem; /* Slightly reduced font size */
-        color: rgba(255, 255, 255, 0.8); /* Softer white */
-        padding: 8px 15px; /* Slightly adjusted padding */
-        border-radius: 5px; /* Softer corners */
-        transition: all 0.3s ease;
-        position: relative; /* Needed for potential pseudo-elements */
-      }
-
-      nav ul li a:hover {
-        color: white;
-        background: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Softer shadow on hover */
-      }
-
-      /* Discord/Special Buttons in Nav */
-       nav ul li .discord-btn {
-        display: inline-block;
-        background: linear-gradient(90deg, #6d84d8, #546ab9); /* Slightly adjusted gradient */
-        color: white;
-        text-decoration: none;
-        padding: 10px 20px; /* Adjusted padding */
-        border-radius: 5px; /* Softer corners */
-        font-weight: bold;
-        box-shadow: 0 0 10px rgba(114, 137, 218, 0.4); /* Discord color shadow */
-        transition: all 0.3s ease;
-      }
-
-      nav ul li .discord-btn:hover {
-        transform: translateY(-2px); /* Slight lift effect */
-        box-shadow: 0 0 20px rgba(114, 137, 218, 0.6);
-      }
-
-
-      /* Hero Section */
-      .hero {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-        position: relative;
-        z-index: 10;
-        flex-direction: column; /* Stack elements vertically */
-      }
-
-      .hero h2 {
-        font-size: 6rem;
-        background: linear-gradient(45deg, #ffffff, #cccccc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-        /* Set display to inline-block so element width fits content width */
-        display: inline-block; /* Key to making ::after position relative to text end */
-
-        /* Initial state for typing animation - Hidden */
-        visibility: hidden; /* Use visibility to hide text content initially */
-        white-space: nowrap; /* Prevent text from wrapping DURING typing */
-        overflow: hidden; /* Hide overflowing text DURING typing */
-        position: relative; /* Needed for the cursor */
-        margin-bottom: 40px; /* Space below the title */
-
-         /* Initial state for glow transition */
-        text-shadow: none;
-      }
-
-      /* Typing cursor */
-      .hero h2::after {
-        content: '';
-        position: absolute;
-        top: 0;
-         /* Use left: 100% to position relative to the text content's right edge */
-         /* Will be set by JS after typing, right:0 used during typing */
-        width: 3px; /* Cursor width */
-        height: 100%; /* Match text height */
-        background-color: white; /* Cursor color */
-         /* Animation controlled by classes */
-        animation: none;
         visibility: hidden; /* Hidden by default */
-        transition: left 0s ease-out, right 0s ease-out; /* Ensure position change is instant */
+        transition: opacity 0.3s ease, visibility 0.3s ease; /* Animate opacity */
+        pointer-events: none; /* Allow clicks to pass through when hidden */
+    }
+
+    /* Class added by JS when the settings menu is open */
+    #settings-overlay.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto; /* Enable clicks to close the menu */
+    }
+
+    /* Style to prevent body scrolling when settings are open */
+    body.settings-open {
+        overflow: hidden;
+    }
+    /* Optional: effect on main content when settings menu is open */
+    body.settings-open .content-section:not(#settings) {
+         filter: blur(10px); /* Example: blur effect on content behind menu */
+         transition: filter 0.3s ease; /* Smooth the blur */
+         pointer-events: none; /* Disable interaction with main content */
+    }
+
+
+    /* Header z-index to stay on top of the overlay */
+    header {
+         z-index: 101; /* Ensure header is above settings menu and overlay */
+    }
+
+
+    /* Responsive adjustments for the settings menu */
+    @media (max-width: 768px) {
+         .content-section:not(#settings) {
+              padding-top: 90px; /* Adjust based on header height */
+              padding-left: var(--content-padding-x-md, 30px);
+              padding-right: var(--content-padding-x-md, 30px);
+         }
+         section#settings.content-section {
+             max-width: 280px; /* Adjust menu width */
+             right: -290px; /* Adjust off-screen position */
+             padding-top: 80px; /* Keep space below header */
+        }
+        section#settings.content-section.is-visible {
+             right: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+         .content-section:not(#settings) {
+              padding-top: 100px; /* Keep consistent with 768px or adjust */
+              padding-left: var(--content-padding-x-sm, 15px);
+              padding-right: var(--content-padding-x-sm, 15px);
+         }
+         section#settings.content-section {
+             max-width: 90%; /* Allow wider on very small screens */
+             right: -100%; /* Ensure it's fully hidden off-screen */
+             padding-top: 80px; /* Keep space below header */
+        }
+        section#settings.content-section.is-visible {
+             right: 0;
+        }
+    }
+
+     /* --- Custom Cursor Styles --- */
+     #custom-cursor {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 24px; /* Increased Size */
+         height: 24px; /* Increased Size */
+         border-radius: 50%;
+         border: 2px solid var(--cursor-border-color, rgba(255, 255, 255, 0.5));
+         pointer-events: none;
+         z-index: 10000;
+         opacity: 0;
+         /* Base transition: opacity animates, transform (position) is instant */
+         transition: opacity 0.3s ease, transform 0s linear;
+         /* Set initial transform to handle CSS variables */
+         transform: translate(var(--mouse-x, 0), var(--mouse-y, 0)); /* Default 0 if vars not set yet */
+     }
+
+     /* Only show the custom cursor if enabled by setting */
+     body.custom-cursor-enabled #custom-cursor {
+          opacity: 1; /* Visible when enabled */
+     }
+
+     /* Hide the default cursor when the custom cursor is enabled */
+     body.custom-cursor-enabled {
+          cursor: none !important;
+     }
+
+
+     /* Style for interactive elements, only applies if cursor is enabled */
+     body.custom-cursor-enabled #custom-cursor.on-interactive {
+         /* Keep translate from base, just add scale and border transition */
+          transform: translate(var(--mouse-x), var(--mouse-y)) scale(1.5); /* Example hover scale */
+          border-color: var(--cursor-hover-border-color, #007bff); /* Use variable for hover color */
+          /* Add transitions for the properties that change specifically on hover (scale, border-color) */
+          transition: opacity 0.3s ease, transform 0.1s ease, border-color 0.2s ease; /* Scale transition 0.1s */
+     }
+      body.custom-cursor-enabled #custom-cursor.clicked {
+         /* Keep translate from base, just add scale transition */
+         transform: translate(var(--mouse-x), var(--mouse-y)) scale(0.8); /* Example click scale */
+          /* Add transitions for the properties that change specifically on click (scale) */
+        transition: opacity 0.3s ease, transform 0.1s ease; /* Scale transition 0.1s */
+      }
+      /* When not interactive or clicked, the base styles apply, which should now have transform: 0s linear */
+
+
+     /* --- Unfocused Overlay Styles --- */
+     #unfocused-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Use background-image set by JS based on selection */
+        background-size: cover; /* This makes the image cover the entire area */
+        background-position: center; /* This centers the image */
+        background-repeat: no-repeat; /* Prevent the image from tiling */
+
+        /* Fallback background color if the image doesn't load */
+        background-color: #f8f8f8;
+
+        display: none; /* Hidden by default */
+        /* INCREASED Z-INDEX to be above the header (101) */
+        z-index: 102;
+
+        box-sizing: border-box;
+         pointer-events: none; /* Disable interaction with content below */
+     }
+
+
+      /* Optional: Add body class for unfocused state to disable interaction on main content */
+      body.unfocused .content-section:not(#settings) {
+           /* pointer-events handled by overlay now */
+           /* filter: blur(5px); */
+           /* transition: filter 0.3s ease; */
       }
 
-      /* State to show cursor and follow typing (non-blinking) */
-       .hero h2.typing::after {
-           visibility: visible;
-           animation: none; /* Ensure no blinking during typing */
-           right: 0; /* Position at the right edge of the overflowed box */
-           left: auto; /* Reset left */
+     /* --- Settings UI Control Styles --- */
+     /* Ensure buttons and selects inside settings have dark theme styles */
+     #settings.content-section button,
+     #settings.content-section select {
+         background-color: var(--button-background-dark, #333);
+         color: var(--button-text-color-dark, #eee);
+         border: 1px solid var(--button-border-color-dark, #555);
+         border-radius: 4px;
+         padding: 8px 12px;
+         font-family: inherit;
+         font-size: 1rem;
+         cursor: pointer;
+         transition: background-color 0.2s ease, border-color 0.2s ease;
+     }
+
+      #settings.content-section button:hover,
+      #settings.content-section select:hover {
+          background-color: var(--button-background-hover-dark, #444);
+          border-color: var(--button-border-color-hover-dark, #777);
+      }
+       #settings.content-section button:active {
+           background-color: var(--button-background-active-dark, #222);
+           border-color: var(--button-border-color-active-dark, #666);
        }
 
-
-      /* State to show cursor with blinking (after typing) */
-       .hero h2.typing-done::after {
-          visibility: visible;
-          animation: cursorBlink 1s infinite step-end; /* Blinking animation */
-          left: 100%; /* Position at the right edge of the inline-block h2 content */
-          right: auto; /* Reset right */
+       #settings.content-section button:disabled,
+       #settings.content-section select:disabled {
+           opacity: 0.5;
+           cursor: not-allowed;
        }
 
+     /* --- Sneak Mode Select Specific Styles --- */
+     #sneak-mode-select {
+        /* Override some general button/select styles if needed, or just inherit */
+        /* background-color, color, border inherited from above */
+        padding: 6px 10px; /* Adjust padding specifically for the select */
+        /* Add some default styles to remove browser defaults */
+        -webkit-appearance: none; /* Remove default browser styling in Webkit browsers */
+        -moz-appearance: none;    /* Remove default browser styling in Firefox */
+        appearance: none;         /* Remove default browser styling */
+        /* Add a custom arrow for appearance */
+        /* Using an inline SVG with light grey color (#eeeeee) */
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23eeeeee%22%20d%3D%22M287%2C114.7L159.3%2C242.5c-5.8%2C5.8-15.2%2C5.8-21%2C0L5.4%2C114.7c-5.8-5.8-5.8-15.2%2C0-21l19.8-19.8 c5.8-5.8%2C15.2-5.8%2C21%2C0l109.5%2C109.5l109.5-109.5c5.8-5.8%2C15.2-5.8%2C21%2C0l19.8%2C19.8C292.8%2C99.5%2C292.8%2C108.9%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E');
+        background-repeat: no-repeat;
+        background-position: right 10px top 50%;
+        background-size: 12px auto;
+        padding-right: 30px; /* Make space for the custom arrow */
+     }
 
-      @keyframes cursorBlink {
-          0%, 100% { background-color: transparent; }
-          50% { background-color: white; }
-      }
+     /* Style for options within the dropdown (less reliable cross-browser, may need system overrides) */
+     #sneak-mode-select option {
+       background-color: var(--background-color-dark, #2a2a2a); /* Dark background for options */
+       color: var(--text-color-light, #eeeeee); /* Light text for options */
+     }
+  </style>
+</head>
+<body class="performance-cursor-on"> <!-- Initial class, will be updated by settings -->
+  <div class="version-text">V1.1.2 Fixed Bug Where Apps Would Not Open</div>
 
-       /* Glow animation keyframes - fades in the shadow effect */
-      @keyframes glow {
-        0% {
-          text-shadow: none; /* Start with no shadow */
-        }
-        100% {
-          text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.8); /* Full glow */
-        }
-      }
+  <!-- Unfocused Overlay - This will cover the page when window is unfocused -->
+   <div id="unfocused-overlay">
+       <!-- The background image is applied via CSS by the JS based on the setting -->
+   </div>
 
-      /* Apply glow animation once typing is done */
-      .hero h2.glow {
-          /* Apply the glow animation */
-          animation: glow 1s ease-out forwards, /* Fade in the glow over 1s */
-                     glowRepeat 1.5s infinite alternate 1s; /* Then loop the main glow effect */
-      }
-
-      /* Separate keyframes for the repeating glow */
-      @keyframes glowRepeat {
-          0% {
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
-          }
-          100% {
-            text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.8);
-          }
-      }
-
-
-      /* Container for buttons */
-      .hero .button-container {
-          display: flex;
-          gap: 20px; /* Space between buttons */
-          margin-top: 30px; /* Space above buttons */
-      }
-
-      .get-started-btn {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.1); /* Simpler semi-transparent background */
-        border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
-        color: white;
-        text-decoration: none;
-        padding: 15px 30px; /* Adjusted padding */
-        border-radius: 5px;
-        transition: all 0.3s ease;
-        font-weight: bold;
-        backdrop-filter: blur(8px); /* Increased blur */
-        -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle initial shadow */
-        position: relative; /* Needed for potential effects */
-        overflow: hidden; /* Hide pseudo-elements initially */
-
-        /* Initial state for animation */
-        opacity: 0;
-        transform: translateY(30px);
-        animation: buttonEntrance 0.5s ease-out forwards; /* Faster Animation */
-      }
-
-      /* Staggering buttons (Adjust delays to start sooner, potentially overlap with typing) */
-      .hero .button-container .get-started-btn:nth-child(1) { animation-delay: 0.9s; }
-      .hero .button-container .get-started-btn:nth-child(2) { animation-delay: 1.0s; }
-      .hero .button-container .get-started-btn:nth-child(3) { animation-delay: 1.1s; }
-      .hero .button-container .get-started-btn:nth-child(4) { animation-delay: 1.2s; }
-
-
-      @keyframes buttonEntrance {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-
-
-      .get-started-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px); /* Slight lift */
-      }
-
-       /* Optional: Add a ripple or subtle effect on hover */
-      .get-started-btn::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          background: rgba(255, 255, 255, 0.3);
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
-          transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease; /* Include opacity */
-          z-index: 0;
-          opacity: 0;
-          pointer-events: none; /* Don't interfere with clicks */
-      }
-
-      .get-started-btn:hover::before {
-          width: 200px;
-          height: 200px;
-          opacity: 1;
-      }
-
-      /* Moving Phrases Container */
-/* Moving Phrases Container */
-.moving-phrases {
-  position: absolute;
-  bottom: 50px; /* Fixed position for visibility */
-  left: 0;
-  width: 100%;
-  height: 120px; /* Space for phrases */
-  background: rgba(0, 0, 0, 0.2); /* Keep red for debugging */
-  overflow: hidden; /* Hide out-of-bounds phrases */
-  pointer-events: none; /* Allow clicks through */
-  z-index: 50; /* Above other elements */
-}
-
-/* Moving Phrase Text */
-.moving-phrase {
-  position: absolute;
-  font-size: 1.5rem; /* Larger for visibility */
-  color: #ffffff !important; /* Force fallback color */
-  background: linear-gradient(45deg, #ffffff, #cccccc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
-  white-space: nowrap; /* Prevent wrapping */
-  opacity: 0; /* Start invisible for animation */
-  will-change: transform, opacity; /* Optimize animation */
-  border: 1px solid #ffffff; /* Debug border to see element */
-}
-
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-  /* Existing styles */
-  header {
-    flex-direction: column;
-    padding: 10px 20px;
-    align-items: flex-start;
-  }
-  header img {
-    height: 40px;
-    margin-bottom: 10px;
-  }
-  header { animation-delay: 0s !important; }
-  header img { animation-delay: 0.1s !important; }
-  nav ul li:nth-child(1) { animation-delay: 0.2s !important; }
-  nav ul li:nth-child(2) { animation-delay: 0.25s !important; }
-  nav ul li:nth-child(3) { animation-delay: 0.3s !important; }
-  nav ul li:nth-child(4) { animation-delay: 0.35s !important; }
-  nav ul li:nth-child(5) { animation-delay: 0.4s !important; }
-  nav ul li:nth-child(6) { animation-delay: 0.45s !important; }
-  header h1 {
-    font-size: 1.6rem;
-    margin-left: 0;
-  }
-  nav ul {
-    margin-top: 10px;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  nav ul li a,
-  nav ul li .discord-btn {
-    font-size: 0.8rem;
-    padding: 6px 12px;
-  }
-  .hero {
-    padding: 15px;
-    justify-content: flex-start;
-    padding-top: 120px;
-    overflow: visible !important;
-    position: relative;
-  }
-  .hero h2 {
-    font-size: 3rem;
-    margin-bottom: 30px;
-  }
-  .hero h2::after {
-    width: 2px;
-  }
-  .hero .button-container {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-    width: 80%;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero .button-container .get-started-btn {
-    width: 100%;
-  }
-  .hero .button-container .get-started-btn:nth-child(1) { animation-delay: 0.9s !important; }
-  .hero .button-container .get-started-btn:nth-child(2) { animation-delay: 1.0s !important; }
-  .hero .button-container .get-started-btn:nth-child(3) { animation-delay: 1.1s !important; }
-  .hero .button-container .get-started-btn:nth-child(4) { animation-delay: 1.2s !important; }
-  .moving-phrases {
-    height: 80px; /* Smaller space */
-    bottom: 30px; /* Higher up */
-  }
-  .moving-phrase {
-    font-size: 1rem; /* Smaller text */
-    border: 1px solid #ffffff; /* Debug border */
-  }
-}
-
-    </style>
-  </head>
-  <body>
-    <div class="version-text">V1.0 ID UPD: Fairly Good Release</div>
-    <!-- Particles.js Background -->
-    <div id="particles-js"></div>
-    <!-- Header -->
-    <header>
+  <!-- Particles.js Background -->
+  <div id="particles-js"></div>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
       <!-- Logo -->
-      <img src="2cJw7a9.png" alt="Input Delay Logo">
+      <img src="2cJw7a9.png" alt="Input Delay Logo" class="header-logo">
       <!-- Navigation -->
       <nav>
         <ul>
           <li><a href="#home" class="nav-link">Home</a></li>
           <li><a href="Games/index.html" class="nav-link">Games</a></li>
           <li><a href="Apps/index.html" class="nav-link">Apps</a></li>
-          <li><a href="AI/aiiframe.html" class="nav-link">AI</a></li>
-          <li><a href="https://forms.gle/CkQLAFKJyxR4qTLs8" target="_blank" class="nav-link">DMCA Takedown Request</a></li>
+          <li><a href="https://forms.google.com/d/e/1FAIpQLSe6_t2_x-P_O_U9b5K6p8N-tG5Q/viewform?usp=sf_link" target="_blank" class="nav-link">DMCA Takedown Request</a></li>
+          <!-- Settings link - now uses an ID to target in JS -->
+          <li><a href="#settings" class="nav-link" id="settings-toggle-link">Settings (BETA)</a></li>
           <li><a href="https://github.com/Yeti1o1/Pulsar" target="_blank" class="discord-btn">Built With Pulsar</a></li>
           <li><a href="https://discord.gg/kRq8HvUrJX" target="_blank" class="discord-btn">Join The Discord</a></li>
         </ul>
       </nav>
-    </header>
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div>
-        <h2 id="typing-text">Input Delay</h2>
-        <!-- Button Container for layout and staggering -->
-        <div class="button-container">
-            <a href="Games/index.html" class="get-started-btn">Games</a>
-            <a href="AI/aiiframe.html" class="get-started-btn">AI</a>
-            <a href="Apps/index.html" class="get-started-btn">Apps</a>
-            <a href="https://docs.google.com/document/d/1dulPAgELy_sAnjRUcffULBklERN8qkAtK3KmaxIMiQU/edit?usp=sharing" target="_blank" class="get-started-btn">More Links</a>
+    </div>
+  </header>
+
+  <!-- Hero Section (Content Section) -->
+  <section id="home" class="hero content-section">
+    <div class="hero-content-wrapper">
+      <h2 id="typing-text">Input Delay</h2>
+      <div class="button-container">
+        <a href="Games/index.html" class="get-started-btn">Games</a>
+        <a href="Apps/index.html" class="get-started-btn">Apps</a>
+        <a href="https://docs.google.com/document/d/1dulPAgELy_sAnjRUcffULBklERN8qkAtK3KmaxIMiQU/edit?usp=sharing" target="_blank" class="get-started-btn">More Links</a>
+      </div>
+    </div>
+    <div class="moving-phrases" id="moving-phrases"></div>
+  </section>
+
+  <!-- Settings Side Menu (Content Section) -->
+  <!-- This section is now positioned fixed via CSS -->
+  <section id="settings" class="content-section">
+    <h2>Settings</h2>
+    <div class="settings-group">
+      <h3>General</h3>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label for="theme-select">Theme:</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <select id="theme-select" disabled title="Currently only Dark theme is available.">
+            <option value="dark">Dark (Default)</option>
+            <option value="light" disabled>Light (Not Available)</option>
+          </select>
         </div>
       </div>
-      <!-- Moving Phrases Container -->
-      <div class="moving-phrases" id="moving-phrases"></div>
-    </section>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label>UI Animations:</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <button id="animations-button" type="button" data-state="on">Animations ON</button>
+        </div>
+      </div>
+    </div>
+     <div class="settings-group">
+         <h3>Behavior</h3>
+         <div class="setting-item">
+             <div class="setting-label-wrapper">
+                 <label for="open-blank-button">Open Links in New Tab (about:blank):</label>
+             </div>
+             <div class="setting-control-wrapper">
+                 <button id="open-blank-button" type="button" data-state="off">Open OFF</button> <!-- Default OFF -->
+             </div>
+         </div>
+          <div class="setting-item">
+             <div class="setting-label-wrapper">
+                 <!-- Updated label text -->
+                 <label for="sneak-mode-select">Sneak Mode (Image When Cursor Leaves Window):</label>
+             </div>
+             <div class="setting-control-wrapper">
+                 <!-- Replaced button with select -->
+                 <select id="sneak-mode-select">
+                     <option value="off">Off</option>
+                     <option value="GoogleSearch">Google Search</option>
+                     <option value="GoogleDocs">Google Docs</option>
+                     <option value="GoogleClassroom">Google Classroom</option>
+                     <!-- Add more options here if you add more images to Imgs/ -->
+                 </select>
+             </div>
+         </div>
+     </div>
+    <div class="settings-group">
+      <h3>Customization</h3>
+      <div class="setting-item">
+        <div class="setting-control-wrapper">
+          <button id="enable-cursor-button" type="button" data-state="on">Cursor ON</button> <!-- Default OFF -->
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label>Background Overlay Color:</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <div class="color-button-list" data-setting="overlay">
+            <button class="settings-color-button" data-color="rgba(0, 0, 0, 0.95)" style="background-color: rgba(0, 0, 0, 0.95);" title="Black (Default)"></button> <!-- Updated default value -->
+            <button class="settings-color-button" data-color="#000000" style="background-color: #000000;" title="Black"></button>
+            <button class="settings-color-button" data-color="#1A1A1A" style="background-color: #1A1A1A;" title="Very Dark Grey"></button>
+            <button class="settings-color-button" data-color="#333333" style="background-color: #333333;" title="Dark Grey"></button>
+            <button class="settings-color-button" data-color="#555555" style="background-color: #555555;" title="Medium Grey"></button>
+            <button class="settings-color-button" data-color="#777777" style="background-color: #777777;" title="Grey"></button>
+            <button class="settings-color-button" data-color="#999999" style="background-color: #999999;" title="Light Grey"></button>
+            <button class="settings-color-button" data-color="#CCCCCC" style="background-color: #CCCCCC;" title="Very Light Grey"></button>
+            <button class="settings-color-button" data-color="#FFFFFF" style="background-color: #FFFFFF;" title="White"></button>
+            <button class="settings-color-button" data-color="#FF6F61" style="background-color: #FF6F61;" title="Coral"></button>
+            <button class="settings-color-button" data-color="#FFB347" style="background-color: #FFB347;" title="Peach"></button>
+            <button class="settings-color-button" data-color="#FFFF66" style="background-color: #FFFF66;" title="Pastel Yellow"></button>
+            <button class="settings-color-button" data-color="#B2FF66" style="background-color: #B2FF66;" title="Lime"></button>
+            <button class="settings-color-button" data-color="#66FFB2" style="background-color: #66FFB2;" title="Mint"></button>
+            <button class="settings-color-button" data-color="#66B2FF" style="background-color: #66B2FF;" title="Sky Blue"></button>
+            <button class="settings-color-button" data-color="#B266FF" style="background-color: #B266FF;" title="Lavender"></button>
+            <button class="settings-color-button" data-color="#FF66B2" style="background-color: #FF66B2;" title="Pink"></button>
+            <button class="settings-color-button" data-color="#778899" style="background-color: #778899;" title="Slate Grey"></button>
+            <button class="settings-color-button" data-color="#DAA520" style="background-color: #DAA520;" title="Goldenrod"></button>
+            <button class="settings-color-button" data-color="#CD5C5C" style="background-color: #CD5C5C;" title="Indian Red"></button>
+            <button class="settings-color-button" data-color="#007bff" style="background-color: #007bff;" title="Primary Blue"></button>
+            <button class="settings-color-button" data-color="#28a745" style="background-color: #28a745;" title="Success Green"></button>
+            <button class="settings-color-button" data-color="#dc3545" style="background-color: #dc3545;" title="Danger Red"></button>
+            <button class="settings-color-button" data-color="#ffc107" style="background-color: #ffc107;" title="Warning Yellow"></button>
+            <button class="settings-color-button" data-color="#17a2b8" style="background-color: #17a2b8;" title="Info Cyan"></button>
+            <button class="settings-color-button" data-color="#e9ecef" style="background-color: #e9ecef;" title="Light"></button>
+            <button class="settings-color-button" data-color="#6c757d" style="background-color: #6c757d;" title="Secondary Grey"></button>
+            <button class="settings-color-button" data-color="#343a40" style="background-color: #343a40;" title="Dark"></button>
+            <button class="settings-color-button" data-color="#6f42c1" style="background-color: #6f42c1;" title="Purple"></button>
+            <button class="settings-color-button" data-color="#e83e8c" style="background-color: #e83e8c;" title="Fuschia"></button>
+            <button class="settings-color-button" data-color="#20c997" style="background-color: #20c997;" title="Teal"></button>
+            <button class="settings-color-button" data-color="#fd7e14" style="background-color: #fd7e14;" title="Orange"></button>
+            <button class="settings-color-button" data-color="#6610f2" style="background-color: #6610f2;" title="Indigo"></button>
+          </div>
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label>Background Particles:</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <button id="particles-button" type="button" data-state="on">Particles ON</button>
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label>Lines Between Particles:</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <button id="particles-lines-button" type="button" data-state="on" title="Toggles lines. Requires particles to be ON. The visual effect might require a brief re-render of particles.">Lines ON</button>
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label>Moving Hero Phrases:</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <button id="moving-phrases-button" type="button" data-state="on">Phrases ON</button>
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label>Custom Cursor Performance Mode (Snappy):</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <button id="performance-cursor-button" type="button" data-state="on">Performance ON</button>
+        </div>
+      </div>
+    </div>
+    <div class="settings-group">
+      <h3>Advanced</h3>
+      <div class="setting-item">
+        <div class="setting-label-wrapper">
+          <label>Reset all settings to default:</label>
+        </div>
+        <div class="setting-control-wrapper">
+          <button id="reset-settings-btn">Reset</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-      // Particles.js configuration
-      particlesJS("particles-js", {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": "#ffffff"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            }
-          },
-          "opacity": {
-            "value": 0.5,
-            "random": true,
-            "anim": {
-              "enable": false,
-              "speed": 1,
-              "opacity_min": 0.1,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-              "enable": false,
-              "speed": 40,
-              "size_min": 0.1,
-              "sync": false
-            }
-          },
-          "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#ffffff",
-            "opacity": 0.4,
-            "width": 1
-          },
-          "move": {
-            "enable": true,
-            "speed": 6,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": false,
-              "rotateX": 600,
-              "rotateY": 1200
-            }
+  <!-- Settings Overlay (Behind the side menu) -->
+  <div id="settings-overlay"></div>
+
+  <!-- Custom Cursor Element -->
+  <!-- The visibility of this element is now controlled by a body class -->
+  <div id="custom-cursor"></div>
+
+  <!-- Page-Specific Scripts -->
+  <!-- settings.js (or equivalent global settings script) -->
+  <script>
+    // globalSettings.js content should go here or be loaded from the file
+    // The provided globalSettings.js IIFE block will be used.
+    (function() {
+      'use strict';
+      const defaultSettings = {
+        theme: 'dark',
+        enableAnimations: 'on',
+        showParticles: 'on',
+        showParticlesLines: 'on',
+        showMovingPhrases: 'on', // Default ON for the index page
+        performanceCursorOn: 'on',
+        overlayColor: 'rgba(0, 0, 0, 0.95)', // Default dark overlay color with transparency
+        cursorColor: 'rgba(255, 255, 255, 0.5)', // Default cursor border color
+        cursorHoverColor: '#007bff', // Default cursor hover color
+        // --- Updated Default Setting for Sneak Mode ---
+        sneakModeApp: 'off', // Default to 'off'
+        // ----------------------------------------------
+        openInBlank: 'off',
+        enableCustomCursor: 'on', // Default to ON as requested previously
+      };
+
+      let currentSettings = {}; // Store the currently applied settings
+
+      // Mapping of sneakModeApp values to image paths
+      const sneakModeImageMap = {
+           'GoogleSearch': 'Imgs/Google.png', // Adjust extension if needed
+           'GoogleDocs': 'Imgs/Google Docs.png',     // Adjust extension if needed
+           'GoogleClassroom': 'Imgs/Google Classroom.png', // Adjust extension if needed
+           // Add more mappings here for other apps
+      };
+
+      function loadSettings() {
+        let savedSettings = {};
+        try {
+          const savedString = localStorage.getItem('userSettings');
+          if (savedString) {
+            savedSettings = JSON.parse(savedString);
+            console.log("globalSettings.js: Loaded settings from localStorage", savedSettings); // Debug load
           }
-        },
-        "interactivity": {
-          "detect_on": "window",
-          "events": {
-            "onhover": {
-              "enable": false
-            }
-          }
-        },
-        "retina_detect": true
-      });
-    
-      // JavaScript for Typing Animation and Moving Phrases
-      document.addEventListener('DOMContentLoaded', () => {
-          const textElement = document.getElementById('typing-text');
-          const originalText = textElement.textContent;
-          textElement.textContent = ''; // Clear text initially
-          textElement.style.visibility = 'visible'; // Make element visible, but content is empty
-    
-          let charIndex = 0;
-          const typingSpeed = 80; // Adjust typing speed (milliseconds per character)
-          const delayBeforeGlow = 200; // Delay after typing finishes before glow starts (milliseconds)
-    
-          // Add class to show cursor and indicate typing state
-          textElement.classList.add('typing');
-    
-          function typeWriter() {
-              if (charIndex < originalText.length) {
-                  textElement.textContent += originalText.charAt(charIndex);
-                  charIndex++;
-                  requestAnimationFrame(() => setTimeout(typeWriter, typingSpeed));
-              } else {
-                  textElement.classList.remove('typing');
-                  textElement.classList.add('typing-done');
-                  setTimeout(() => {
-                      textElement.classList.add('glow');
-                  }, delayBeforeGlow);
-              }
-          }
-    
-          const startTypingDelay = 600;
-          setTimeout(typeWriter, startTypingDelay);
-    
-        // Moving Phrases Animation
-console.log('Initializing moving phrases');
-const phrasesContainer = document.getElementById('moving-phrases');
-const phrases = [
-'No, this didnt take 8 years mom',
-'Best games on the internet... I think',
-'My name is retep, and I am evil',
-'New features coming never!',
-'Are you sure?',
-'Whoops, I accidentally nuked Poland!',
-'Im still stuck in the bathroom send help',
-'If you paid for this, you got scammed lil bro',
-'Maybe with ads!',
-'Muhehehehehehehehehehehehehehehehehehehehehehehehehehehehehe',
-'What is 8+7? You dont know? Well too bad.',
-'Frank Ocean please come back!'
-];
-
-function createPhrase() {
-    const phraseElement = document.createElement('div');
-    phraseElement.className = 'moving-phrase';
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    phraseElement.textContent = randomPhrase;
-    phrasesContainer.appendChild(phraseElement);
-
-    // Random vertical position (10px to 100px)
-    const verticalPos = 10 + Math.random() * 100;
-    // Fixed duration for testing
-    const duration = 6;
-    // No delay for immediate visibility
-    const delay = 0;
-
-    // Generate a unique keyframes name
-    const keyframesName = `movePhrase${Math.random().toString(36).substr(2, 9)}`;
-
-    // Set initial styles
-    phraseElement.style.top = `${verticalPos}px`;
-    phraseElement.style.left = '0';
-    phraseElement.style.animation = `${keyframesName} ${duration}s linear ${delay}s forwards`;
-
-    // Define animation keyframes
-    const keyframes = `
-        @keyframes ${keyframesName} {
-            0% { transform: translateX(0); opacity: 0.5; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateX(100vw); opacity: 0; }
+        } catch (e) {
+          console.error("globalSettings.js: Error loading settings:", e);
         }
-    `;
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = keyframes;
-    document.head.appendChild(styleSheet);
+        // Merge default settings with saved settings, saved takes precedence
+        // Ensure saved values are treated correctly, including falsy or specific strings
+         currentSettings = {
+            ...defaultSettings,
+            ...savedSettings,
+            // Explicitly handle settings that might be saved as falsy values or require specific validation
+            overlayColor: savedSettings.hasOwnProperty('overlayColor') ? savedSettings.overlayColor : defaultSettings.overlayColor,
+             sneakModeApp: savedSettings.hasOwnProperty('sneakModeApp') && savedSettings.sneakModeApp !== undefined && (savedSettings.sneakModeApp === 'off' || sneakModeImageMap[savedSettings.sneakModeApp])
+                            ? savedSettings.sneakModeApp // Use saved if valid
+                            : defaultSettings.sneakModeApp // Otherwise use default
+         };
+         console.log("globalSettings.js: Merged and set currentSettings:", currentSettings); // Debug merged settings
+        return { ...currentSettings }; // Return a copy
+      }
 
-    phraseElement.addEventListener('animationend', () => {
-        phraseElement.remove();
-        styleSheet.remove();
-        createPhrase();
-    });
-}
+      function applySettings(settings) {
+        currentSettings = { ...settings }; // Update internal state
+        const root = document.documentElement;
+        const body = document.body; // Ensure body reference is available
+        const unfocusedOverlay = document.getElementById('unfocused-overlay'); // Get overlay reference
 
-// Create 2 phrases for testing
-for (let i = 0; i < 1; i++) {
-    setTimeout(createPhrase, i * 500); // Stagger creation
-}
+
+        // Apply CSS Variables for customization
+        root.style.setProperty('--overlay-background', currentSettings.overlayColor);
+        root.style.setProperty('--cursor-border-color', currentSettings.cursorColor);
+        root.style.setProperty('--cursor-hover-border-color', currentSettings.cursorHoverColor);
+
+        // Apply Body Classes for animations, cursor, and unfocused state
+        if (currentSettings.enableAnimations === 'off') {
+          body.classList.add('no-animations');
+        } else {
+          body.classList.remove('no-animations');
+        }
+
+        // Custom cursor class
+        if (currentSettings.enableCustomCursor === 'on') {
+           body.classList.add('custom-cursor-enabled');
+        } else {
+           body.classList.remove('custom-cursor-enabled');
+        }
+
+        // Performance cursor class (still relevant even if custom cursor is off)
+        if (currentSettings.performanceCursorOn === 'on') {
+          body.classList.add('performance-cursor-on');
+        } else {
+          body.classList.remove('performance-cursor-on');
+        }
+
+        // --- Handle Sneak Mode Setting ---
+        const sneakMode = currentSettings.sneakModeApp;
+        if (unfocusedOverlay) {
+             if (sneakMode !== 'off' && sneakModeImageMap[sneakMode]) {
+                 // Enable sneak mode listener and set background image
+                 enableSneakMode(); // Renamed function call
+                 unfocusedOverlay.style.backgroundImage = `url('${sneakModeImageMap[sneakMode]}')`;
+                 console.log(`applySettings: Sneak Mode ON. Image: ${sneakModeImageMap[sneakMode]}`);
+             } else {
+                 // Disable sneak mode listener and clear background image
+                 disableSneakMode(); // Renamed function call
+                 unfocusedOverlay.style.backgroundImage = ''; // Clear the image
+                 console.log("applySettings: Sneak Mode OFF.");
+             }
+        } else {
+            console.warn("applySettings: #unfocused-overlay element not found, cannot apply Sneak Mode background.");
+            disableSneakMode(); // Ensure listeners are off if element is missing
+        }
+        // --- End Sneak Mode Handling ---
+
+
+        // Handle Particles.js toggle
+        // Check if particlesJS is loaded and element exists BEFORE trying to init/destroy
+        if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+          if (currentSettings.showParticles === 'on') {
+            // Re-initialize particles if they should be shown or if lines state changed
+            // The initParticles function handles destroying the old instance if it exists
+            console.log(`applySettings: Particles ON. Lines: ${currentSettings.showParticlesLines}. Initializing/Re-initializing particles.`); // Debug particles init
+            initParticles(currentSettings.showParticlesLines === 'on');
+
+          } else {
+            // Destroy particles if they should be off and are currently running
+             if (window.pJSDom && window.pJSDom.length > 0) {
+                 console.log("applySettings: Particles OFF. Destroying particles."); // Debug particles destroy
+                destroyParticles();
+             }
+          }
+        } else if (document.getElementById('particles-js') && currentSettings.showParticles === 'on') {
+             // particlesJS script might not be loaded yet, or element missing, but particles should be ON
+             console.warn("applySettings: particlesJS script not loaded or #particles-js element not available during applySettings, but showParticles is ON. Will attempt init on load."); // Debug potential issue
+        } else if (document.getElementById('particles-js')) {
+             // particlesJS element exists, but particles are OFF
+             console.log("applySettings: particlesJS element found, but showParticles is OFF. Ensuring particles are off.");
+              if (window.pJSDom && window.pJSDom.length > 0) {
+                 destroyParticles(); // Explicitly destroy if it's on but shouldn't be
+             }
+        }
+
+
+        // Dispatch a custom event to notify other scripts that settings have been applied
+        // Use a timeout of 0 to ensure the current execution thread finishes before the event is handled
+        console.log("applySettings: Dispatching globalSettingsApplied event."); // Debug event dispatch
+        setTimeout(() => {
+          document.body.dispatchEvent(new CustomEvent('globalSettingsApplied', { detail: { settings: currentSettings } }));
+        }, 0);
+      }
+
+      // Initialize Particles.js (Moved inside the IIFE)
+      function initParticles(enableLines) {
+        // Check if particlesJS is available and element exists
+        if (typeof particlesJS === 'undefined' || !document.getElementById('particles-js')) {
+             console.warn("initParticles called, but particlesJS script or element not available. Cannot initialize."); // Debug init failure
+            return; // Exit if not ready
+        }
+
+        // Destroy existing instance before creating a new one if it exists
+        if (window.pJSDom && window.pJSDom.length > 0) {
+           // Check if the *only* reason for re-init is line toggling
+           const currentInstance = window.pJSDom[0]?.pJS;
+           const currentLineState = currentInstance?.particles?.line_linked?.enable;
+           const currentParticlesValue = currentInstance?.particles?.number?.value; // Check particle count as well
+
+           // Also check particle show state from settings
+           const currentSettings = window.getSettings(); // Get latest settings
+           const shouldShow = currentSettings.showParticles === 'on';
+           const shouldHaveLines = currentSettings.showParticlesLines === 'on';
+
+
+           // If shouldShow is false, we shouldn't be initializing, but destroying is handled elsewhere (in applySettings).
+           // If shouldShow is true, check if we *really* need to re-init.
+           // We only need to re-init if the line state is different or if there was no instance before.
+           if (currentInstance && shouldShow) {
+                // Check if line state matches AND if the instance is generally running
+               if (currentLineState === shouldHaveLines) {
+                   console.log("initParticles: Particles already initialized with correct line state and should be ON. Skipping re-initialization.");
+                   return; // Skip re-init if state hasn't changed and particles should be ON
+               } else {
+                    console.log(`initParticles: Particles instance exists but line state needs to change (Current: ${currentLineState}, Target: ${shouldHaveLines}). Destroying before re-init.`);
+                    destroyParticles(); // Destroy to apply new line state
+               }
+           } else if (currentInstance && !shouldShow) {
+                 console.log("initParticles: Particles instance exists but should be OFF. Destroying.");
+                 destroyParticles(); // Explicitly destroy if it's on but shouldn't be
+                 return; // Don't re-init if it should be off
+           } else {
+              console.log("initParticles: No existing particles instance found or should be OFF, proceeding with initial init if ON.");
+           }
+        } else {
+              console.log("initParticles: No existing particles instance found, proceeding with initial init if ON.");
+        }
+
+         // Only initialize if showParticles is ON
+         const currentSettings = window.getSettings();
+         if (currentSettings.showParticles !== 'on') {
+              console.log("initParticles: Particles are set to OFF, skipping initialization after checks.");
+              return;
+         }
+
+
+        // Proceed with initializing a new instance
+         try {
+             console.log(`initParticles: Initializing particlesJS with lines enabled: ${enableLines}.`); // Debug init parameters
+             particlesJS('particles-js', {
+               "particles": {
+                 "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
+                 "color": {"value": "#ffffff"},
+                 "shape": {"type": "circle", "stroke": {"width": 0, "color": "#000000"}, "polygon": {"nb_sides": 5}, "image": {"src": "img/github.svg", "width": 100, "height": 100}},
+                 "opacity": {"value": 0.5, "random": true, "anim": {"enable": false, "speed": 1, "opacity_min": 0.1, "sync": false}},
+                 "size": {"value": 3, "random": true, "anim": {"enable": false, "speed": 40, "size_min": 0.1, "sync": false}},
+                 "line_linked": {
+                   "enable": enableLines, // Use the parameter to toggle lines
+                   "distance": 150,
+                   "color": "#ffffff",
+                   "opacity": 0.4,
+                   "width": 1
+                 },
+                 "move": {"enable": true, "speed": 4, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": {"enable": false, "rotateX": 600, "rotateY": 1200}}
+               },
+               "interactivity": {
+                 "detect_on": "canvas",
+                 "events": {
+                   "onhover": {"enable": true, "mode": "repulse"},
+                   "onclick": {"enable": true, "mode": "push"},
+                   "resize": true
+                 },
+                 "modes": {
+                   "grab": {"distance": 400, "line_linked": {"opacity": 1}},
+                   "bubble": {"distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3},
+                   "repulse": {"distance": 200, "duration": 0.4},
+                   "push": {"particles_nb": 4},
+                   "remove": {"particles_nb": 2}
+                 }
+               },
+               "retina_detect": true
+             });
+            console.log(`initParticles: particlesJS initialized.`); // Debug successful init
+         } catch (e) {
+             console.error("initParticles: Error initializing particlesJS:", e); // Debug init error
+         }
+      }
+
+      // Destroy Particles.js instance (Moved inside the IIFE)
+      function destroyParticles() {
+        // Check if pJSDom exists and has instances
+        if (window.pJSDom && window.pJSDom.length > 0) {
+           console.log("destroyParticles: Attempting to destroy particles instance."); // Debug destroy attempt
+           try {
+                // Use the built-in destroy method if available
+                if (window.pJSDom[0].pJS.fn.vendors.destroypJS) {
+                  window.pJSDom[0].pJS.fn.vendors.destroypJS();
+                  console.log("destroyParticles: particlesJS instance destroyed."); // Debug successful destroy
+                } else {
+                    console.warn("destroyParticles: pJSDom instance found, but destroy method is missing. Clearing pJSDom array."); // Debug missing method
+                     window.pJSDom = []; // Clear array even if destroy fails
+                }
+           } catch (e) {
+               console.error("destroyParticles: Error destroying particlesJS instance:", e); // Debug destroy error
+                window.pJSDom = []; // Ensure array is cleared on error
+           } finally {
+               // Ensure the canvas element is removed/cleared
+                const particlesDiv = document.getElementById('particles-js');
+                if (particlesDiv) {
+                     const canvas = particlesDiv.querySelector('canvas');
+                     if (canvas) {
+                          console.log("destroyParticles: Removing particles canvas element."); // Debug removing canvas
+                          canvas.remove();
+                     }
+                }
+           }
+        } else {
+            console.log("destroyParticles: No particles instance to destroy."); // Debug no instance
+        }
+         // Ensure the #particles-js div is empty
+         const particlesDiv = document.getElementById('particles-js');
+         if (particlesDiv) {
+              particlesDiv.innerHTML = '';
+         }
+      }
+
+
+      // Expose necessary functions to the global scope
+      window.saveSetting = function(key, value) {
+        console.log(`globalSettings.js: Attempting to save setting: ${key} = ${value}`); // Debug save attempt
+        // Load current settings (which also updates the internal currentSettings state)
+        // Create a copy to modify before saving
+        const settingsToSave = { ...loadSettings() }; // loadSettings updates currentSettings internally
+        // Check if the key is a valid setting key
+        if (settingsToSave.hasOwnProperty(key)) {
+          settingsToSave[key] = value;
+          try {
+            localStorage.setItem('userSettings', JSON.stringify(settingsToSave));
+            console.log(`globalSettings.js: Successfully saved setting: ${key}=${value}`); // Debug successful save
+          } catch (e) {
+            console.error("globalSettings.js: Error saving setting:", e);
+          }
+          // Apply the new settings immediately after saving
+          console.log(`globalSettings.js: Calling applySettings after saving ${key}.`); // Log call
+          applySettings(settingsToSave); // This will trigger the globalSettingsApplied event
+        } else {
+             console.warn(`globalSettings.js: Attempted to save unknown setting key: "${key}"`); // Warn about invalid key
+        }
+      };
+
+      window.getSettings = function() {
+         // Return a copy of the current settings to prevent external modification of the internal state
+        return { ...currentSettings };
+      };
+
+      window.clearSettings = function() {
+        console.log("globalSettings.js: Clearing settings..."); // Debug clear attempt
+        localStorage.removeItem('userSettings');
+        // Apply default settings immediately after clearing
+        console.log("globalSettings.js: Calling applySettings after clearing."); // Log call
+        applySettings(defaultSettings);
+        console.log("globalSettings.js: Settings cleared. Applied default settings.");
+         // Dispatch globalSettingsReset event
+         setTimeout(() => {
+            document.body.dispatchEvent(new CustomEvent('globalSettingsReset'));
+         }, 0);
+      };
+
+      // Initial load and apply settings when the DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("globalSettings.js: DOMContentLoaded. Loading and applying initial settings."); // Debug init
+        const initialSettings = loadSettings();
+        console.log("globalSettings.js: Calling applySettings for initial load."); // Log call
+        applySettings(initialSettings); // This will trigger the globalSettingsApplied event
+      });
+
+       // Ensure particles are destroyed if the window is unloaded/closed
+       window.addEventListener('beforeunload', () => {
+            destroyParticles();
+       });
+
+       // If particlesJS script loads AFTER DOMContentLoaded, manually init if needed
+       // This handles cases where the particlesJS script is loaded async or deferred
+       window.addEventListener('load', () => {
+            if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+                const settings = loadSettings(); // Get current settings
+                if (settings.showParticles === 'on' && (!window.pJSDom || window.pJSDom.length === 0)) { // Only init if should be ON and isn't already
+                    console.log("globalSettings.js: particlesJS loaded late, initializing particles based on settings.");
+                    initParticles(settings.showParticlesLines === 'on');
+                } else if (settings.showParticles !== 'on' && (window.pJSDom && window.pJSDom.length > 0)) {
+                     // If particles should be OFF but somehow got initialized before applySettings caught it
+                     console.log("globalSettings.js: particlesJS loaded late, particles should be OFF but seem initialized. Destroying.");
+                     destroyParticles();
+                }
+            }
+       });
+
+
+    })(); // Immediately invoke the IIFE
+
+  </script>
+  <script>
+    // --- Global element references (Initial null state) ---
+    // Most settings UI references will be queried *inside* updateSettingsUIFromLoadedSettings
+    let customCursor = null;
+    let navLinks = null;
+    let contentSections = null; // Needed for showSection hide/show logic
+    let heroSection = null; // Needed for showSection home page check
+    let typingTextElement = null; // Needed for typing animation
+    let originalText = ''; // Ensure default is empty string
+    let movingPhrasesContainer = null; // Needed for phrases animation
+    let body = null; // Initialized in DOMContentLoaded
+
+    // Settings menu elements (Initial null state)
+    let settingsPanel = null; // Needed for toggleSettingsMenu
+    let settingsOverlay = null; // Needed for toggleSettingsMenu
+    let settingsToggleLink = null; // Needed for toggleSettingsMenu listener
+
+    // Specific settings UI elements - these will be queried inside updateSettingsUIFromLoadedSettings
+    let animationsButton = null;
+    let particlesButton = null;
+    let particlesLinesButton = null;
+    let movingPhrasesButton = null;
+    let performanceCursorButton = null;
+    let resetSettingsBtn = null;
+    let overlayColorButtonList = null;
+    let cursorBorderColorButtonList = null;
+    let cursorHoverColorButtonList = null;
+    let openBlankButton = null;
+    let enableCursorButton = null;
+    let sneakModeSelect = null; // Updated reference name
+    let unfocusedOverlay = null; // Needed for sneak mode overlay logic
+
+    // Store the hash that caused the menu to open (if any)
+    let hashThatOpenedSettings = null;
+
+    // Store listeners for mouseleave/mouseenter so we can remove them
+    let mouseEnterListener = null;
+    let mouseLeaveListener = null;
+
+    // Store listeners for settings UI elements so we can remove/re-add without duplicates
+    // Use Maps or Objects to store references
+     const settingsButtonListeners = new Map(); // Map<HTMLElement, Function>
+     const settingsSelectListeners = new Map(); // Map<HTMLElement, Function>
+     const settingsColorButtonListeners = new Map(); // Map<HTMLElement (list), Map<HTMLElement (button), Function>>
+
+
+    // --- Custom Cursor Script ---
+    // (No changes needed here, depends on `customCursor` reference and body class)
+    document.addEventListener('mousemove', (e) => {
+      const currentSettings = window.getSettings ? window.getSettings() : { enableCustomCursor: 'off', performanceCursorOn: 'on' };
+      customCursor = customCursor || document.getElementById('custom-cursor'); // Ensure reference is fresh
+      if (customCursor && currentSettings.enableCustomCursor === 'on') {
+        if (currentSettings.performanceCursorOn === 'on') {
+             if (!customCursor._rafId) {
+                 customCursor._rafId = requestAnimationFrame(() => {
+                     customCursor.style.setProperty('--mouse-x', `${e.clientX}px`);
+                     customCursor.style.setProperty('--mouse-y', `${e.clientY}px`);
+                     customCursor._rafId = null;
+                 });
+             }
+        } else {
+             customCursor.style.setProperty('--mouse-x', `${e.clientX}px`);
+             customCursor.style.setProperty('--mouse-y', `${e.clientY}px`);
+             if (customCursor._rafId) {
+                 cancelAnimationFrame(customCursor._rafId);
+                 customCursor._rafId = null;
+             }
+        }
+      } else {
+           if (customCursor && customCursor._rafId) {
+               cancelAnimationFrame(customCursor._rafId);
+               customCursor._rafId = null;
+           }
+      }
     });
-    </script>
-  </body>
+
+    document.addEventListener('mousedown', (e) => {
+        const currentSettings = window.getSettings ? window.getSettings() : { enableCustomCursor: 'off' };
+         customCursor = customCursor || document.getElementById('custom-cursor'); // Ensure reference is fresh
+         settingsPanel = settingsPanel || document.getElementById('settings'); // Ensure reference is fresh
+         settingsToggleLink = settingsToggleLink || document.getElementById('settings-toggle-link'); // Ensure reference is fresh
+
+        if (!customCursor || currentSettings.enableCustomCursor !== 'on') return;
+        const isClickInsideSettingsPanel = settingsPanel && e.target.closest('#settings');
+        const isClickOnSettingsToggle = settingsToggleLink && e.target.closest('#settings-toggle-link');
+        if (!isClickInsideSettingsPanel && !isClickOnSettingsToggle) {
+             customCursor.classList.add('clicked');
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+       const currentSettings = window.getSettings ? window.getSettings() : { enableCustomCursor: 'off' };
+        customCursor = customCursor || document.getElementById('custom-cursor'); // Ensure reference is fresh
+       if (customCursor && currentSettings.enableCustomCursor === 'on') {
+           customCursor.classList.remove('clicked');
+       }
+    });
+
+    const interactiveElementsSelectors = 'a, button, input[type="text"], select, [role="button"], .settings-color-button';
+
+    function addInteractiveCursorListeners() {
+         const currentSettings = window.getSettings ? window.getSettings() : { enableCustomCursor: 'off' };
+         const cursorEnabled = currentSettings.enableCustomCursor === 'on';
+         customCursor = customCursor || document.getElementById('custom-cursor'); // Ensure reference is fresh
+
+        if (!customCursor) {
+            requestAnimationFrame(addInteractiveCursorListeners);
+            return;
+        }
+
+        // Remove existing listeners before adding
+        document.querySelectorAll(interactiveElementsSelectors).forEach(el => {
+             // Use specific property names for interactive listeners
+            if (el._interactiveEnterListener) {
+                el.removeEventListener('mouseenter', el._interactiveEnterListener);
+                el.removeEventListener('mouseleave', el._interactiveLeaveListener);
+                delete el._interactiveEnterListener;
+                delete el._interactiveLeaveListener;
+            }
+        });
+
+         if (cursorEnabled) {
+            const interactiveElements = document.querySelectorAll(interactiveElementsSelectors);
+            interactiveElements.forEach(el => {
+                el._interactiveEnterListener = handleInteractiveEnter;
+                el._interactiveLeaveListener = handleInteractiveLeave;
+                el.addEventListener('mouseenter', el._interactiveEnterListener);
+                el.addEventListener('mouseleave', el._interactiveLeaveListener);
+            });
+         }
+    }
+
+    function handleInteractiveEnter() {
+      const currentSettings = window.getSettings ? window.getSettings() : { enableCustomCursor: 'off' };
+       customCursor = customCursor || document.getElementById('custom-cursor'); // Ensure reference is fresh
+      if(customCursor && currentSettings.enableCustomCursor === 'on') customCursor.classList.add('on-interactive');
+    }
+
+    function handleInteractiveLeave() {
+      const currentSettings = window.getSettings ? window.getSettings() : { enableCustomCursor: 'off' };
+       customCursor = customCursor || document.getElementById('custom-cursor'); // Ensure reference is fresh
+      if(customCursor && currentSettings.enableCustomCursor === 'on') customCursor.classList.remove('on-interactive');
+    }
+    // --- END Custom Cursor Script ---
+
+
+    // --- Sneak Mode (Cursor Leaves) Script ---
+    function handleMouseEnter() {
+         const currentSettings = window.getSettings ? window.getSettings() : { sneakModeApp: 'off' };
+         unfocusedOverlay = unfocusedOverlay || document.getElementById('unfocused-overlay'); // Ensure reference is fresh
+         body = body || document.body; // Ensure reference is fresh
+
+         // Only react if the feature is ON (not 'off') and the overlay is currently visible (means mouse was outside)
+         if (currentSettings.sneakModeApp !== 'off' && unfocusedOverlay && body && unfocusedOverlay.style.display !== 'none') {
+             console.log("Mouse entered document. Hiding Sneak Mode overlay.");
+             unfocusedOverlay.style.display = 'none';
+             body.classList.remove('unfocused');
+             // Re-show content sections that were hidden
+             contentSections = contentSections || document.querySelectorAll('section.content-section'); // Ensure reference is fresh
+              if(contentSections) {
+                 contentSections.forEach(section => {
+                      if (section.id !== 'settings') { // Don't touch settings panel display
+                          // We can't know exactly which section was visible before, so rely on showSection
+                          // or simply set all non-settings sections to default display (block/flex)
+                          // Relying on showSection is safer for managing state
+                           showSection(window.location.hash); // Re-call showSection to restore content visibility
+                      }
+                 });
+              }
+         }
+    }
+
+    function handleMouseLeave() {
+         const currentSettings = window.getSettings ? window.getSettings() : { sneakModeApp: 'off' };
+         unfocusedOverlay = unfocusedOverlay || document.getElementById('unfocused-overlay'); // Ensure reference is fresh
+         body = body || document.body; // Ensure reference is fresh
+         contentSections = contentSections || document.querySelectorAll('section.content-section'); // Ensure reference is fresh
+
+
+         // Only react if the feature is ON (not 'off') and the overlay is currently hidden (means mouse was inside)
+         if (currentSettings.sneakModeApp !== 'off' && unfocusedOverlay && body && unfocusedOverlay.style.display === 'none') {
+             console.log("Mouse left document. Showing Sneak Mode overlay.");
+             unfocusedOverlay.style.display = 'block';
+             body.classList.add('unfocused'); // Add class to potentially disable pointer events on content
+             // Hide all main content sections when overlay is visible
+              if(contentSections) {
+                 contentSections.forEach(section => {
+                      if (section.id !== 'settings') { // Don't hide the settings panel
+                          section.style.display = 'none';
+                      }
+                 });
+              }
+         }
+    }
+
+
+    function enableSneakMode() {
+        if (mouseEnterListener === null) {
+             mouseEnterListener = handleMouseEnter;
+             mouseLeaveListener = handleMouseLeave;
+             document.documentElement.addEventListener('mouseenter', mouseEnterListener);
+             document.documentElement.addEventListener('mouseleave', mouseLeaveListener);
+             console.log("Sneak Mode (Mouse Leave) listeners enabled.");
+        }
+    }
+
+    function disableSneakMode() {
+         if (mouseEnterListener !== null) {
+            document.documentElement.removeEventListener('mouseenter', mouseEnterListener);
+            document.documentElement.removeEventListener('mouseleave', mouseLeaveListener);
+            mouseEnterListener = null;
+            mouseLeaveListener = null;
+             console.log("Sneak Mode (Mouse Leave) listeners disabled.");
+         }
+         // Ensure content is visible and overlay is hidden when disabling the feature
+         if (unfocusedOverlay && unfocusedOverlay.style.display !== 'none') {
+              handleMouseEnter(); // This will hide the overlay and show content if needed
+         }
+         // Also ensure the background image is cleared
+         if (unfocusedOverlay) {
+             unfocusedOverlay.style.backgroundImage = '';
+         }
+    }
+    // --- END Sneak Mode (Cursor Leaves) Script ---
+
+
+    // --- Settings Side Menu Toggle Logic ---
+    function toggleSettingsMenu(open) {
+         // Ensure references are fresh
+         settingsPanel = settingsPanel || document.getElementById('settings');
+         settingsOverlay = settingsOverlay || document.getElementById('settings-overlay');
+         body = body || document.body;
+         navLinks = navLinks || document.querySelectorAll('.nav-link');
+         settingsToggleLink = settingsToggleLink || document.getElementById('settings-toggle-link');
+
+         if (!settingsPanel || !settingsOverlay || !body || !navLinks || !settingsToggleLink) {
+             console.error("toggleSettingsMenu: Settings elements not found, cannot toggle menu.");
+             // Continue without toggling if elements are missing
+             return;
+         }
+
+         const isOpen = settingsPanel.classList.contains('is-visible');
+         const shouldOpen = open === undefined ? !isOpen : open;
+
+         if (shouldOpen && !isOpen) {
+             console.log("toggleSettingsMenu: Opening settings menu");
+             settingsPanel.classList.add('is-visible');
+             settingsOverlay.classList.add('is-visible');
+             body.classList.add('settings-open');
+             settingsToggleLink.setAttribute('aria-expanded', 'true');
+             document.addEventListener('keydown', handleEscapeKey);
+             requestAnimationFrame(addInteractiveCursorListeners);
+
+             navLinks.forEach(link => {
+                 try {
+                     const linkUrl = new URL(link.href, window.location.href);
+                     const currentUrl = new URL(window.location.href);
+                     const normalizedLinkHash = linkUrl.hash === '#' ? '' : linkUrl.hash.substring(1);
+                     if (linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname && normalizedLinkHash === 'settings') {
+                          link.classList.add('active');
+                     } else {
+                          link.classList.remove('active');
+                     }
+                 } catch(e) {
+                     console.error("toggleSettingsMenu: Error parsing URL for settings link check:", link.href, e);
+                     if (link.getAttribute('href') === '#settings') {
+                         link.classList.add('active');
+                     } else {
+                         link.classList.remove('active');
+                     }
+                 }
+             });
+
+         } else if (!shouldOpen && isOpen) {
+             console.log("toggleSettingsMenu: Closing settings menu");
+             settingsPanel.classList.remove('is-visible');
+             settingsOverlay.classList.remove('is-visible');
+             body.classList.remove('settings-open');
+             settingsToggleLink.setAttribute('aria-expanded', 'false');
+             document.removeEventListener('keydown', handleEscapeKey);
+             requestAnimationFrame(addInteractiveCursorListeners);
+
+              // showSection called here to restore main content view
+              showSection(window.location.hash);
+         } else {
+              console.log("toggleSettingsMenu: No state change needed.");
+         }
+    }
+
+    function handleEscapeKey(event) {
+        settingsPanel = settingsPanel || document.getElementById('settings'); // Ensure reference is fresh
+        if (!settingsPanel || !settingsPanel.classList.contains('is-visible')) return;
+
+         if (event.key === 'Escape') {
+             event.preventDefault();
+             toggleSettingsMenu(false);
+             if (window.location.hash === '#settings') {
+                 const newHash = document.getElementById('home') ? '#home' : '';
+                 history.replaceState(null, '', window.location.pathname + window.location.search + newHash);
+             }
+         }
+    }
+    // --- END Settings Side Menu Toggle Logic ---
+
+
+    // --- Section Toggling Script ---
+    let hasTyped = false;
+    let charIndex = 0;
+    const typingSpeed = 80;
+    const delayBeforeGlow = 200;
+    let typingAnimationTimeout;
+    const phrases = [
+      'No, this didnt take 8 years mom',
+      'Best games on the internet... I think',
+      'My name is retep, and I am evil',
+      'New features coming never!',
+      'Are you sure?',
+      'Whoops, I accidentally nuked Poland!',
+      'Im still stuck in the bathroom send help',
+      'If you paid for this, you got scammed lil bro',
+      'Maybe with ads!',
+      'Muhehehehehehehehehehehehehehehehehehehehehehehehehehehehehe',
+      'What is 8+7? You dont know? Well too bad.',
+      'Frank Ocean please come back!',
+      'Oops, I did it again. (Committed a minor felony)',
+      'Do not feed the developers after midnight.',
+      'We apologise for the inconvenience. (No we dont.)',
+      'Please report any strange noises. Or dont. We cant fix them.',
+    ];
+    let movingPhraseTimer = null;
+
+
+    function showSection(hash) {
+      // Ensure essential references are fresh
+      contentSections = contentSections || document.querySelectorAll('section.content-section');
+      heroSection = heroSection || document.getElementById('home');
+      navLinks = navLinks || document.querySelectorAll('.nav-link');
+      typingTextElement = typingTextElement || document.getElementById('typing-text');
+      movingPhrasesContainer = movingPhrasesContainer || document.getElementById('moving-phrases');
+      body = body || document.body;
+      settingsPanel = settingsPanel || document.getElementById('settings'); // Need settingsPanel here for nav link logic
+
+      if (typeof window.getSettings !== 'function' || !contentSections || !heroSection || !navLinks || !body || !settingsPanel) {
+           console.warn("showSection: Essential elements or getSettings function not ready, retrying...");
+           requestAnimationFrame(() => showSection(hash));
+           return;
+      }
+
+      // Capture originalText if typingTextElement is found and originalText is still empty
+      if (typingTextElement && originalText === '') {
+           originalText = typingTextElement.textContent.trim();
+            console.log("showSection: Captured original typing text for animation:", originalText);
+      }
+
+
+      const currentSettings = window.getSettings();
+      const targetId = hash ? hash.substring(1) : 'home';
+      const targetSection = document.getElementById(targetId);
+      const onHomePage = targetSection && targetSection.id === 'home';
+
+      console.log(`showSection called with hash "${hash}". Target ID: "${targetId}". On Home Page: ${onHomePage}.`);
+
+      // Only update main content visibility if the unfocused overlay is NOT active
+      if (!body.classList.contains('unfocused')) {
+          contentSections.forEach(section => {
+              if (section.id !== 'settings') {
+                  section.style.display = (section === targetSection) ?
+                                           (onHomePage ? 'flex' : 'block') :
+                                           'none';
+              }
+          });
+
+           if (!targetSection && targetId !== 'settings') {
+               console.warn(`showSection: Section for hash "${hash}" not found (and not #settings), defaulting to #home content display.`);
+               if (heroSection) heroSection.style.display = 'flex';
+           }
+      } else {
+           console.log("showSection: Sneak Mode overlay is active, main content visibility is suppressed.");
+          // Visibility is handled by handleMouseLeave/handleMouseEnter and the unfocused class
+           // Ensure *all* non-settings sections are hidden when unfocused, regardless of hash
+            contentSections.forEach(section => {
+                 if (section.id !== 'settings') {
+                     section.style.display = 'none';
+                 }
+            });
+      }
+
+
+      // Update active class on navigation links
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        try {
+          const linkUrl = new URL(link.href, window.location.href);
+          const currentUrl = new URL(window.location.href);
+
+          const normalizedLinkHash = linkUrl.hash === '#' ? '' : linkUrl.hash.substring(1);
+          const normalizedCurrentHash = currentUrl.hash === '#' ? '' : currentUrl.hash.substring(1);
+
+           const isHomeLink = normalizedLinkHash === '' || normalizedLinkHash === 'home';
+           const isCurrentHome = normalizedCurrentHash === '' || normalizedCurrentHash === 'home';
+           const isSettingsLink = normalizedLinkHash === 'settings';
+
+           if ((isHomeLink && isCurrentHome) ||
+               (normalizedLinkHash === normalizedCurrentHash && normalizedLinkHash !== '' && normalizedLinkHash !== 'home')
+              ) {
+                link.classList.add('active');
+           }
+           // Special case: Settings link is active if the settings panel is currently open
+           if (isSettingsLink && settingsPanel?.classList.contains('is-visible')) {
+               link.classList.add('active');
+           }
+            if (!normalizedLinkHash && linkUrl.pathname === currentUrl.pathname && isCurrentHome) {
+                 if (!link.classList.contains('active')) {
+                     link.classList.add('active');
+                 }
+            }
+
+        } catch (e) {
+          console.error("showSection: Error parsing URL for nav link:", link.href, e);
+          const hrefHash = link.href.includes('#') ? link.href.substring(link.href.indexOf('#') + 1) : '';
+          const currentHashRaw = window.location.hash.substring(1);
+           if (hrefHash === currentHashRaw || (!currentHashRaw && (hrefHash === 'home' || hrefHash === ''))) {
+               link.classList.add('active');
+           }
+           if (hrefHash === 'settings' && settingsPanel?.classList.contains('is-visible')) {
+               link.classList.add('active');
+           }
+           if (!hrefHash && new URL(link.href, window.location.href).pathname === window.location.pathname && (!window.location.hash || window.location.hash === '#home')) {
+                if (!link.classList.contains('active')) {
+                     link.classList.add('active');
+                }
+           }
+        }
+      });
+
+      const animationsEnabled = currentSettings.enableAnimations === 'on';
+      const movingPhrasesEnabled = currentSettings.showMovingPhrases === 'on';
+      const isUnfocused = body.classList.contains('unfocused'); // Check the class applied by Sneak Mode
+
+
+      // Logic to start/stop Home page specific animations (typing, phrases)
+      // These only run if currently on the Home section AND animations are enabled AND unfocused overlay is NOT active.
+      if (onHomePage && animationsEnabled && !isUnfocused) {
+          if (!hasTyped) {
+               console.log("showSection: On Home page, animations ON, not unfocused. Typing animation not yet completed. Starting typing...");
+               if (typingTextElement && originalText) {
+                   typingTextElement.textContent = '';
+                   typingTextElement.style.visibility = 'visible';
+                   typingTextElement.classList.remove('typing-done', 'glow');
+                   typingTextElement.classList.add('typing');
+                   typingTextElement.style.overflow = 'hidden';
+                   charIndex = 0;
+                   cancelAnimationFrame(typingAnimationTimeout);
+                   typingAnimationTimeout = requestAnimationFrame(() => {
+                        console.log("showSection: Starting typeWriter after initial delay...");
+                         setTimeout(typeWriter, 600);
+                   });
+               } else {
+                    console.warn("showSection: Typing elements not found or originalText empty, skipping typing animation.");
+                    if(typingTextElement) {
+                        typingTextElement.textContent = originalText || '';
+                        typingTextElement.classList.remove('typing', 'glow', 'typing-done');
+                        typingTextElement.style.overflow = 'visible';
+                        typingTextElement.style.visibility = 'visible';
+                    }
+               }
+          } else {
+               console.log("showSection: On Home page, animations ON, not unfocused. Typing already completed, ensuring final state/glow.");
+               if (typingTextElement) {
+                    typingTextElement.textContent = originalText || '';
+                    typingTextElement.style.visibility = 'visible';
+                    typingTextElement.classList.remove('typing');
+                    typingTextElement.classList.add('typing-done');
+                    typingTextElement.style.overflow = 'visible';
+                     const checkSettings = window.getSettings(); // Re-check just in case
+                     const checkHomePage = window.location.hash === '' || window.location.hash === '#home';
+                     const checkAnimationsEnabled = checkSettings.enableAnimations === 'on';
+                     const checkUnfocused = body.classList.contains('unfocused');
+                     if (checkHomePage && animationsEnabled && !isUnfocused) {
+                         typingTextElement.classList.add('glow');
+                     } else {
+                          typingTextElement.classList.remove('glow');
+                     }
+               }
+               cancelAnimationFrame(typingAnimationTimeout);
+               typingAnimationTimeout = null;
+          }
+
+          if (movingPhrasesEnabled) {
+              console.log("showSection: Moving phrases enabled. Starting timer...");
+               if (movingPhrasesContainer) startMovingPhrasesTimer(); else console.warn("showSection: Moving phrases container not found, cannot start timer.");
+          } else {
+               console.log("showSection: Moving phrases disabled. Stopping timer...");
+               if (movingPhrasesContainer) stopMovingPhrasesTimer(); else console.warn("showSection: Moving phrases container not found, cannot stop timer.");
+          }
+
+      } else {
+         console.log("showSection: Not on Home page, or animations OFF, or unfocused. Stopping home animations.");
+         cancelAnimationFrame(typingAnimationTimeout);
+         typingAnimationTimeout = null;
+         if(typingTextElement) {
+               typingTextElement.textContent = originalText || '';
+               typingTextElement.classList.remove('typing', 'glow', 'typing-done');
+               typingTextElement.style.overflow = 'visible';
+               typingTextElement.style.visibility = 'visible';
+         }
+         hasTyped = false;
+         charIndex = 0;
+
+          if (movingPhrasesContainer) stopMovingPhrasesTimer(); else console.warn("showSection: Moving phrases container not found, cannot stop timer.");
+      }
+
+      addInteractiveCursorListeners();
+    }
+
+
+    function typeWriter() {
+      // Re-check conditions at the start of each character typing step
+      const currentSettings = window.getSettings ? window.getSettings() : { enableAnimations: 'off' };
+      const animationsEnabled = currentSettings.enableAnimations === 'on';
+      const onHomePage = window.location.hash === '' || window.location.hash === '#home';
+      const isUnfocused = body.classList.contains('unfocused');
+      typingTextElement = typingTextElement || document.getElementById('typing-text'); // Ensure ref is fresh
+      if (!originalText && typingTextElement) originalText = typingTextElement.textContent.trim(); // Capture original text if not already
+
+
+      // Stop if conditions are no longer met or animation is already done
+      if (!typingTextElement || !originalText || !animationsEnabled || !onHomePage || isUnfocused || !typingTextElement.classList.contains('typing') || charIndex > originalText.length) {
+          if (!typingTextElement) { console.warn("typeWriter stopping: typingTextElement not found."); }
+          else if (!originalText) { console.warn("typeWriter stopping: originalText not found."); }
+          else if (!animationsEnabled) { console.log("typeWriter stopping: Animations disabled."); }
+          else if (!onHomePage) { console.log("typeWriter stopping: Not on Home page."); }
+          else if (isUnfocused) { console.log("typeWriter stopping: Page unfocused."); }
+          else if (typingTextElement && !typingTextElement.classList.contains('typing')) { console.log("typeWriter stopping: Element lost 'typing' class."); }
+          else if (charIndex > originalText.length) { console.log("typeWriter stopping: charIndex exceeded originalText length."); }
+
+
+         // Ensure final state is correct if stopping prematurely or animations are off/unfocused
+         if (typingTextElement) {
+             typingTextElement.textContent = originalText || ''; // Ensure full text is visible
+             typingTextElement.classList.remove('typing'); // Remove typing class
+             typingTextElement.classList.add('typing-done'); // Add typing-done class
+             typingTextElement.style.overflow = 'visible'; // Allow text to show fully
+             typingTextElement.style.visibility = 'visible'; // Ensure visible
+             // Add glow only if animations are ON, on the home page, AND focused (should be true if we got here, but defensive)
+             if (animationsEnabled && onHomePage && !isUnfocused) {
+                 setTimeout(() => { // Schedule glow after a short delay, re-checking conditions
+                      const checkSettings = window.getSettings();
+                      const checkHomePage = window.location.hash === '' || window.location.hash === '#home';
+                      const animationsEnabledCheck = checkSettings.enableAnimations === 'on';
+                      const isUnfocusedCheck = body.classList.contains('unfocused');
+                      // Only add glow if still on home, animations enabled, focused, and typing is done
+                      if (typingTextElement && animationsEnabledCheck && onHomePageCheck && !isUnfocusedCheck && typingTextElement.classList.contains('typing-done')) {
+                          typingTextElement.classList.add('glow');
+                           console.log("typeWriter: Added glow class.");
+                      } else {
+                          console.log("typeWriter: Conditions changed during glow delay, not adding glow.");
+                      }
+                 }, delayBeforeGlow);
+             } else {
+                  typingTextElement.classList.remove('glow'); // No glow if animations are off or not on home or unfocused
+                  console.log("typeWriter: Not adding glow (animations off, not home, or unfocused).");
+             }
+         }
+         hasTyped = true; // Mark typing as completed
+         typingAnimationTimeout = null; // Clear the animation frame ID
+        return;
+      }
+
+      if (charIndex < originalText.length) {
+        typingTextElement.textContent += originalText.charAt(charIndex);
+        charIndex++;
+        // Use setTimeout for the typing delay, requestAnimationFrame for the loop continuation
+        typingAnimationTimeout = requestAnimationFrame(() => {
+             // Re-check conditions before scheduling the next character
+             const currentSettingsCheck = window.getSettings ? window.getSettings() : { enableAnimations: 'off' };
+             const animationsEnabledCheck = currentSettingsCheck.enableAnimations === 'on';
+             const onHomePageCheck = window.location.hash === '' || window.location.hash === '#home';
+             const isUnfocusedCheck = body.classList.contains('unfocused');
+             // Only continue if animations are still enabled, we are on the home page, focused, and the element is still marked for typing
+             if (animationsEnabledCheck && onHomePageCheck && !isUnfocusedCheck && typingTextElement && typingTextElement.classList.contains('typing')) {
+                 setTimeout(typeWriter, typingSpeed);
+             } else {
+                 console.log("typeWriter: Conditions changed during typing, stopping animation loop.");
+                 // The stop logic above will handle cleanup if needed.
+             }
+         });
+      }
+       // The 'else' condition for completing the typing is now part of the initial check at the start of the function.
+    }
+
+
+    function createPhrase() {
+      // Re-check conditions at the start of creating each phrase
+      const currentSettings = window.getSettings ? window.getSettings() : { enableAnimations: 'off', showMovingPhrases: 'off' };
+      const onHomePage = window.location.hash === '' || window.location.hash === '#home';
+      const animationsEnabled = currentSettings.enableAnimations === 'on';
+      const movingPhrasesEnabled = currentSettings.showMovingPhrases === 'on';
+       const isUnfocused = body.classList.contains('unfocused');
+        movingPhrasesContainer = movingPhrasesContainer || document.getElementById('moving-phrases'); // Ensure ref is fresh
+
+
+      // Check if container exists and if animations should run
+      if (!movingPhrasesContainer || !onHomePage || !animationsEnabled || !movingPhrasesEnabled || isUnfocused) {
+           // Ensure timer is stopped if conditions are no longer met
+           if (movingPhraseTimer !== null) stopMovingPhrasesTimer();
+           // Ensure container is hidden if conditions aren't met to start
+           if (movingPhrasesContainer) movingPhrasesContainer.style.display = 'none';
+           // Clean up any lingering phrases/styles
+           movingPhrasesContainer?.querySelectorAll('.moving-phrase').forEach(phrase => {
+              const animationName = phrase.style.animationName;
+              if (phrase.parentElement) phrase.remove();
+              if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+                 const sheetToRemove = document.getElementById(animationName);
+                 if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+              }
+           });
+           document.head.querySelectorAll('style[id^="movePhrase"]').forEach(styleSheet => styleSheet.remove());
+
+        return;
+      }
+
+      const phraseElement = document.createElement('div');
+      phraseElement.className = 'moving-phrase';
+      const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      phraseElement.textContent = randomPhrase;
+      movingPhrasesContainer.appendChild(phraseElement); // Append immediately to measure width
+
+      requestAnimationFrame(() => { // Use RAF to ensure layout is calculated after appending
+           // Re-check conditions before applying animation, as state might change between append and RAF
+           const settingsNow = window.getSettings ? window.getSettings() : { enableAnimations: 'off', showMovingPhrases: 'off' };
+           const animationsEnabledNow = settingsNow.enableAnimations === 'on';
+           const movingPhrasesEnabledNow = settingsNow.showMovingPhrases === 'on';
+           const onHomePageNow = window.location.hash === '' || window.location.hash === '#home';
+           const isUnfocusedNow = body.classList.contains('unfocused');
+
+           // Remove the phrase if conditions are no longer met immediately before animating
+           if (!phraseElement || !phraseElement.parentElement || !animationsEnabledNow || !movingPhrasesEnabledNow || !onHomePageNow || isUnfocusedNow) {
+               console.log("createPhrase: Moving phrase conditions changed during RAF, cleaning up."); // Debug cleanup
+               if (phraseElement && phraseElement.parentElement) phraseElement.remove();
+               // Ensure timer is stopped if conditions fail here
+               if (movingPhraseTimer !== null) stopMovingPhrasesTimer();
+               // Clean up style tag if created before this check failed
+               const animationName = phraseElement.style.animationName; // Might not be set yet
+               if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+                    const sheetToRemove = document.getElementById(animationName);
+                    if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+               }
+               return;
+           }
+
+            // Calculate vertical position and duration *after* element is in DOM and measured
+           const containerHeight = movingPhrasesContainer.offsetHeight;
+           const phraseHeight = phraseElement.offsetHeight || 30; // Fallback height
+           const verticalPos = 10 + Math.random() * (containerHeight > phraseHeight + 20 ? containerHeight - phraseHeight - 20 : containerHeight * 0.8); // Keep phrase within bounds, add margin
+           const duration = 8 + Math.random() * 5; // Random duration 8-13 seconds
+           const delay = 0; // No delay after creation for simple timing
+
+           // Create unique keyframes name
+           const keyframesName = `movePhrase${Date.now()}${Math.random().toString(36).substr(2, 5)}`;
+           const styleSheet = document.createElement('style');
+           styleSheet.id = keyframesName; // Give the style tag an ID for easy removal
+
+           // Use getBoundingClientRect().width for a more reliable width after layout
+           const phraseWidth = phraseElement.getBoundingClientRect().width || 200; // Fallback if width is 0
+
+
+           styleSheet.textContent = `
+             @keyframes ${keyframesName} {
+               0% { transform: translateX(-100vw); opacity: 0; }
+               10% { opacity: 1; } /* Fade in effect */
+               90% { opacity: 1; } /* Stay opaque for most of the animation */
+               100% { transform: translateX(calc(100vw + ${phraseWidth}px)); opacity: 0; } /* Slide off and fade out */
+             }
+           `;
+           document.head.appendChild(styleSheet); // Add the keyframes to the document
+
+           // Apply styles and animation
+           phraseElement.style.position = 'absolute'; // Ensure absolute positioning within the container
+           phraseElement.style.top = `${verticalPos}px`;
+           phraseElement.style.left = '0'; // Animation starts from off-screen left
+           phraseElement.style.animation = `${keyframesName} ${duration}s linear ${delay}s forwards`; // Apply the animation
+           phraseElement.style.whiteSpace = 'nowrap'; // Prevent wrapping within the phrase
+           phraseElement.style.pointerEvents = 'none'; // Ensure it doesn't interfere with clicks below
+           phraseElement.style.zIndex = 0; // Ensure it's behind main content
+           phraseElement.style.color = 'rgba(255, 255, 255, 0.2)'; // Subtle color (adjust as needed)
+           phraseElement.style.fontSize = '1.5rem'; // Adjust size (adjust as needed)
+           phraseElement.style.fontFamily = 'Lato, sans-serif'; // Match main font
+
+
+           // Clean up the element and style tag when the animation ends
+           const cleanUp = () => {
+             // console.log("Moving phrase animation ended, cleaning up."); // Debug cleanup
+             if (phraseElement && phraseElement.parentElement) phraseElement.remove(); // Remove the phrase element
+             const sheetToRemove = document.getElementById(keyframesName); // Find the style tag by ID
+             if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove(); // Remove the style tag
+           };
+           phraseElement.addEventListener('animationend', cleanUp);
+           phraseElement.addEventListener('animationcancel', cleanUp); // Also clean up if animation is cancelled (e.g., display: none)
+      });
+    }
+
+    function startMovingPhrasesTimer() {
+      const currentSettings = window.getSettings ? window.getSettings() : { enableAnimations: 'off', showMovingPhrases: 'off' };
+      const onHomePage = window.location.hash === '' || window.location.hash === '#home';
+      const animationsEnabled = currentSettings.enableAnimations === 'on';
+      const movingPhrasesEnabled = currentSettings.showMovingPhrases === 'on';
+      const isUnfocused = body.classList.contains('unfocused');
+      movingPhrasesContainer = movingPhrasesContainer || document.getElementById('moving-phrases'); // Ensure ref is fresh
+
+
+      // Only start if conditions are met AND timer is NOT already running
+      if (movingPhrasesContainer && onHomePage && animationsEnabled && movingPhrasesEnabled && !isUnfocused && movingPhraseTimer === null) {
+        console.log("startMovingPhrasesTimer: Starting moving phrases timer...");
+         movingPhrasesContainer.style.display = 'block';
+         createPhrase(); // Create initial phrase
+        movingPhraseTimer = setInterval(createPhrase, 3000); // Create new phrases every 3 seconds
+      } else if (movingPhraseTimer !== null) {
+           // If timer is running, check if it *should* be running. If not, stop it.
+            if (!onHomePage || !animationsEnabled || !movingPhrasesEnabled || isUnfocused) {
+                console.log("startMovingPhrasesTimer: Conditions changed, stopping moving phrases timer.");
+                stopMovingPhrasesTimer();
+            }
+           // If timer is running and conditions are met, do nothing (it's already running)
+      } else {
+           // Conditions not met to start, and timer is null. Ensure container is hidden and clean up.
+           if(movingPhrasesContainer) movingPhrasesContainer.style.display = 'none';
+            movingPhrasesContainer?.querySelectorAll('.moving-phrase').forEach(phrase => {
+             const animationName = phrase.style.animationName;
+             if (phrase.parentElement) phrase.remove();
+             if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+               const sheetToRemove = document.getElementById(animationName);
+               if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+             }
+           });
+           document.head.querySelectorAll('style[id^="movePhrase"]').forEach(styleSheet => styleSheet.remove());
+      }
+    }
+
+    function stopMovingPhrasesTimer() {
+      if (movingPhraseTimer !== null) {
+        clearInterval(movingPhraseTimer);
+        movingPhraseTimer = null;
+        console.log("stopMovingPhrasesTimer: Stopped moving phrases timer.");
+      }
+      movingPhrasesContainer = movingPhrasesContainer || document.getElementById('moving-phrases'); // Ensure ref is fresh
+      if(movingPhrasesContainer) {
+        movingPhrasesContainer.querySelectorAll('.moving-phrase').forEach(phrase => {
+             const animationName = phrase.style.animationName;
+             if (phrase.parentElement) phrase.remove();
+             if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+               const sheetToRemove = document.getElementById(animationName);
+               if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+             }
+           });
+           movingPhrasesContainer.style.display = 'none';
+      }
+       document.head.querySelectorAll('style[id^="movePhrase"]').forEach(styleSheet => styleSheet.remove());
+    }
+
+
+    // Helper functions to update button text (these are correct, they read from getSettings() and query elements)
+    function updateAnimationsButtonText() {
+        const currentSettings = window.getSettings ? window.getSettings() : {};
+        animationsButton = document.getElementById('animations-button'); // Query inside the update function
+        if (animationsButton && currentSettings.hasOwnProperty('enableAnimations')) {
+            const newState = currentSettings.enableAnimations;
+            animationsButton.textContent = `Animations ${newState === 'on' ? 'ON' : 'OFF'}`;
+            animationsButton.dataset.state = newState; // Also update data-state for potential CSS
+            console.log(`updateAnimationsButtonText: Updated #animations-button text to: "${animationsButton.textContent}". data-state set to "${animationsButton.dataset.state}".`);
+        } else {
+            console.warn("updateAnimationsButtonText: #animations-button element or 'enableAnimations' setting not found.");
+        }
+    }
+    function updateParticlesButtonText() {
+        const currentSettings = window.getSettings ? window.getSettings() : {};
+         particlesButton = document.getElementById('particles-button'); // Query inside
+         particlesLinesButton = document.getElementById('particles-lines-button'); // Query inside
+
+        if (particlesButton && currentSettings.hasOwnProperty('showParticles')) {
+            const newState = currentSettings.showParticles;
+            particlesButton.textContent = `Particles ${newState === 'on' ? 'ON' : 'OFF'}`;
+             particlesButton.dataset.state = newState;
+             console.log(`updateParticlesButtonText: Updated #particles-button text to: "${particlesButton.textContent}". data-state set to "${particlesButton.dataset.state}".`);
+             // Update state of the lines button here as well
+             if (particlesLinesButton && currentSettings.hasOwnProperty('showParticlesLines')) {
+                 particlesLinesButton.disabled = newState === 'off';
+                 particlesLinesButton.title = newState === 'off' ? "Requires Particles to be ON" : "Toggles lines. Requires particles to be ON. The visual effect might require a brief re-render of particles.";
+                  console.log(`updateParticlesButtonText: Updated #particles-lines-button disabled state to ${particlesLinesButton.disabled}.`);
+             } else if (!particlesLinesButton) {
+                 console.warn("updateParticlesButtonText: #particles-lines-button not found, cannot update disabled state.");
+             }
+        } else {
+            console.warn("updateParticlesButtonText: #particles-button element or 'showParticles' setting not found.");
+        }
+    }
+    function updateParticlesLinesButtonText() {
+         const currentSettings = window.getSettings ? window.getSettings() : {};
+         particlesLinesButton = document.getElementById('particles-lines-button'); // Query inside
+         particlesButton = document.getElementById('particles-button'); // Query inside
+
+        if (particlesLinesButton && currentSettings.hasOwnProperty('showParticlesLines')) {
+            const newState = currentSettings.showParticlesLines;
+            particlesLinesButton.textContent = `Lines ${newState === 'on' ? 'ON' : 'OFF'}`;
+             particlesLinesButton.dataset.state = newState;
+             console.log(`updateParticlesLinesButtonText: Updated #particles-lines-button text to: "${particlesLinesButton.textContent}". data-state set to "${particlesLinesButton.dataset.state}".`);
+             // Ensure disabled state is correct if particles setting changed
+             if (particlesButton && currentSettings.hasOwnProperty('showParticles')) {
+                  particlesLinesButton.disabled = currentSettings.showParticles === 'off';
+                   particlesLinesButton.title = currentSettings.showParticles === 'off' ? "Requires Particles to be ON" : "Toggles lines. Requires particles to be ON. The visual effect might require a brief re-render of particles.";
+                   console.log(`updateParticlesLinesButtonText: Updated #particles-lines-button disabled state based on particles setting to ${particlesLinesButton.disabled}.`);
+             } else if (!particlesButton) {
+                 console.warn("updateParticlesLinesButtonText: #particles-button not found, cannot determine disabled state.");
+             }
+        } else {
+            console.warn("updateParticlesLinesButtonText: #particles-lines-button element or 'showParticlesLines' setting not found.");
+        }
+    }
+     function updateMovingPhrasesButtonText() {
+         const currentSettings = window.getSettings ? window.getSettings() : {};
+        movingPhrasesButton = document.getElementById('moving-phrases-button'); // Query inside
+        if (movingPhrasesButton && currentSettings.hasOwnProperty('showMovingPhrases')) {
+            const newState = currentSettings.showMovingPhrases;
+            movingPhrasesButton.textContent = `Phrases ${newState === 'on' ? 'ON' : 'OFF'}`;
+             movingPhrasesButton.dataset.state = newState;
+             console.log(`updateMovingPhrasesButtonText: Updated #moving-phrases-button text to: "${movingPhrasesButton.textContent}". data-state set to "${movingPhrasesButton.dataset.state}".`);
+        } else {
+            console.warn("updateMovingPhrasesButtonText: #moving-phrases-button element or 'showMovingPhrases' setting not found.");
+        }
+    }
+    function updatePerformanceCursorButtonText() {
+         const currentSettings = window.getSettings ? window.getSettings() : {};
+        performanceCursorButton = document.getElementById('performance-cursor-button'); // Query inside
+        if (performanceCursorButton && currentSettings.hasOwnProperty('performanceCursorOn')) {
+             const newState = currentSettings.performanceCursorOn;
+            performanceCursorButton.textContent = `Performance ${newState === 'on' ? 'ON' : 'OFF'}`;
+             performanceCursorButton.dataset.state = newState;
+             console.log(`updatePerformanceCursorButtonText: Updated #performance-cursor-button text to: "${performanceCursorButton.textContent}". data-state set to "${performanceCursorButton.dataset.state}".`);
+        } else {
+             console.warn("updatePerformanceCursorButtonText: #performance-cursor-button element or 'performanceCursorOn' setting not found.");
+        }
+    }
+    function updateOpenBlankButtonText() {
+         const currentSettings = window.getSettings ? window.getSettings() : {};
+        openBlankButton = document.getElementById('open-blank-button'); // Query inside
+        if (openBlankButton && currentSettings.hasOwnProperty('openInBlank')) {
+             const newState = currentSettings.openInBlank;
+            openBlankButton.textContent = `Open ${newState === 'on' ? 'in Blank ON' : 'in Default OFF'}`;
+             openBlankButton.dataset.state = newState;
+             console.log(`updateOpenBlankButtonText: Updated #open-blank-button text to: "${openBlankButton.textContent}". data-state set to "${openBlankButton.dataset.state}".`);
+        } else {
+             console.warn("updateOpenBlankButtonText: #open-blank-button element or 'openInBlank' setting not found.");
+        }
+    }
+    function updateEnableCursorButtonText() {
+         const currentSettings = window.getSettings ? window.getSettings() : {};
+        enableCursorButton = document.getElementById('enable-cursor-button'); // Query inside
+        if (enableCursorButton && currentSettings.hasOwnProperty('enableCustomCursor')) {
+             const newState = currentSettings.enableCustomCursor;
+            enableCursorButton.textContent = `Cursor ${newState === 'on' ? 'ON' : 'OFF'}`;
+             enableCursorButton.dataset.state = newState;
+             console.log(`updateEnableCursorButtonText: Updated #enable-cursor-button text to: "${enableCursorButton.textContent}". data-state set to "${enableCursorButton.dataset.state}".`);
+        } else {
+             console.warn("updateEnableCursorButtonText: #enable-cursor-button element or 'enableCustomCursor' setting not found.");
+        }
+    }
+
+
+    // This function updates the UI elements in the settings panel based on current settings.
+    // It is called when global settings are initially loaded or when they change.
+    function updateSettingsUIFromLoadedSettings() {
+      // Check if global settings functions are available
+      if (typeof window.getSettings !== 'function') {
+          console.warn("updateSettingsUIFromLoadedSettings called before globalSettings.js is ready.");
+          return;
+      }
+      const currentSettings = window.getSettings();
+      console.log("updateSettingsUIFromLoadedSettings: Function entered. Applying settings to UI:", currentSettings);
+
+      // --- Get References and Update UI State ---
+      // Query elements *every time* this function runs
+      animationsButton = document.getElementById('animations-button');
+      particlesButton = document.getElementById('particles-button');
+      particlesLinesButton = document.getElementById('particles-lines-button');
+      movingPhrasesButton = document.getElementById('moving-phrases-button');
+      performanceCursorButton = document.getElementById('performance-cursor-button');
+      resetSettingsBtn = document.getElementById('reset-settings-btn');
+      overlayColorButtonList = document.querySelector('#settings .color-button-list[data-setting="overlay"]');
+      cursorBorderColorButtonList = document.querySelector('#settings .color-button-list[data-setting="cursor-border"]');
+      cursorHoverColorButtonList = document.querySelector('#settings .color-button-list[data-setting="cursor-hover"]');
+      openBlankButton = document.getElementById('open-blank-button');
+      enableCursorButton = document.getElementById('enable-cursor-button');
+      sneakModeSelect = document.getElementById('sneak-mode-select');
+      themeSelect = document.getElementById('theme-select');
+
+      // Update ON/OFF button states and text by calling the update functions
+      updateAnimationsButtonText();
+      updateParticlesButtonText(); // This also updates the lines button disabled state
+      updateParticlesLinesButtonText(); // Update lines button text (disabled state handled above)
+      updateMovingPhrasesButtonText();
+      updatePerformanceCursorButtonText();
+      updateOpenBlankButtonText();
+      updateEnableCursorButtonText();
+
+       // --- Sneak Mode Select ---
+       if (sneakModeSelect) {
+           let valueToSet = currentSettings.sneakModeApp;
+           const optionExists = Array.from(sneakModeSelect.options).some(option => option.value === valueToSet);
+
+           if (!optionExists) {
+               console.warn(`updateSettingsUIFromLoadedSettings: Loaded sneakModeApp value "${valueToSet}" does not match any option in the select. Defaulting to "off".`);
+               valueToSet = 'off';
+           }
+           sneakModeSelect.value = valueToSet;
+            console.log(`updateSettingsUIFromLoadedSettings: Set #sneak-mode-select value to "${sneakModeSelect.value}"`);
+
+            const label = sneakModeSelect.closest('.setting-item')?.querySelector('.setting-label-wrapper label');
+             if (label) {
+                  label.textContent = 'Sneak Mode (Image When Cursor Leaves Window):';
+             }
+
+            // Setup Select Listener if not already set up
+            if (!settingsSelectListeners.has(sneakModeSelect)) {
+                setupSelectListener(sneakModeSelect, 'sneakModeApp');
+                 settingsSelectListeners.set(sneakModeSelect, sneakModeSelect._selectChangeListener); // Store reference
+            }
+
+       } else {
+            console.warn("updateSettingsUIFromLoadedSettings: Sneak mode select element not found during UI update.");
+       }
+       // --- End Sneak Mode Select ---
+
+
+      // Theme select is always dark/disabled for now
+      if (themeSelect) {
+        themeSelect.value = 'dark';
+        themeSelect.disabled = true;
+        themeSelect.title = "Currently only Dark theme is available.";
+      } else {
+           console.warn("updateSettingsUIFromLoadedSettings: Theme select element not found.");
+      }
+
+      // Update Color Button selections and Setup Listeners
+      const colorLists = [
+        { list: overlayColorButtonList, settingKey: 'overlayColor' },
+        { list: cursorBorderColorButtonList, settingKey: 'cursorColor' },
+        { list: cursorHoverColorButtonList, settingKey: 'cursorHoverColor' }
+      ];
+
+      colorLists.forEach(({ list, settingKey }) => {
+        if (!list) {
+             console.warn(`updateSettingsUIFromLoadedSettings: Color list for setting "${settingKey}" not found.`);
+             return;
+        }
+        const currentColor = currentSettings[settingKey];
+
+        // Remove active class from all buttons in the list AND ensure listeners are attached
+        list.querySelectorAll('.settings-color-button').forEach(button => {
+             button.classList.remove('active');
+
+             // Setup Color Button Listener if not already set up
+             if (!settingsColorButtonListeners.has(list) || !settingsColorButtonListeners.get(list).has(button)) {
+                  setupColorButtonListButton(button, settingKey); // Setup listener for the individual color button
+                   // Store reference: Map<ListElement, Map<ButtonElement, Function>>
+                  if (!settingsColorButtonListeners.has(list)) settingsColorButtonListeners.set(list, new Map());
+                  settingsColorButtonListeners.get(list).set(button, button._colorButtonListener);
+             }
+        });
+
+        // Add active class to the button matching the current color setting
+        if (currentColor !== undefined && currentColor !== null) {
+           const normalizedCurrentColor = typeof currentColor === 'string' ? currentColor.toUpperCase().replace(/\s/g, '') : String(currentColor).toUpperCase().replace(/\s{2,}/g, ' ');
+           const matchingButton = Array.from(list.querySelectorAll('.settings-color-button')).find(button => {
+               const buttonColor = button.dataset.color;
+                const normalizedButtonColor = buttonColor ? buttonColor.toUpperCase().replace(/\s{2,}/g, ' ') : '';
+               return normalizedButtonColor === normalizedCurrentColor;
+           });
+
+          if (matchingButton) {
+            matchingButton.classList.add('active');
+             console.log(`updateSettingsUIFromLoadedSettings: Set active color button for ${settingKey} to "${currentColor}"`);
+          } else {
+               console.warn(`updateSettingsUIFromLoadedSettings: Current setting color "${currentColor}" (${normalizedCurrentColor}) for ${settingKey} does not match any predefined button.`);
+          }
+        } else {
+            console.warn(`updateSettingsUIFromLoadedSettings: Current setting color for ${settingKey} is undefined or null.`);
+        }
+      });
+
+       // Setup Button Toggle Listeners if not already set up
+       if(animationsButton && !settingsButtonListeners.has(animationsButton)) { setupButtonToggle(animationsButton, 'enableAnimations'); settingsButtonListeners.set(animationsButton, animationsButton._buttonToggleListener); }
+       if(particlesButton && !settingsButtonListeners.has(particlesButton)) { setupButtonToggle(particlesButton, 'showParticles'); settingsButtonListeners.set(particlesButton, particlesButton._buttonToggleListener); }
+       if(particlesLinesButton && !settingsButtonListeners.has(particlesLinesButton)) { setupButtonToggle(particlesLinesButton, 'showParticlesLines'); settingsButtonListeners.set(particlesLinesButton, particlesLinesButton._buttonToggleListener); }
+       if(movingPhrasesButton && !settingsButtonListeners.has(movingPhrasesButton)) { setupButtonToggle(movingPhrasesButton, 'showMovingPhrases'); settingsButtonListeners.set(movingPhrasesButton, movingPhrasesButton._buttonToggleListener); }
+       if(performanceCursorButton && !settingsButtonListeners.has(performanceCursorButton)) { setupButtonToggle(performanceCursorButton, 'performanceCursorOn'); settingsButtonListeners.set(performanceCursorButton, performanceCursorButton._buttonToggleListener); }
+       if(openBlankButton && !settingsButtonListeners.has(openBlankButton)) { setupButtonToggle(openBlankButton, 'openInBlank'); settingsButtonListeners.set(openBlankButton, openBlankButton._buttonToggleListener); }
+       if(enableCursorButton && !settingsButtonListeners.has(enableCursorButton)) { setupButtonToggle(enableCursorButton, 'enableCustomCursor'); settingsButtonListeners.set(enableCursorButton, enableCursorButton._buttonToggleListener); }
+
+       // Setup Reset Button Listener if not already set up and element exists
+       if (resetSettingsBtn && typeof window.clearSettings === 'function' && !settingsButtonListeners.has(resetSettingsBtn)) {
+           const resetListener = function() {
+              console.log("Reset button click: Resetting settings...");
+              window.clearSettings();
+              alert('Settings reset to default!');
+           };
+            if (resetSettingsBtn._resetListener) { resetSettingsBtn.removeEventListener('click', resetSettingsBtn._resetListener); } // Defensive removal
+           resetSettingsBtn.addEventListener('click', resetListener);
+           resetSettingsBtn._resetListener = resetListener; // Store specific reference
+            settingsButtonListeners.set(resetSettingsBtn, resetListener); // Store in map as well
+           console.log("setupResetButton: Listener added to #reset-settings-btn.");
+       } else if (resetSettingsBtn && !settingsButtonListeners.has(resetSettingsBtn)) {
+            console.warn("setupResetButton: #reset-settings-btn found, but clearSettings function not available. Cannot setup listener.");
+       } else if (!resetSettingsBtn) {
+            console.warn("setupResetButton: #reset-settings-btn not found.");
+       }
+
+
+      console.log("updateSettingsUIFromLoadedSettings: Function finished.");
+    }
+
+
+    // Function to setup toggle button listeners (Handles ON/OFF buttons)
+    // Takes element reference directly
+    function setupButtonToggle(button, key) {
+      if (!button || typeof window.saveSetting !== 'function' || typeof window.getSettings !== 'function') {
+           console.warn(`setupButtonToggle: Cannot setup listener for key "${key}". Button element invalid or required functions missing.`);
+           return;
+      }
+
+      // Remove existing listener before adding (using the stored reference)
+      if (settingsButtonListeners.has(button) && button._buttonToggleListener) {
+           button.removeEventListener('click', button._buttonToggleListener);
+           settingsButtonListeners.delete(button); // Remove from map
+      }
+
+      const listener = function() {
+          const latestSettings = window.getSettings();
+          const currentState = latestSettings.hasOwnProperty(key) && latestSettings[key] !== undefined && latestSettings[key] !== null ? latestSettings[key] : 'off';
+
+          const newState = currentState === 'on' ? 'off' : 'on';
+
+          console.log(`Button click: "${button.id}" (${key}) clicked. Current state from getSettings: "${currentState}". Setting new state: "${newState}"`);
+          window.saveSetting(key, newState);
+      };
+
+      button.addEventListener('click', listener);
+      button._buttonToggleListener = listener; // Store the specific listener reference on the element
+       settingsButtonListeners.set(button, listener); // Store in map
+       console.log(`setupButtonToggle: Listener added to #${button.id} for key "${key}".`);
+    }
+
+    // Function to setup *individual* color button listeners
+    function setupColorButtonListButton(button, settingKey) {
+        if (!button || typeof window.saveSetting !== 'function') {
+             console.warn(`setupColorButtonListButton: Cannot setup listener for color button for setting "${settingKey}". Button element invalid or saveSetting function missing.`);
+             return;
+        }
+
+         // Assuming button's parent list has a listener map stored via settingsColorButtonListeners
+         const list = button.closest('.color-button-list');
+         if (list && settingsColorButtonListeners.has(list) && settingsColorButtonListeners.get(list).has(button) && button._colorButtonListener) {
+             button.removeEventListener('click', button._colorButtonListener);
+              // Don't delete from map yet, just remove the listener
+         }
+
+
+        const listener = function() {
+          const selectedColor = this.dataset.color;
+          if (selectedColor !== undefined && selectedColor !== null) {
+             console.log(`Color button click: Color setting "${settingKey}" selected: ${selectedColor}`);
+             window.saveSetting(settingKey, selectedColor);
+          } else {
+             console.warn(`Color button missing data-color attribute for setting "${settingKey}".`);
+          }
+        };
+        button.addEventListener('click', listener);
+        button._colorButtonListener = listener; // Store the specific listener reference on the button
+        // Store in the nested map: Map<ListElement, Map<ButtonElement, Function>>
+        if (!settingsColorButtonListeners.has(list)) settingsColorButtonListeners.set(list, new Map());
+        settingsColorButtonListeners.get(list).set(button, listener);
+
+        // console.log(`setupColorButtonListButton: Listener added to color button for setting "${settingKey}".`);
+    }
+
+    // The setupColorButtonList function now just iterates and calls setupColorButtonListButton
+     function setupColorButtonList(list, settingKey) {
+         if (!list) {
+              console.warn(`setupColorButtonList: Color button list element (setting: ${settingKey}) not found.`);
+              return;
+         }
+
+          // We don't remove listeners from the list itself anymore, only individual buttons
+          // Clear the old map of buttons for this list
+          if (settingsColorButtonListeners.has(list)) {
+               settingsColorButtonListeners.get(list).forEach((listener, button) => {
+                    if (button._colorButtonListener) {
+                         button.removeEventListener('click', button._colorButtonListener);
+                         delete button._colorButtonListener; // Clean up element property
+                    }
+               });
+               settingsColorButtonListeners.get(list).clear(); // Clear the inner map
+          }
+
+
+         list.querySelectorAll('.settings-color-button').forEach(button => {
+             setupColorButtonListButton(button, settingKey); // Setup listener for each button
+         });
+         console.log(`setupColorButtonList: Setup listeners for all color buttons in list for setting "${settingKey}".`);
+     }
+
+
+    // Function to setup select listener
+    // Takes element reference directly
+    function setupSelectListener(selectElement, key) {
+        if (!selectElement || typeof window.saveSetting !== 'function') {
+             console.warn(`setupSelectListener: Cannot setup listener for key "${key}". Select element invalid or saveSetting function missing.`);
+             return;
+        }
+
+        // Remove existing listener before adding (using the stored reference)
+         if (settingsSelectListeners.has(selectElement) && selectElement._selectChangeListener) {
+             selectElement.removeEventListener('change', selectElement._selectChangeListener);
+             settingsSelectListeners.delete(selectElement); // Remove from map
+         }
+
+
+        const listener = function() {
+            const selectedValue = this.value;
+             console.log(`Select change: Setting "${key}" selected value: ${selectedValue}`);
+            window.saveSetting(key, selectedValue);
+        };
+
+        selectElement.addEventListener('change', listener);
+        selectElement._selectChangeListener = listener; // Store the specific listener reference on the element
+         settingsSelectListeners.set(selectElement, listener); // Store in map
+         console.log(`setupSelectListener: Listener added to #${selectElement.id} for key "${key}".`);
+    }
+
+
+    // Main DOMContentLoaded listener for the Index page
+    window.addEventListener('DOMContentLoaded', () => {
+      console.log("Index Page DOMContentLoaded finished. Initializing...");
+
+      // Get essential global element references here
+      body = document.body;
+      navLinks = document.querySelectorAll('.nav-link');
+      contentSections = document.querySelectorAll('section.content-section');
+      heroSection = document.getElementById('home');
+      typingTextElement = document.getElementById('typing-text');
+      movingPhrasesContainer = document.getElementById('moving-phrases');
+      unfocusedOverlay = document.getElementById('unfocused-overlay');
+      settingsPanel = document.getElementById('settings');
+      settingsOverlay = document.getElementById('settings-overlay');
+      settingsToggleLink = document.getElementById('settings-toggle-link');
+
+
+      if (typingTextElement) {
+        originalText = typingTextElement.textContent.trim();
+         console.log("Index Page Init: Captured original typing text for animation:", originalText);
+      } else {
+        originalText = '';
+         console.warn("Index Page Init: Typing text element (#typing-text) not found. Typing animation disabled.");
+      }
+       if (!movingPhrasesContainer) {
+           console.warn("Index Page Init: Moving phrases container (#moving-phrases) not found. Moving phrases animation disabled.");
+       }
+        if (!unfocusedOverlay) {
+           console.warn("Index Page Init: Unfocused overlay (#unfocused-overlay) not found. Sneak mode disabled.");
+            // Sneak mode will be disabled by applySettings if the element is missing.
+       }
+
+
+      // Basic check for critical elements needed for the menu/overlay system to function at all
+      if (!body || !settingsPanel || !settingsOverlay || !settingsToggleLink || !unfocusedOverlay) {
+          console.error("Index Page Init: Critical UI elements for settings menu or sneak mode are missing. These features will not function.");
+          // List missing elements for better debugging
+          if (!body) console.error("Index Page Init: Body element not found.");
+          if (!settingsPanel) console.error("Index Page Init: #settings not found.");
+          if (!settingsOverlay) console.error("Index Page Init: #settings-overlay not found.");
+          if (!settingsToggleLink) console.error("Index Page Init: #settings-toggle-link not found.");
+          if (!unfocusedOverlay) console.error("Index Page Init: #unfocused-overlay not found.");
+
+          // Disable settings link if it exists but can't be used
+          if (settingsToggleLink) {
+              settingsToggleLink.style.display = 'none';
+          }
+
+           // We can still proceed with basic page rendering even if settings/unfocused are broken.
+           // Don't return here.
+      } else {
+           console.log("Index Page Init: All critical UI elements found.");
+           // Attach Settings Menu/Overlay Toggle Listeners only if critical elements exist
+            // 1. Attach Listener for the Settings Toggle Link in the Header
+           if (settingsToggleLink._toggleListener) { settingsToggleLink.removeEventListener('click', settingsToggleLink._toggleListener); }
+           const toggleListener = (event) => { event.preventDefault(); console.log("Settings Toggle Link click: Toggling menu."); toggleSettingsMenu(); };
+           settingsToggleLink.addEventListener('click', toggleListener);
+           settingsToggleLink._toggleListener = toggleListener;
+           settingsToggleLink.setAttribute('aria-expanded', 'false');
+           console.log("Index Page Init: Settings toggle link listener added.");
+
+            // 2. Attach Listener for the Settings Overlay to close the menu
+           if (settingsOverlay._closeListener) { settingsOverlay.removeEventListener('click', settingsOverlay._closeListener); }
+           const closeListener = () => { console.log("Settings Overlay click: Closing menu."); toggleSettingsMenu(false); if (window.location.hash === '#settings') { const newHash = document.getElementById('home') ? '#home' : ''; history.replaceState(null, '', window.location.pathname + window.location.search + newHash); } hashThatOpenedSettings = null; };
+           settingsOverlay.addEventListener('click', closeListener);
+           settingsOverlay._closeListener = closeListener;
+           console.log("Index Page Init: Settings overlay listener added.");
+      }
+
+
+      // --- Setup Global Settings Event Listener ---
+       // This listener ensures UI and page state updates whenever settings change.
+       // It's crucial for the button text updates.
+        console.log("Index Page Init: Attaching globalSettingsApplied listener...");
+        if (body && body._settingsAppliedListener) {
+            body.removeEventListener('globalSettingsApplied', body._settingsAppliedListener);
+        }
+        const settingsAppliedListener = (event) => {
+          console.log("Index page received globalSettingsApplied event.", event.detail.settings);
+          const settings = event.detail.settings;
+
+          // Update settings UI state based on new settings (includes active color buttons, button text, select value)
+          console.log("Index page globalSettingsApplied: Calling updateSettingsUIFromLoadedSettings...");
+          updateSettingsUIFromLoadedSettings(); // This function now handles querying elements and updating text/state
+
+          // Re-run showSection to re-apply animations/phrases/content visibility based on new settings
+           console.log("Index page globalSettingsApplied: Calling showSection with current hash:", window.location.hash);
+           showSection(window.location.hash);
+
+           // Update interactive cursor listeners as elements state might have changed
+           console.log("Index page globalSettingsApplied: Calling addInteractiveCursorListeners...");
+           addInteractiveCursorListeners();
+            console.log("Index page globalSettingsApplied: Handler finished.");
+        };
+        // Only add if body is available
+        if (body) {
+             body.addEventListener('globalSettingsApplied', settingsAppliedListener);
+             body._settingsAppliedListener = settingsAppliedListener; // Store listener reference
+        } else {
+            console.error("Index Page Init: Body element not found, cannot attach globalSettingsApplied listener.");
+        }
+
+
+       // --- Global Settings Reset Event Listener ---
+        console.log("Index Page Init: Attaching globalSettingsReset listener...");
+        if (body && body._settingsResetListener) {
+            body.removeEventListener('globalSettingsReset', body._settingsResetListener);
+        }
+        const settingsResetListener = () => {
+           console.log("Index page received globalSettingsReset event. Resetting typing animation state.");
+            hasTyped = false;
+            charIndex = 0;
+            // The globalSettingsApplied listener (which is triggered by clearSettings calling applySettings)
+            // will handle updating the UI and animations via showSection.
+        };
+         if (body) {
+             body.addEventListener('globalSettingsReset', settingsResetListener);
+              body._settingsResetListener = settingsResetListener;
+              console.log("Index Page Init: globalSettingsReset listener added.");
+         } else {
+            console.error("Index Page Init: Body element not found, cannot attach globalSettingsReset listener.");
+         }
+
+
+       // --- Navigation and Initial Section Display ---
+       // This listener now ONLY calls showSection.
+       window.addEventListener('hashchange', () => {
+        console.log("Index Page: Hash changed from:", hashThatOpenedSettings, "to:", window.location.hash);
+        if (window.location.hash === '#settings') {
+            console.log("Index Page: Hash changed to #settings. Opening settings menu.");
+            toggleSettingsMenu(true);
+             hashThatOpenedSettings = '#settings';
+        } else {
+             if (window.location.hash !== '#settings' && settingsPanel?.classList.contains('is-visible')) {
+                 console.log("Index Page: Hash changed away from #settings and settings menu is open. Closing settings menu.");
+                 toggleSettingsMenu(false);
+             } else {
+                 console.log("Index Page: Hash changed (not related to #settings open state). Calling showSection.");
+                 showSection(window.location.hash);
+             }
+             hashThatOpenedSettings = null;
+        }
+      });
+
+      // Add click listeners to ALL anchor tags on the page
+       document.querySelectorAll('a').forEach(link => {
+            if (link._handleClick) { link.removeEventListener('click', link._handleClick); }
+            const listener = (event) => {
+               const href = link.getAttribute('href');
+               if (!href || href === '#') return;
+               const currentSettings = window.getSettings ? window.getSettings() : { openInBlank: 'off' };
+               const openInBlankEnabled = currentSettings.openInBlank === 'on';
+                try {
+                   const linkUrl = new URL(href, window.location.href);
+                   const currentUrl = new URL(window.location.href);
+                   const isSamePageHashLink = linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname && linkUrl.hash.startsWith('#') && linkUrl.hash !== '';
+                   const isExternalOrCrossPageLink = !(linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname);
+
+                   if (openInBlankEnabled && isExternalOrCrossPageLink) {
+                       console.log(`Link click: Open in Blank ON. Opening external/cross-page link in new tab: ${href}`);
+                       event.preventDefault();
+                       window.open(href, '_blank', 'noopener,noreferrer');
+                   } else if (isSamePageHashLink && (linkUrl.hash || '#home') === (window.location.hash || '#home')) {
+                         // Clicking the currently active hash link on the same page
+                         event.preventDefault();
+                         console.log(`Link click: Clicked link for current hash "${linkUrl.hash || '#home'}". Preventing default and manually calling showSection.`);
+                         if (linkUrl.hash !== '#settings') { // Only manually trigger showSection for main content hashes
+                           showSection(linkUrl.hash);
+                         }
+                         // Settings link click is handled by the dedicated settingsToggleLink listener earlier in this block
+                   }
+                   // For all other links (different same-page hash, or external/cross-page with openInBlank OFF), let default happen
+                } catch (e) {
+                 console.error("Link click: Error processing link click for:", href, e);
+                 if (openInBlankEnabled && href && !href.startsWith('#')) {
+                    console.warn("Link click: Failed to parse URL, but Open in Blank is ON and href doesn't start with #. Attempting to open in blank as fallback.");
+                    event.preventDefault();
+                    window.open(href, '_blank', 'noopener,noreferrer');
+                 } else if (href && href.startsWith('#')) {
+                     event.preventDefault();
+                     const targetHash = href;
+                     if (window.location.hash !== targetHash && (window.location.hash || '#home') !== (targetHash || '#home')) {
+                         history.pushState(null, '', targetHash);
+                     } else {
+                          if (targetHash !== '#settings') {
+                              showSection(targetHash);
+                          }
+                     }
+                 }
+               }
+           };
+           link.addEventListener('click', listener);
+           link._handleClick = listener;
+       });
+
+
+        // --- Initial State Setup ---
+        // Use a short timeout to ensure all DOM elements are available after DOMContentLoaded
+        setTimeout(() => {
+            const initialHash = window.location.hash;
+            console.log("Index Page Init: Initial state setup after timeout (50ms). Hash:", initialHash);
+
+            // Handle initial settings menu state based on the URL hash
+            if (initialHash === '#settings') {
+                console.log("Index Page Init: Initial hash is #settings. Opening settings menu.");
+                toggleSettingsMenu(true);
+                 hashThatOpenedSettings = '#settings';
+                 // showSection is called by toggleSettingsMenu(true) and globalSettingsApplied
+            } else {
+                console.log("Index Page Init: Initial hash is not #settings. Ensuring settings menu is closed.");
+                toggleSettingsMenu(false); // Ensure it's closed initially
+                hashThatOpenedSettings = null;
+                // showSection needs to be called to display the correct initial section
+                 console.log("Index Page Init: Calling showSection for initial hash:", initialHash);
+                showSection(initialHash); // showSection is called by globalSettingsApplied too, but this ensures display ASAP
+            }
+
+            console.log("Index Page Initialization complete.");
+        }, 50);
+    });
+
+     // Include the full text of typeWriter, createPhrase, startMovingPhrasesTimer, stopMovingPhrasesTimer here
+    // Make sure these functions also query element references if they need them outside of DOMContentLoaded
+    // For example, typingTextElement, movingPhrasesContainer could potentially be updated or removed from the DOM by external scripts
+    // It's safer to get fresh references when these functions are called.
+
+    // Copy and paste the typeWriter function here:
+    function typeWriter() {
+      // Re-check conditions at the start of each character typing step
+      const currentSettings = window.getSettings ? window.getSettings() : { enableAnimations: 'off' };
+      const animationsEnabled = currentSettings.enableAnimations === 'on';
+      const onHomePage = window.location.hash === '' || window.location.hash === '#home';
+      body = body || document.body; // Ensure ref is fresh
+      const isUnfocused = body?.classList.contains('unfocused') || false; // Defensive check for body
+
+      typingTextElement = typingTextElement || document.getElementById('typing-text'); // Ensure ref is fresh
+      if (!originalText && typingTextElement) originalText = typingTextElement.textContent.trim(); // Capture original text if not already
+
+      // Stop if conditions are no longer met or animation is already done
+      if (!typingTextElement || !originalText || !animationsEnabled || !onHomePage || isUnfocused || !typingTextElement.classList.contains('typing') || charIndex > originalText.length) {
+          if (!typingTextElement) { /* console.warn("typeWriter stopping: typingTextElement not found."); */ }
+          else if (!originalText) { /* console.warn("typeWriter stopping: originalText not found."); */ }
+          else if (!animationsEnabled) { console.log("typeWriter stopping: Animations disabled."); }
+          else if (!onHomePage) { console.log("typeWriter stopping: Not on Home page."); }
+          else if (isUnfocused) { console.log("typeWriter stopping: Page unfocused."); }
+          else if (typingTextElement && !typingTextElement.classList.contains('typing')) { console.log("typeWriter stopping: Element lost 'typing' class."); }
+          else if (charIndex > originalText.length) { console.log("typeWriter stopping: charIndex exceeded originalText length."); }
+
+
+         // Ensure final state is correct if stopping prematurely or animations are off/unfocused
+         if (typingTextElement) {
+             typingTextElement.textContent = originalText || ''; // Ensure full text is visible
+             typingTextElement.classList.remove('typing'); // Remove typing class
+             typingTextElement.classList.add('typing-done'); // Add typing-done class
+             typingTextElement.style.overflow = 'visible'; // Allow text to show fully
+             typingTextElement.style.visibility = 'visible'; // Ensure visible
+             // Add glow only if animations are ON, on the home page, AND focused (should be true if we got here, but defensive)
+             if (animationsEnabled && onHomePage && !isUnfocused) {
+                 setTimeout(() => { // Schedule glow after a short delay, re-checking conditions
+                      const checkSettings = window.getSettings();
+                      const checkHomePage = window.location.hash === '' || window.location.hash === '#home';
+                      const animationsEnabledCheck = checkSettings.enableAnimations === 'on';
+                      body = body || document.body; // Ensure ref is fresh
+                      const isUnfocusedCheck = body?.classList.contains('unfocused') || false;
+                      // Only add glow if still on home, animations enabled, focused, and typing is done
+                      if (typingTextElement && animationsEnabledCheck && onHomePageCheck && !isUnfocusedCheck && typingTextElement.classList.contains('typing-done')) {
+                          typingTextElement.classList.add('glow');
+                           console.log("typeWriter: Added glow class.");
+                      } else {
+                          console.log("typeWriter: Conditions changed during glow delay, not adding glow.");
+                      }
+                 }, delayBeforeGlow);
+             } else {
+                  typingTextElement.classList.remove('glow'); // No glow if animations are off or not on home or unfocused
+                  console.log("typeWriter: Not adding glow (animations off, not home, or unfocused).");
+             }
+         }
+         hasTyped = true; // Mark typing as completed
+         typingAnimationTimeout = null; // Clear the animation frame ID
+        return;
+      }
+
+      if (charIndex < originalText.length) {
+        typingTextElement.textContent += originalText.charAt(charIndex);
+        charIndex++;
+        // Use setTimeout for the typing delay, requestAnimationFrame for the loop continuation
+        typingAnimationTimeout = requestAnimationFrame(() => {
+             // Re-check conditions before scheduling the next character
+             const currentSettingsCheck = window.getSettings ? window.getSettings() : { enableAnimations: 'off' };
+             const animationsEnabledCheck = currentSettingsCheck.enableAnimations === 'on';
+             const onHomePageCheck = window.location.hash === '' || window.location.hash === '#home';
+             body = body || document.body; // Ensure ref is fresh
+             const isUnfocusedCheck = body?.classList.contains('unfocused') || false;
+             // Only continue if animations are still enabled, we are on the home page, focused, and the element is still marked for typing
+             if (animationsEnabledCheck && onHomePageCheck && !isUnfocusedCheck && typingTextElement && typingTextElement.classList.contains('typing')) {
+                 setTimeout(typeWriter, typingSpeed);
+             } else {
+                 console.log("typeWriter: Conditions changed during typing, stopping animation loop.");
+             }
+         });
+      }
+    }
+
+
+    // Copy and paste the createPhrase function here:
+    function createPhrase() {
+      const currentSettings = window.getSettings ? window.getSettings() : { enableAnimations: 'off', showMovingPhrases: 'off' };
+      const onHomePage = window.location.hash === '' || window.location.hash === '#home';
+      const animationsEnabled = currentSettings.enableAnimations === 'on';
+      const movingPhrasesEnabled = currentSettings.showMovingPhrases === 'on';
+      body = body || document.body; // Ensure ref is fresh
+       const isUnfocused = body?.classList.contains('unfocused') || false;
+        movingPhrasesContainer = movingPhrasesContainer || document.getElementById('moving-phrases'); // Ensure ref is fresh
+
+
+      if (!movingPhrasesContainer || !onHomePage || !animationsEnabled || !movingPhrasesEnabled || isUnfocused) {
+           if (movingPhraseTimer !== null) stopMovingPhrasesTimer();
+           if (movingPhrasesContainer) movingPhrasesContainer.style.display = 'none';
+           movingPhrasesContainer?.querySelectorAll('.moving-phrase').forEach(phrase => {
+              const animationName = phrase.style.animationName;
+              if (phrase.parentElement) phrase.remove();
+              if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+                 const sheetToRemove = document.getElementById(animationName);
+                 if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+              }
+           });
+           document.head.querySelectorAll('style[id^="movePhrase"]').forEach(styleSheet => styleSheet.remove());
+
+        return;
+      }
+
+      const phraseElement = document.createElement('div');
+      phraseElement.className = 'moving-phrase';
+      const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      phraseElement.textContent = randomPhrase;
+      movingPhrasesContainer.appendChild(phraseElement);
+
+      requestAnimationFrame(() => {
+           const settingsNow = window.getSettings ? window.getSettings() : { enableAnimations: 'off', showMovingPhrases: 'off' };
+           const animationsEnabledNow = settingsNow.enableAnimations === 'on';
+           const movingPhrasesEnabledNow = settingsNow.showMovingPhrases === 'on';
+           const onHomePageNow = window.location.hash === '' || window.location.hash === '#home';
+           body = body || document.body;
+           const isUnfocusedNow = body?.classList.contains('unfocused') || false;
+
+
+           if (!phraseElement || !phraseElement.parentElement || !animationsEnabledNow || !movingPhrasesEnabledNow || !onHomePageNow || isUnfocusedNow) {
+               console.log("createPhrase: Moving phrase conditions changed during RAF, cleaning up.");
+               if (phraseElement && phraseElement.parentElement) phraseElement.remove();
+               if (movingPhraseTimer !== null) stopMovingPhrasesTimer();
+               const animationName = phraseElement.style.animationName;
+               if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+                    const sheetToRemove = document.getElementById(animationName);
+                    if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+               }
+               return;
+           }
+
+           const containerHeight = movingPhrasesContainer.offsetHeight;
+           const phraseHeight = phraseElement.offsetHeight || 30;
+           const verticalPos = 10 + Math.random() * (containerHeight > phraseHeight + 20 ? containerHeight - phraseHeight - 20 : containerHeight * 0.8);
+           const duration = 8 + Math.random() * 5;
+           const delay = 0;
+
+           const keyframesName = `movePhrase${Date.now()}${Math.random().toString(36).substr(2, 5)}`;
+           const styleSheet = document.createElement('style');
+           styleSheet.id = keyframesName;
+
+           const phraseWidth = phraseElement.getBoundingClientRect().width || 200;
+
+
+           styleSheet.textContent = `
+             @keyframes ${keyframesName} {
+               0% { transform: translateX(-100vw); opacity: 0; }
+               10% { opacity: 1; }
+               90% { opacity: 1; }
+               100% { transform: translateX(calc(100vw + ${phraseWidth}px)); opacity: 0; }
+             }
+           `;
+           document.head.appendChild(styleSheet);
+
+           phraseElement.style.position = 'absolute';
+           phraseElement.style.top = `${verticalPos}px`;
+           phraseElement.style.left = '0';
+           phraseElement.style.animation = `${keyframesName} ${duration}s linear ${delay}s forwards`;
+           phraseElement.style.whiteSpace = 'nowrap';
+           phraseElement.style.pointerEvents = 'none';
+           phraseElement.style.zIndex = 0;
+           phraseElement.style.color = 'rgba(255, 255, 255, 0.2)';
+           phraseElement.style.fontSize = '1.5rem';
+           phraseElement.style.fontFamily = 'Lato, sans-serif';
+
+
+           const cleanUp = () => {
+             if (phraseElement && phraseElement.parentElement) phraseElement.remove();
+             const sheetToRemove = document.getElementById(keyframesName);
+             if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+           };
+           phraseElement.addEventListener('animationend', cleanUp);
+           phraseElement.addEventListener('animationcancel', cleanUp);
+      });
+    }
+
+    // Copy and paste the startMovingPhrasesTimer function here:
+    function startMovingPhrasesTimer() {
+      const currentSettings = window.getSettings ? window.getSettings() : { enableAnimations: 'off', showMovingPhrases: 'off' };
+      const onHomePage = window.location.hash === '' || window.location.hash === '#home';
+      const animationsEnabled = currentSettings.enableAnimations === 'on';
+      const movingPhrasesEnabled = currentSettings.showMovingPhrases === 'on';
+      body = body || document.body;
+      const isUnfocused = body?.classList.contains('unfocused') || false;
+      movingPhrasesContainer = movingPhrasesContainer || document.getElementById('moving-phrases');
+
+
+      if (movingPhrasesContainer && onHomePage && animationsEnabled && movingPhrasesEnabled && !isUnfocused && movingPhraseTimer === null) {
+        console.log("startMovingPhrasesTimer: Starting moving phrases timer...");
+         movingPhrasesContainer.style.display = 'block';
+         createPhrase();
+        movingPhraseTimer = setInterval(createPhrase, 3000);
+      } else if (movingPhraseTimer !== null) {
+            if (!onHomePage || !animationsEnabled || !movingPhrasesEnabled || isUnfocused) {
+                console.log("startMovingPhrasesTimer: Conditions changed, stopping moving phrases timer.");
+                stopMovingPhrasesTimer();
+            }
+      } else {
+           if(movingPhrasesContainer) movingPhrasesContainer.style.display = 'none';
+            movingPhrasesContainer?.querySelectorAll('.moving-phrase').forEach(phrase => {
+             const animationName = phrase.style.animationName;
+             if (phrase.parentElement) phrase.remove();
+             if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+               const sheetToRemove = document.getElementById(animationName);
+               if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+             }
+           });
+           document.head.querySelectorAll('style[id^="movePhrase"]').forEach(styleSheet => styleSheet.remove());
+      }
+    }
+
+    // Copy and paste the stopMovingPhrasesTimer function here:
+    function stopMovingPhrasesTimer() {
+      if (movingPhraseTimer !== null) {
+        clearInterval(movingPhraseTimer);
+        movingPhraseTimer = null;
+        console.log("stopMovingPhrasesTimer: Stopped moving phrases timer.");
+      }
+      movingPhrasesContainer = movingPhrasesContainer || document.getElementById('moving-phrases');
+      if(movingPhrasesContainer) {
+        movingPhrasesContainer.querySelectorAll('.moving-phrase').forEach(phrase => {
+             const animationName = phrase.style.animationName;
+             if (phrase.parentElement) phrase.remove();
+             if (animationName && typeof animationName === 'string' && animationName.startsWith('movePhrase')) {
+               const sheetToRemove = document.getElementById(animationName);
+               if (sheetToRemove && sheetToRemove.parentElement) sheetToRemove.remove();
+             }
+           });
+           movingPhrasesContainer.style.display = 'none';
+      }
+       document.head.querySelectorAll('style[id^="movePhrase"]').forEach(styleSheet => styleSheet.remove());
+    }
+
+
+  </script>
+</body>
 </html>

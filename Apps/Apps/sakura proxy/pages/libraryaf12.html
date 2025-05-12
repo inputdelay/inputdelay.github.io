@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.sakuraon.top/pages/library.html?gg=/g/justfall/semag/justfalllol/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 May 2025 05:26:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>apps</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: transparent;
+    }
+
+    @keyframes popUp {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    iframe {
+      width: 90vw;
+      height: 80vh;
+      border: none;
+      margin-top: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      animation: popUp 0.6s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="app-iframe" src="#"></iframe>
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    window.onload = function () {
+      let iframe = document.getElementById('app-iframe');
+      let ggLink = getQueryParam('gg');
+
+      if (ggLink) {
+        iframe.src = decodeURIComponent(ggLink);
+      }
+    };
+  </script>
+</body>
+
+<!-- Mirrored from www.sakuraon.top/pages/library.html?gg=/g/justfall/semag/justfalllol/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 May 2025 05:26:26 GMT -->
+</html>

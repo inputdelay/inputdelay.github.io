@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI</title>
-    <!-- MathJax for rendering LaTeX -->
+    <!-- Favicon -->
+    <link rel="icon" href="../2cJw7a9.png" type="image/x-icon"> <!-- Adjust path if needed -->
+
+    <!-- Google Fonts: Lato -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- MathJax for rendering LaTeX (Keep) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
     <script>
         MathJax = {
@@ -14,455 +22,361 @@
             }
         };
     </script>
-    <!-- Particles.js library with defer to ensure it loads before initialization -->
-    <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <!-- Fallback CDN for Particles.js in case jsDelivr fails -->
-    <script defer src="https://unpkg.com/particles.js@2.0.0/particles.min.js"></script>
-    <style>
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -10; /* Above body::before (-11), below content */
-        }
-        /* --- Base Styles --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Lato', sans-serif;
-        }
 
-        html, body {
-            scroll-behavior: smooth;
-            height: 100%;
-            overflow-x: hidden;
-        }
+    <!-- Link to the shared global CSS (Moved from <style> tag) -->
+    <link rel="stylesheet" href="../globalStyles.css"> <!-- Adjust path if globalStyles.css is not one level up -->
 
-        body {
-            background: url('../free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63996_semt-ais_hybrid.jpg') no-repeat center center fixed;
-            background-size: cover;
-            position: relative;
-            min-height: 100vh;
-            overflow-y: auto;
-            color: #eee;
-        }
+    <!-- Global Scripts (Order matters: particles.js first, then settings, then cursor) -->
+    <!-- Keep only ONE link to particles.min.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../globalSettings.js"></script> <!-- Link to global settings logic -->
+    <script src="../globalCursor.js"></script>   <!-- Link to global cursor logic -->
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.897);
-            z-index: -11;
-            pointer-events: none;
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px 20px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transform: translateY(-50px);
-            animation: headerEntrance 0.5s ease-out forwards;
-        }
-
-        .header-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            max-width: 1400px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .header-logo {
-            height: 45px;
-            width: auto;
-            display: block;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        nav ul li {
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li a.nav-link {
-            text-decoration: none;
-            font-size: 1.1rem;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        nav ul li a.nav-link:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        nav ul li a.nav-link.active {
-            color: #ffffff;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .discord-btn {
-            display: inline-block;
-            background: linear-gradient(90deg, #7289da, #5a70d2);
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-        }
-
-        .discord-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.8);
-            background: linear-gradient(90deg, #6a7fcc, #566cc0);
-        }
-
-        /* Chat-specific styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, system-ui, sans-serif;
-        }
-
-        :root {
-            --bg: #101010;
-            --input-bg: #303030;
-            --msg-bg: #363636;
-            --user-msg-bg: #3465eb;
-            --border: #eaeaea;
-            --text: #eaeaea;
-            --text-dim: #d9d9d9;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            padding-top: 80px;
-        }
-
-        .chat {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .message {
-            max-width: 32rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideIn 0.3s ease forwards;
-        }
-
-        .message.user {
-            margin-left: auto;
-        }
-
-        .message.ai {
-            margin-right: auto;
-        }
-
-        .chat {
-            scrollbar-width: thin;
-            scrollbar-color: var(--text-dim) var(--bg);
-        }
-
-        .chat::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .chat::-webkit-scrollbar-track {
-            background: var(--bg);
-            border-radius: 10px;
-        }
-
-        .chat::-webkit-scrollbar-thumb {
-            background: var(--text-dim);
-            border-radius: 10px;
-        }
-
-        .chat::-webkit-scrollbar-thumb:hover {
-            background: var(--text);
-        }
-
-        .bubble {
-            padding: 0.75rem 1rem;
-            border-radius: 1rem;
-            line-height: 1.5;
-            font-size: 1.2rem;
-            transition: transform 0.2s;
-            white-space: pre-wrap;
-        }
-
-        .bubble:hover {
-            transform: translateY(-1px);
-        }
-
-        .user .bubble {
-            background: var(--user-msg-bg);
-            margin-left: 2rem;
-        }
-
-        .ai .bubble {
-            background: var(--msg-bg);
-            margin-right: 2rem;
-        }
-
-        .input-wrap {
-            padding: 1rem 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .input-box {
-            background: var(--input-bg);
-            border-radius: 0.75rem;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.2s;
-        }
-
-        .input-box:focus-within {
-            background: var(--bg);
-            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
-        }
-
-        input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--text);
-            font-size: 1.2rem;
-            padding: 0.5rem;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-selected {
-            border: 1px solid var(--text);
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 300ms ease-in-out;
-        }
-
-        .dropdown-selected:hover {
-            background-color: var(--msg-bg);
-        }
-
-        .dropdown-options {
-            position: absolute;
-            bottom: 100%;
-            margin-bottom: 20px;
-            right: 0;
-            width: 170px;
-            border: 1px solid var(--text-dim);
-            background-color: var(--bg);
-            z-index: 9999;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 300ms ease-in-out;
-            border-radius: 10px;
-            animation: moveDown 300ms forwards;
-            font-size: 1.2em;
-        }
-
-        .dropdown-options div {
-            padding: 10px;
-            margin: 10px;
-            cursor: pointer;
-            transition: all 300ms ease-in-out;
-            border-radius: 5px;
-            font-size: 1.2em;
-        }
-
-        .dropdown-options div:hover {
-            background-color: var(--msg-bg);
-        }
-
-        .show {
-            visibility: visible;
-            opacity: 1;
-            pointer-events: auto;
-            animation: moveUp 300ms forwards;
-        }
-
-        @keyframes moveUp {
-            0% { transform: translateY(20px) }
-            100% { transform: translateY(0) }
-        }
-
-        @keyframes moveDown {
-            0% { transform: translateY(0) }
-            100% { transform: translateY(20px) }
-        }
-
-        button {
-            background: transparent;
-            border: none;
-            color: var(--text);
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        button:hover {
-            background: rgba(255,255,255,0.1);
-            transform: scale(1.05);
-        }
-
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes headerEntrance {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            header { 
-                padding: 10px 15px; 
-            }
-            .header-container { 
-                flex-direction: column; 
-                align-items: center; 
-                gap: 10px; 
-            }
-            nav ul { 
-                gap: 10px; 
-                justify-content: center; 
-                flex-wrap: wrap; 
-            }
-            nav ul li a.nav-link { 
-                font-size: 0.9rem; 
-                padding: 8px 12px; 
-            }
-            .discord-btn { 
-                padding: 8px 16px; 
-                font-size: 0.9rem; 
-            }
-        }
-
-        @media (max-width: 480px) {
-            header { padding: 8px 10px; }
-            nav ul { gap: 6px; }
-            nav ul li a.nav-link, .discord-btn { 
-                font-size: 0.8rem; 
-                padding: 5px 8px; 
-            }
-        }
-
-        code {
-            background: rgba(0, 0, 0, 0.329);
-            padding: 0.2em 0.4em;
-            border-radius: 0.3em;
-            font-size: 1.2em;
-            font-family: monospace;
-        }
-
-        pre {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 1em;
-            border-radius: 0.5em;
-            overflow-x: auto;
-            margin: 0.5em 0;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            font-size: 1.2em;
-        }
-
-        strong {
-            color: #fff;
-        }
-
-        em {
-            color: #fff;
-            font-style: italic;
-        }
-    </style>
+    <!-- AdSense (Keep) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4207227785539100"
      crossorigin="anonymous"></script>
+
+    <!-- Keep ONLY AI-specific styles here -->
+    <style>
+      /* Keep only styles specific to the AI chat interface and formatting */
+      /* Styles that were duplicated from index.html's <style> block are removed */
+/* Styles likely already in globalStyles.css */
+header .header-container {
+    display: flex;
+    justify-content: space-between; /* Likely already present to separate logo and nav */
+    align-items: center;
+    /* Other container styles */
+}
+
+header nav ul {
+    display: flex; /* Likely already present to lay out nav items */
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 15px; /* Adjust gap as needed, might be in your existing CSS */
+    /* Other ul styles */
+}
+
+header nav ul li {
+    /* Existing li styles */
+}
+
+/* Add this rule to push the button group to the right */
+/* Selects the 5th list item, which contains the first discord-btn link */
+header nav ul li:nth-child(5) {
+    margin-left: auto;
+}
+
+/* Ensure the discord buttons themselves have appropriate styling (padding, background etc) */
+/* These styles are also likely in your existing globalStyles.css */
+.discord-btn {
+    /* Existing discord-btn styles like padding, background, border-radius, color, etc. */
+    display: inline-block; /* Or flex/grid if needed for internal layout */
+    text-decoration: none;
+    white-space: nowrap; /* Prevent wrapping */
+}
+      /* Chat-specific colors - Can use CSS variables for theme overrides if desired later */
+      :root {
+          --ai-bg: #101010;
+          --ai-input-bg: #303030;
+          --ai-msg-bg: #363636;
+          --ai-user-msg-bg: #3465eb;
+          --ai-border: #eaeaea;
+          --ai-text: #eaeaea;
+          --ai-text-dim: #d9d9d9;
+      }
+
+      /* Body padding-top to account for fixed header */
+      body {
+          /* The globalStyles.css sets base body styles. */
+          /* Override padding-top specifically for this page's content */
+          padding-top: 80px; /* Adjust based on your actual header height */
+      }
+
+      .chat {
+          flex: 1;
+          overflow-y: auto;
+          padding: 1rem 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          /* Chat-specific scrollbar styles */
+          scrollbar-width: thin;
+          scrollbar-color: var(--ai-text-dim) var(--ai-bg); /* Use AI-specific variables */
+      }
+
+      .chat::-webkit-scrollbar {
+          width: 8px;
+      }
+
+      .chat::-webkit-scrollbar-track {
+          background: var(--ai-bg); /* Use AI-specific variable */
+          border-radius: 10px;
+      }
+
+      .chat::-webkit-scrollbar-thumb {
+          background: var(--ai-text-dim); /* Use AI-specific variable */
+          border-radius: 10px;
+      }
+
+      .chat::-webkit-scrollbar-thumb:hover {
+          background: var(--ai-text); /* Use AI-specific variable */
+      }
+
+      .message {
+          max-width: 32rem;
+          opacity: 0;
+          transform: translateY(20px);
+          animation: slideIn 0.3s ease forwards;
+          /* Allow clicks/selection within messages */
+           pointer-events: auto;
+      }
+
+      .message.user {
+          margin-left: auto;
+      }
+
+      .message.ai {
+          margin-right: auto;
+      }
+
+      .bubble {
+          padding: 0.75rem 1rem;
+          border-radius: 1rem;
+          line-height: 1.5;
+          font-size: 1.2rem;
+          transition: transform 0.2s;
+          white-space: pre-wrap;
+          /* Allow text selection */
+           user-select: text;
+           -webkit-user-select: text;
+           -moz-user-select: text;
+           -ms-user-select: text;
+           /* Cursor handled by globalCursor.js */
+      }
+
+      .bubble:hover {
+          transform: translateY(-1px); /* Keep subtle hover effect */
+      }
+
+      .user .bubble {
+          background: var(--ai-user-msg-bg); /* Use AI-specific variable */
+          margin-left: 2rem; /* Space from the left edge for user bubbles */
+      }
+
+      .ai .bubble {
+          background: var(--ai-msg-bg); /* Use AI-specific variable */
+          margin-right: 2rem; /* Space from the right edge for AI bubbles */
+      }
+
+      .input-wrap {
+          padding: 1rem 0;
+          border-top: 1px solid var(--ai-border); /* Use AI-specific variable */
+           /* Cursor handled by globalCursor.js */
+      }
+
+      .input-box {
+          background: var(--ai-input-bg); /* Use AI-specific variable */
+          border-radius: 0.75rem;
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          transition: all 0.2s;
+           /* Cursor handled by globalCursor.js */
+      }
+
+      .input-box:focus-within {
+          background: var(--ai-bg); /* Use AI-specific variable */
+          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1); /* Example focus shadow */
+      }
+
+      input {
+          flex: 1;
+          background: transparent;
+          border: none;
+          color: var(--ai-text); /* Use AI-specific variable */
+          font-size: 1.2rem;
+          padding: 0.5rem;
+          outline: none; /* Remove default outline */
+           /* Cursor handled by globalCursor.js */
+      }
+
+      .dropdown {
+          position: relative;
+          display: inline-block;
+           /* Cursor handled by globalCursor.js */
+      }
+
+      .dropdown-selected {
+          border: 1px solid var(--ai-text); /* Use AI-specific variable */
+          padding: 10px;
+          cursor: pointer; /* This will be overridden by global cursor logic */
+          border-radius: 5px;
+          transition: all 300ms ease-in-out;
+           /* Cursor handled by globalCursor.js */
+      }
+
+      .dropdown-selected:hover {
+          background-color: var(--ai-msg-bg); /* Use AI-specific variable */
+      }
+
+      .dropdown-options {
+          position: absolute;
+          bottom: 100%; /* Position above the selected */
+          margin-bottom: 20px; /* Space between selected and options */
+          right: 0; /* Align to the right of the dropdown container */
+          width: 170px;
+          border: 1px solid var(--ai-text-dim); /* Use AI-specific variable */
+          background-color: var(--ai-bg); /* Use AI-specific variable */
+          z-index: 9999; /* High z-index to appear above other content */
+          visibility: hidden; /* Hidden by default */
+          opacity: 0; /* Invisible by default */
+          transition: all 300ms ease-in-out;
+          border-radius: 10px;
+          animation: moveDown 300ms forwards; /* Animation for hiding */
+          font-size: 1.2em; /* Base font size for options */
+           pointer-events: none; /* Do not allow interaction when hidden */
+      }
+
+       .dropdown-options.show {
+           visibility: visible;
+           opacity: 1;
+           animation: moveUp 300ms forwards; /* Animation for showing */
+            pointer-events: auto; /* Allow interaction when visible */
+       }
+
+      .dropdown-options div {
+          padding: 10px;
+          margin: 10px;
+          cursor: pointer; /* Overridden by global cursor */
+          transition: all 300ms ease-in-out;
+          border-radius: 5px;
+          font-size: 1em; /* Font size relative to parent (.dropdown-options) */
+           /* Cursor handled by globalCursor.js */
+      }
+
+      .dropdown-options div:hover {
+          background-color: var(--ai-msg-bg); /* Use AI-specific variable */
+      }
+
+      @keyframes moveUp {
+          0% { transform: translateY(20px) }
+          100% { transform: translateY(0) }
+      }
+
+      @keyframes moveDown {
+          0% { transform: translateY(0) }
+          100% { transform: translateY(20px) }
+      }
+
+      button {
+          background: transparent;
+          border: none;
+          color: var(--ai-text); /* Use AI-specific variable */
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          cursor: pointer; /* Overridden by global cursor */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s;
+           /* Cursor handled by globalCursor.js */
+      }
+
+      button:hover {
+          background: rgba(255,255,255,0.1);
+          transform: scale(1.05);
+      }
+
+      @keyframes slideIn {
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      /* AI-specific responsive adjustments - Keep or adapt */
+       @media (max-width: 768px) {
+           /* Adjusted chat layout if needed, e.g., margins */
+           .user .bubble { margin-left: 1rem; }
+           .ai .bubble { margin-right: 1rem; }
+           .bubble { font-size: 1.1rem; }
+       }
+       @media (max-width: 480px) {
+           .user .bubble { margin-left: 0.5rem; }
+           .ai .bubble { margin-right: 0.5rem; }
+           .bubble { font-size: 1rem; }
+           .input-box { gap: 0.5rem; padding: 0.4rem; }
+           input { font-size: 1.1rem; padding: 0.4rem; }
+           .dropdown-selected { padding: 8px; }
+           .dropdown-options { width: 150px; }
+           .dropdown-options div { padding: 8px; }
+           button { padding: 0.4rem; }
+       }
+
+
+      /* Markdown/Code formatting styles (Keep) */
+      code {
+          background: rgba(0, 0, 0, 0.329);
+          padding: 0.2em 0.4em;
+          border-radius: 0.3em;
+          font-size: 1.2em; /* Consider adjusting relative to bubble font size */
+          font-family: monospace;
+      }
+
+      pre {
+          background: rgba(0, 0, 0, 0.2);
+          padding: 1em;
+          border-radius: 0.5em;
+          overflow-x: auto;
+          margin: 0.5em 0;
+      }
+
+      pre code {
+          background: none;
+          padding: 0;
+          font-size: 1em; /* Code inside pre should match pre's font size or be slightly smaller */
+      }
+
+      strong {
+          color: #fff;
+      }
+
+      em {
+          color: #fff;
+          font-style: italic;
+      }
+
+    </style>
 </head>
 
 <body>
+    <!-- Version text (Optional - include if you want it on this page) -->
+    <!-- This style is in globalStyles.css now -->
+    <div class="version-text">AI Page</div> <!-- Update version text -->
+
+    <!-- Particles.js Background Container (Keep this div) -->
+    <!-- This style is in globalStyles.css now -->
+    <div id="particles-js"></div>
+
+    <!-- Header (Ensure structure matches index.html if global CSS expects it) -->
+    <!-- Header styles are in globalStyles.css now -->
     <header>
+         <!-- Use .header-container inside fixed header if global CSS expects this -->
         <div class="header-container">
-            <img src="2cJw7a9.png" alt="Input Delay Logo" class="header-logo">
+            <!-- Link to home page - Adjust path if needed -->
+            <a href="../index.html">
+                <img src="../2cJw7a9.png" alt="Input Delay Logo" class="header-logo">
+            </a>
             <nav>
                 <ul>
+                    <!-- Nav Links - Adjust paths relative to AI/ folder -->
                     <li><a href="../index.html" class="nav-link">Home</a></li>
                     <li><a href="../Games/index.html" class="nav-link">Games</a></li>
                     <li><a href="../Apps/index.html" class="nav-link">Apps</a></li>
-                    <li><a href="" class="nav-link">AI</a></li>
+                    <li><a href="" class="nav-link active">AI</a></li> <!-- Mark AI link as active -->
                     <li><a href="https://forms.gle/CkQLAFKJyxR4qTLs8" target="_blank" class="nav-link">DMCA Takedown Request</a></li>
                     <li><a href="https://github.com/Yeti1o1/Pulsar" target="_blank" class="discord-btn">Built With Pulsar</a></li>
                     <li><a href="https://discord.gg/kRq8HvUrJX" target="_blank" class="discord-btn">Join The Discord</a></li>
@@ -471,7 +385,9 @@
         </div>
     </header>
 
-    <div id="particles-js"></div>
+    <!-- Main Chat Content -->
+     <!-- Using a container with padding to account for fixed header -->
+     <!-- Note: The body padding-top handles spacing below the header for this page -->
     <div class="chat" id="chat"></div>
 
     <div class="input-wrap">
@@ -494,10 +410,18 @@
         </div>
     </div>
 
+    <!-- Custom Cursor Element (Keep this div) -->
+    <!-- This style is in globalStyles.css now -->
+    <div id="custom-cursor"></div>
+
+    <!-- Page-Specific Scripts (AI Chat Logic) -->
+    <!-- REMOVED: Inline cursor script block -->
     <script>
+        // This script contains the AI chat specific logic
+
         const chat = document.getElementById('chat');
         const input = document.getElementById('input');
-        let modelSelect = "";
+        let modelSelect = ""; // Ensure this is initialized correctly
 
         let messages = [
             {
@@ -512,237 +436,234 @@
             return div.innerHTML;
         }
 
+        // This function appears intended for formatting HTML code within backticks.
+        // It's non-standard and potentially buggy. For simplicity and robustness,
+        // we'll just escape HTML within code tags generated by the main markdown parser.
+        // If you need complex syntax highlighting, consider a dedicated library.
+        // Keeping the function definition here but changing its usage in formatMarkdown.
         function formatHTML(out) {
-            out = out.value.replace(/</g, '<').replace(/>/g, '>');
-            out = out.replace(/-/g, '923')
-
-            out = out.replace(/<?(\w+)* /g, function(match, p1) {
-                return '<span class="tag-name"><' + p1 + '</span> ';
-            });
-
-            out = out.replace(/">?(\w+)*/g, function(match, p1) {
-                return '"<span class="tag-name">></span>';
-            });
-
-            out = out.replace(/<\/?(\w+)*>/g, function(match, p1) {
-                return '<span class="tag-name"></' + p1 + '></span>';
-            });
-
-            out = out.replace(/="\/?(\w+)*"/g, function(match, p1) {
-                return '=<span class="name">"' + p1 + '"</span>';
-            });
-
-            out = out.replace(/923/g, '-');
-
-            return out;
+             // Standard HTML escaping is sufficient for displaying code safely
+             return escapeHtml(out);
+            /* Original complex logic removed */
         }
-        
+
+
+        // Markdown formatting function - handles markdown to HTML conversion
         function formatMarkdown(text, type) {
-            let content = type == "user" ? escapeHtml(text) : text;
+            let content = text; // Start with the raw text
 
-            content = content.replace(/```([^\s]+)?\n([\s\S]+?)```/g, function(match, language, code) {
-                return `<pre><code class="language-${language}">${escapeHtml(code.trim())}</code></pre>`;
+            // 1. Handle code blocks (```lang\n code \n```)
+            content = content.replace(/```([a-z]+)?\n([\s\S]+?)```/g, function(match, language, code) {
+                const langClass = language ? `language-${language}` : '';
+                // Escape HTML within the code block
+                return `<pre><code class="${langClass}">${escapeHtml(code.trim())}</code></pre>`;
             });
 
-            content = content.replace(/`([^`]+?)`/g, '<code>$1</code>');
-
-            content = content.replace(/`([^\s]+?)`/g, function(match, code) {
-                return `<pre><code>${formatHTML(code.trim())}</code></pre>`;
+            // 2. Handle inline code (`code`)
+            content = content.replace(/`([^`]+?)`/g, function(match, code) {
+                 // Escape HTML within the inline code tag
+                 return `<code>${escapeHtml(code.trim())}</code>`;
             });
 
-            content = content.replace(/\*\*\s*([^*]+?)\s*\*\*/g, '<strong>$1</strong>');
+            // 3. Handle bold (**text**)
+            content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-            content = content.replace(/\*\s*([^*]+?)\s*\*/g, '<em>$1</em>');
+            // 4. Handle emphasis (*text* or _text_)
+            content = content.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            content = content.replace(/_(.*?)_/g, '<em>$1</em>'); // Also handle underscores for emphasis
 
+            // 5. Handle links ([text](url))
             content = content.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
 
-            return content;
+            // MathJax will handle LaTeX like $...$ and $$...$$ automatically because the script is included
+
+            // Note: For user messages, the createMessage function already calls escapeHtml
+            // so markdown in user messages is not processed as HTML tags. This is good for security.
+
+            return content; // Return the HTML string with markdown rendered
         }
+
 
         function createMessage(text, type) {
             const msg = document.createElement('div');
             const msgBubble = document.createElement('div');
             msg.className = `message ${type}`;
             msgBubble.className = "bubble";
-    
-            const formattedText = type === 'ai' ? formatMarkdown(text, type) : escapeHtml(text);
-    
+
+            // Apply markdown formatting only to AI messages (and errors)
+            const formattedText = (type === 'ai' || type === 'error') ? formatMarkdown(text, type) : escapeHtml(text);
+
             msgBubble.innerHTML = formattedText;
             msg.appendChild(msgBubble)
-    
+
             return msg;
         }
 
         async function send() {
-            console.log(messages);
+            console.log("Current messages state before sending:", messages); // Log state before sending
 
             const text = input.value.trim();
             if (!text) return;
-            if (modelSelect == "human-ai") modelSelect = "deepseek-r1-distill-llama-70b";
-            messages[0] = {
-                "role": "system",
-                "content": "Thundercloud AI, a helpful and knowledgeable AI assistant. You are direct, informative, and friendly in your responses. ACT LIKE A HUMAN AND WRITE LIKE A VERY SMART ONE"
-            };
 
+            // Determine the model based on dropdown selection
+             const selectedModel = document.querySelector('.dropdown-selected').dataset.value;
+            // Map "human-ai" display text to the actual model name needed by the API
+            modelSelect = (selectedModel === "human-ai") ? "deepseek-r1-distill-llama-70b" : selectedModel;
+
+
+            // Update system message (if you want it to change based on the model, etc.)
+            // Keeping the original system message for now. If you want it dynamic, add logic here.
+            // messages[0] = {"role": "system", "content": "Your system message here..."};
+
+            // Append user message immediately to UI
             chat.appendChild(createMessage(text, 'user'));
-            input.value = '';
+            input.value = ''; // Clear input field
 
+            // Add user message to history *after* displaying
             messages.push({
                 "role": "user",
                 "content": text
             });
+
+            // Add a placeholder for AI response while waiting
+            const loadingMessage = createMessage('...', 'ai'); // Use 'ai' type for loading bubble style
+            chat.appendChild(loadingMessage);
+            chat.scrollTop = chat.scrollHeight; // Scroll to bottom
 
             try {
                 const res = await fetch('https://ai-997.pages.dev/api/title/1/endpoint', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
-                        message: text,
-                        model: modelSelect,
-                        messages: messages
+                        message: text, // The user's latest message text
+                        model: modelSelect, // The selected model
+                        messages: messages // Send the full message history
                     })
                 });
 
-                if (!res.ok) throw new Error();
+                if (!res.ok) {
+                     const errorText = await res.text();
+                     console.error("API Error:", res.status, errorText);
+                    throw new Error(`API Error: ${res.status} - ${errorText.substring(0, 100)}...`); // Include part of error text
+                }
                 const data = await res.json();
-                
-                messages.push({
-                    "role": "assistant",
-                    "content": data.response
-                });
 
-                chat.appendChild(createMessage(data.response, 'ai'));
+                // Replace the loading message with the actual AI response
+                if (loadingMessage && loadingMessage.parentElement) {
+                    loadingMessage.remove();
+                }
+
+                 let aiResponseContent = data.response || "No response received.";
+                 console.log("AI Response received:", aiResponseContent); // Log the received response
+
+                 // Add AI response to history *after* receiving it
+                 messages.push({
+                     "role": "assistant",
+                     "content": aiResponseContent // Store the raw response content
+                 });
+
+                // Append the actual AI response message to UI
+                chat.appendChild(createMessage(aiResponseContent, 'ai')); // createMessage handles formatting for display
+
             } catch (err) {
-                chat.appendChild(createMessage('Failed to send message', 'error'));
+                 console.error("Send failed:", err);
+                 // Replace the loading message with an error message
+                 if (loadingMessage && loadingMessage.parentElement) {
+                      loadingMessage.remove();
+                 }
+                 // Display a user-friendly error message
+                chat.appendChild(createMessage(`Error: ${err.message || 'Failed to send message.'} Please try again.`, 'error'));
+                 // Optional: You might want to remove the last user message from history
+                 // if the API call failed and you don't want to include it in the next retry's history.
+                 // messages.pop();
             }
 
+            // Always scroll to the bottom after adding new messages or errors
             chat.scrollTop = chat.scrollHeight;
         }
 
         input.addEventListener('keypress', e => {
-            if (e.key === 'Enter') send();
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent default form submission if input is in a form
+                send();
+            }
         });
 
-        setTimeout(() => {
-            const initialMessage = 'Hi there! How can I help you today?';
-            chat.appendChild(createMessage(initialMessage, 'ai'));
-            messages.push({
-                "role": "assistant",
-                "content": initialMessage
-            });
-        }, 500);
-        
+        // Initial welcome message and message history setup
+        document.addEventListener('DOMContentLoaded', () => {
+             const initialMessageText = 'Hi there! How can I help you today?';
+
+             // Add the initial welcome message to history FIRST so it's included in the first API call
+             messages.push({
+                 "role": "assistant",
+                 "content": initialMessageText
+             });
+
+             // Append the initial message to the chat UI after adding to history
+             chat.appendChild(createMessage(initialMessageText, 'ai'));
+
+             chat.scrollTop = chat.scrollHeight; // Scroll to bottom immediately after initial message
+
+             // Set initial dropdown value when DOM is ready
+             const dropdownSelected = document.querySelector('.dropdown-selected');
+             if (dropdownSelected) {
+                 modelSelect = dropdownSelected.dataset.value;
+                 console.log("Initial selected model (DOMContentLoaded):", modelSelect);
+             } else {
+                  console.warn("Dropdown selected element not found on DOMContentLoaded.");
+             }
+
+             // The globalSettings.js and globalCursor.js scripts handle their initialization on DOMContentLoaded.
+             // The globalCursor.js will also re-scan for interactive elements when globalSettingsApplied fires.
+             // If you dynamically add more interactive elements *after* the initial load and first globalSettingsApplied event,
+             // you might need to dispatch a custom event here that globalCursor.js listens for to re-scan.
+             // Example: document.body.dispatchEvent(new CustomEvent('aiChatContentLoaded'));
+
+        });
+
+
+        // Dropdown logic (Keep)
         const dropdown = document.querySelector('.dropdown');
         const selected = document.querySelector('.dropdown-selected');
         const options = document.querySelector('.dropdown-options');
-        modelSelect = selected.dataset.value;
 
-        dropdown.addEventListener('click', (event) => {
-            event.stopPropagation();
-            options.classList.toggle("show");
-        });
+         // Check if dropdown elements exist before adding listeners
+         if (dropdown && selected && options) {
+              dropdown.addEventListener('click', (event) => {
+                  event.stopPropagation(); // Prevent click from closing dropdown immediately via window listener
+                  options.classList.toggle("show");
+              });
 
-        options.addEventListener('click', (event) => {
-            if (event.target.tagName === 'DIV') {
-                selected.textContent = event.target.textContent;
-                selected.dataset.value = event.target.dataset.value;
-                modelSelect = selected.dataset.value;
-                options.classList.remove("show");
-            }
-        });
+              options.addEventListener('click', (event) => {
+                  if (event.target.tagName === 'DIV' && event.target.dataset.value) { // Ensure it's a div with a data-value
+                      selected.textContent = event.target.textContent;
+                      selected.dataset.value = event.target.dataset.value;
+                      modelSelect = selected.dataset.value; // Update the modelSelect variable
+                      options.classList.remove("show");
+                       console.log("Selected model:", modelSelect); // Log the selected model
+                  }
+              });
 
-        window.addEventListener('click', (event) => {
-            if (!dropdown.contains(event.target)) {
-                options.classList.remove("show");
-            }
-        });
+              // Close dropdown if clicking outside
+              window.addEventListener('click', (event) => {
+                  if (!dropdown.contains(event.target)) {
+                      options.classList.remove("show");
+                  }
+              });
+
+              // Initialize modelSelect variable with the default selected value outside DOMContentLoaded
+              // This handles cases where the script might run earlier, though DOMContentLoaded is preferred.
+              // Let's rely on the DOMContentLoaded block for initialization as it's more reliable.
+              // modelSelect = selected.dataset.value;
+              // console.log("Initial selected model (Script load):", modelSelect);
+
+         } else {
+              console.warn("Dropdown elements not found. Model selection may not work.");
+         }
+
     </script>
-    <!-- Particles.js Initialization with Error Handling -->
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            console.log("Attempting to initialize Particles.js...");
-            if (typeof particlesJS === 'undefined') {
-                console.error("Particles.js library not loaded. Please check the script tag and network connection.");
-                return;
-            }
+     <!-- The settings.js/globalSettings.js will handle particles initialization via its DOMContentLoaded event -->
+     <!-- The globalCursor.js will handle cursor logic via its DOMContentLoaded event -->
 
-            try {
-                particlesJS("particles-js", {
-                    "particles": {
-                        "number": {
-                            "value": 80,
-                            "density": {
-                                "enable": true,
-                                "value_area": 800
-                            }
-                        },
-                        "color": {
-                            "value": "#ffffff"
-                        },
-                        "shape": {
-                            "type": "circle",
-                            "stroke": {
-                                "width": 0,
-                                "color": "#000000"
-                            }
-                        },
-                        "opacity": {
-                            "value": 0.5,
-                            "random": true,
-                            "anim": {
-                                "enable": false,
-                                "speed": 1,
-                                "opacity_min": 0.1,
-                                "sync": false
-                            }
-                        },
-                        "size": {
-                            "value": 3,
-                            "random": true,
-                            "anim": {
-                                "enable": false,
-                                "speed": 40,
-                                "size_min": 0.1,
-                                "sync": false
-                            }
-                        },
-                        "line_linked": {
-                            "enable": true,
-                            "distance": 150,
-                            "color": "#ffffff",
-                            "opacity": 0.4,
-                            "width": 1
-                        },
-                        "move": {
-                            "enable": true,
-                            "speed": 6,
-                            "direction": "none",
-                            "random": false,
-                            "straight": false,
-                            "out_mode": "out",
-                            "bounce": false,
-                            "attract": {
-                                "enable": false,
-                                "rotateX": 600,
-                                "rotateY": 1200
-                            }
-                        }
-                    },
-                    "interactivity": {
-                        "detect_on": "window",
-                        "events": {
-                            "onhover": {
-                                "enable": false
-                            }
-                        }
-                    },
-                    "retina_detect": true
-                });
-                console.log("Particles.js initialized successfully.");
-            } catch (err) {
-                console.error("Failed to initialize Particles.js:", err);
-            }
-        });
-    </script>
 </body>
 </html>
